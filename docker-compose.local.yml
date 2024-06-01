@@ -1,0 +1,17 @@
+# 찐 개발용
+version: '3.8'
+
+services:
+  client_local:
+    container_name: client_local
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      NODE_ENV: development
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

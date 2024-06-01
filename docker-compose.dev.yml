@@ -1,0 +1,23 @@
+# 포트 개방만 하고 다른 pc로 테스트 하는 용도
+version: '3.8'
+
+services:
+  seowasil_client_dev:
+    container_name: seowasil_client_dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      NODE_ENV: production
+    ports:
+      - '3000:3000'
+    command: npm run start
+    networks:
+      - seowasil_default
+    # volumes:
+    #   - .:/usr/src/app
+    #   - /usr/src/app/node_modules
+
+networks:
+  seowasil_default:
+    driver: bridge
