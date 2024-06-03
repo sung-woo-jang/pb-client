@@ -1,0 +1,249 @@
+//===============21. FAQ CSS START HERE ================
+
+.bd-faq {
+    $self: &;
+
+    &-2 {
+        ul {
+            li {
+                list-style-type: none;
+                margin: 0 50px;
+                position: relative;
+                padding-inline-start: 50px;
+                padding-inline-end: 20px;
+
+                @media #{$sm,$xs} {
+                    margin: 0 0;
+                    padding-inline-end: 10px;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    height: 90%;
+                    width: 1px;
+                    background-color: #e6e6e6;
+                    inset-inline-start: 16px;
+                    top: 50px;
+                }
+            }
+        }
+    }
+
+    &-number {
+        position: absolute;
+        top: 0;
+        inset-inline-start: 0;
+        height: 32px;
+        width: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-color: #4e97fd;
+        color: #fff;
+        border-radius: 50%;
+        top: 2px;
+    }
+
+    &-title {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 2;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    &-area {
+        &.active-anim {
+            & #{$self} {
+                &-thumb {
+                    @include transition(.5s);
+                    filter: drop-shadow(0px 10px 0 #4e97fd);
+
+                    img {
+                        @include transition(.5s);
+                    }
+                }
+            }
+        }
+
+        .bd-section-title-wrapper {
+            h2 {
+                font-size: 65px;
+
+                @media #{$md, $sm, $xs} {
+                    font-size: 34px;
+                }
+            }
+
+            p {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    //faq accordion css
+    .accordion {
+        &-item {
+            border: 1px solid #e6e6e6;
+            margin-bottom: 25px;
+            border-radius: 16px;
+
+            h4 {
+                line-height: 20px;
+            }
+
+            &:first-of-type .accordion-button {
+                border-radius: 16px;
+            }
+
+            &:last-of-type {
+                .accordion-button.collapsed {
+                    border-width: 1px;
+                    border-radius: 16px;
+                }
+
+                margin-bottom: 0;
+            }
+        }
+
+        &-button {
+            border-radius: 16px;
+            padding: 15px 25px;
+            height: 72px;
+            font-size: 16px;
+            font-weight: var(--bd-fw-medium);
+            color: #1b1b1b;
+            text-transform: uppercase;
+            padding-inline-end: 8px;
+            justify-content: space-between;
+            text-align: left;
+            background: #fff;
+            text-transform: capitalize;
+            position: relative;
+            padding-inline-end: 60px;
+
+
+            &::after {
+                content: "\f067";
+                background-image: none;
+                font-family: "font awesome 5 pro";
+                font-size: 14px;
+                font-weight: 400;
+                height: 28px;
+                width: 28px;
+                border: 1px solid #1b1b1b;
+                line-height: 26px;
+                border-radius: 50%;
+                margin-inline-start: 0;
+                margin-inline-end: 18px;
+                text-align: center;
+                color: #1b1b1b;
+                position: absolute;
+                inset-inline-end: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &:not(.collapsed) {
+                background-color: #4e97fd;
+                color: #fff;
+                box-shadow: none;
+
+                &::after {
+                    border-color: #fff;
+                    background: #fff;
+                    content: "\f068";
+                    color: #1b1b1b;
+                }
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        &-body {
+            padding: 21px 25px 11px;
+
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+
+    &-thumb {
+        display: inline-flex;
+
+        img {
+            width: 100%;
+        }
+
+        &-mask {
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            display: inline-flex;
+
+            @media #{$md,$sm,$xs} {
+                -webkit-mask-position: center;
+                mask-position: center;
+            }
+        }
+
+        &-wrapper {
+            position: relative;
+        }
+    }
+
+    &-shape {
+        position: absolute;
+        right: 150px;
+        bottom: -90px;
+        animation: rotate 3s infinite alternate;
+        transform-origin: -0px -280px;
+
+        @media #{$lg} {
+            right: 100px;
+            transform-origin: -0px -260px;
+        }
+    }
+
+    &-content {
+        margin-inline-end: 86px;
+
+        @media #{$lg,$md} {
+            margin-inline-end: 20px;
+        }
+
+        @media #{$sm,$xs} {
+            margin-inline-end: 0;
+        }
+
+        &-2 {
+            margin-inline-end: 40px;
+
+            @media #{$md} {
+                margin-inline-end: 20px;
+            }
+
+            @media #{$sm,$xs} {
+                margin-inline-end: 0;
+            }
+        }
+
+        &-3 {
+            border-bottom: 1px solid #e6e6e6;
+            padding-bottom: 15px;
+        }
+
+        &-4 {
+            margin-inline-end: 0;
+            padding: 0px;
+        }
+    }
+
+}
+
+// FAQ CSS END HERE

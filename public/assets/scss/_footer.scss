@@ -1,0 +1,144 @@
+/* 11. footer */
+.footer-wrapper {
+    overflow: hidden;
+
+    @media #{$xs} {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    @media #{$lg} {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    @media #{$md} {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+.footer-title {
+    font-size: 20px;
+    margin-bottom: 19px;
+    text-transform: capitalize
+}
+
+.footer-text p {
+    margin-bottom: 19px;
+}
+
+.footer-icon {
+    & a {
+        font-size: 13px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 12px;
+        transition: .3s;
+        height: 40px;
+        width: 40px;
+        color: $body-text-color;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        border: 2px solid #eaeaea;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            border: $theme-color;
+            color: $white;
+            background: $theme-color;
+        }
+    }
+}
+
+.footer-link {
+    & ul {
+        & li {
+            padding-bottom: 8px;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            & a {
+                font-size: 15px;
+                font-weight: 400;
+                transition: .3s;
+                color: $body-text-color;
+
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+}
+
+.copyright p {
+    margin-bottom: 0;
+    color: $body-text-color;
+    font-size: 15px;
+
+    & a {
+        color: $red;
+    }
+
+    @media #{$xs} {
+        text-align: center;
+    }
+}
+
+// footer-bottom
+.footer-bottom-area {
+    border-top: 2px solid #eaeaea;
+
+    @media #{$md} {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    @media #{$xs} {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+.footer-bottom-link {
+    @media #{$xs} {
+        float: none;
+        text-align: center;
+    }
+
+    & ul {
+        & li {
+            display: inline-block;
+            padding-right: 24px;
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            & a {
+                font-size: 15px;
+                color: $body-text-color;
+                transition: .3s;
+                font-weight: 500;
+                position: relative;
+                text-transform: capitalize;
+
+                &:hover {
+                    color: $theme-color;
+                    ;
+                }
+            }
+        }
+    }
+}
+
+.footer-bg {
+    background-color: #fbfbfb;
+}

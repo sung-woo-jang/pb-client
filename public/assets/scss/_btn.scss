@@ -1,0 +1,171 @@
+/* 5. btn */
+.c-btn {
+	backface-visibility: hidden;
+	border-radius: 30px;
+	color: $white;
+	display: inline-block;
+	font-size: 14px;
+	line-height: 1;
+	padding: 20px 40px 20px 40px;
+	position: relative;
+	text-align: center;
+	text-transform: capitalize;
+	transform: translateZ(0px);
+	transition: .3s;
+	transition-property: color;
+	background: $theme-color;
+	font-weight: 700;
+	transition: .3s;
+	text-transform: uppercase;
+	border: none;
+
+	& i {
+		font-size: 13px;
+		margin-left: 7px;
+		transition: 0.3s;
+		position: relative;
+	}
+
+	&:hover {
+		color: $white;
+
+		& i {
+			transform: translateX(5px);
+		}
+	}
+
+	&:hover {
+		background: $red;
+	}
+}
+
+.red-btn {
+	background: $red;
+	transition: .3s;
+
+	&:hover {
+		background: $theme-color;
+	}
+}
+
+.blue-btn {
+	background: $blue;
+}
+
+// .white-btn{
+// 	background: none;
+// 	border: 2px solid $white;
+// 	transition: .3s;
+// 	color:$white;
+// 	padding: 16px 26px 16px 20px;
+// 	&:hover{
+// 		background: $white;
+// 		color:$theme-color;
+// 		border-color:$white;
+// 	}
+// }
+button {
+	transition: .3s;
+}
+
+.b-button {
+	display: inline-block;
+
+	&>a {
+		font-size: 14px;
+		color: $black !important;
+		font-weight: 700;
+		text-transform: uppercase;
+		transition: .3s;
+		display: inline-block;
+		position: relative;
+
+		& i {
+			font-size: 13px;
+			margin-left: 6px;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			background: $black;
+			height: 2px;
+			width: 100%;
+			bottom: -3px;
+			transition: .3s;
+			left: 0;
+		}
+
+		&::after {
+			position: absolute;
+			content: "";
+			background: $theme-color;
+			height: 2px;
+			width: 0;
+			bottom: -3px;
+			transition: .3s;
+			left: 0;
+		}
+
+		&:hover {
+			color: $theme-color;
+		}
+	}
+}
+
+.b-button a:hover::after {
+	width: 100%;
+}
+
+.red-b-button {
+	&>a {
+		color: $red;
+		transition: .3s;
+
+		&::before {
+			background: $red;
+			transition: .3s;
+		}
+
+		&::after {
+			background: $theme-color;
+			transition: .3s;
+		}
+	}
+}
+
+.red-b-button a:hover::after {
+	width: 100%;
+}
+
+.gray-b-button {
+	&>a {
+		color: $body-text-color;
+		transition: .3s;
+
+		&::before {
+			background: $body-text-color;
+			transition: .3s;
+		}
+
+		&::after {
+			background: $theme-color;
+			transition: .3s;
+		}
+	}
+}
+
+.gray-b-button a:hover::after {
+	width: 100%;
+}
+
+.s-btn {
+	& a {
+		& i {
+			font-size: 20px;
+			position: relative;
+			padding-left: 4px;
+			top: 1px;
+		}
+	}
+}

@@ -1,0 +1,37 @@
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+);
+
+
+// Font Family
+$cerebri: 'Cerebri Sans';
+
+// Colors ---------------
+$white: #ffffff;
+$red:#e4573d;
+$black: #333333;
+$black-2: #003242;
+$green-bg:#C5F4E0;
+$blue: #234969;
+$grey:#eaeaea;
+$grey-2:#f8f8f8;
+$grey-3:#e7e7e7;
+$yellow:#febd00;;
+$orange:#FF9E2D;
+$theme-color: #4e97fd;
+$body-text-color: #9b9b9b;
+$hr-border-color:#eceff8;
+
+// Heading Color
+$heading-color: #333333;
+
+// Responsive Variables
+$xxl: 'only screen and (min-width: 1500px) and (max-width: 1700px)';
+$laptop: 'only screen and (min-width: 1200px) and (max-width: 1600px)';
+$lg : 'only screen and (min-width: 992px) and (max-width: 1200px)';
+$md:'only screen and (min-width: 768px) and (max-width: 991px)';
+$xs:'(max-width: 767px)';
+$sm: 'only screen and (min-width: 576px) and (max-width: 767px)';

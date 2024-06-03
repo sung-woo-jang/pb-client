@@ -1,0 +1,284 @@
+/* 10. features */
+.features-wrapper {
+	background: $white;
+	padding: 38px 30px 34px 30px;
+    border-radius: 5px;
+    transition: .3s;
+    @media #{$lg}{
+        padding: 38px 20px 34px 20px;
+    }
+    &:hover{
+        transform: translatey(-5px);
+    }
+}
+.features-icon{
+    margin-right: 30px;
+    position: relative;
+    top:1px;
+     @media #{$lg}{
+        margin-right: 20px;
+    }
+    & i{
+        font-size: 50px;
+    }
+}
+.fe-1{
+    color: $theme-color;
+}
+.fe-2{
+    color: $red;
+}
+.fe-3{
+    color: $yellow;
+}
+.features-text{
+    overflow: hidden;
+    & h3{
+        font-size: 24px;
+        margin-bottom: 11px;
+    }
+    & p{
+        margin-bottom: 0;
+    }
+}
+// product-feature
+.p-feature-icon{
+    transition: .3s;
+}
+.product-feature-wrapper:hover .p-feature-icon{transform: translateY(-6px)}
+.p-feature-text{
+    & h3{
+        font-size: 24px;
+        margin-top: 37px;
+        margin-bottom: 10px;
+        @media #{$lg}{
+            font-size: 22px;
+        }
+    }
+    & p{
+        margin-bottom: 17px;
+    }
+    & > a{
+        font-size: 24px;
+        color:$body-text-color;
+        display: inline-block;
+        line-height: 1;
+        transition: .3s;
+        &:hover{
+            color:$theme-color;
+        }
+    }
+}
+
+// features-02
+.features-02-area{
+    background: #f6faff;
+}
+.feature-02-wrapper{
+    background: $white;
+    padding: 34px 30px;
+    position: relative;
+    @media #{$lg}{
+        padding: 34px 15px;
+    }
+    &::before{
+        position: absolute;
+        height: 120px;
+        width: 8px;
+        background: $theme-color;
+        content: "";
+        left: 0;
+        top: 0;
+        transition: .3s;
+    }
+    &::after{
+        position: absolute;
+        height: 8px;
+        width: 100px;
+        background: $theme-color;
+        content: "";
+        left: 0;
+        top: 0;
+        transition: .3s;
+    }
+    &:hover::before{
+        background: $red;
+    }
+    &:hover::after{
+        background: $red;
+    }
+    & .p-feature-text{
+        & h3{
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 22px;
+            line-height: 1.2;
+            @media #{$lg}{
+                font-size: 20px;
+            }
+        }
+        & a{
+            transition: .3s;
+            &:hover{
+                color: $red;
+            }
+        }
+    }
+}
+.feature-02-icon {
+	margin-bottom: 20px;
+}
+// used-list
+.used-list-bg{
+    border-top: 2px solid #f4f4f4;
+}
+.used-list-wrapper{
+    margin-top: 15px;
+}
+.used-list-icon{
+    margin-right: 35px;
+    transition: .3s;
+    @media #{$lg}{
+        margin-right: 20px;
+    }
+    @media #{$xs}{
+        margin-right: 15px;
+    }
+}
+.used-list-item ul li:hover .used-list-icon{transform: translateY(-6px)}
+.used-list-text{
+    overflow: hidden;
+    & h4{
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 13px;
+        @media #{$xs}{
+           font-size: 18px;
+        }
+    }
+    & p{
+        color: #707f84;
+        margin-bottom: 0;
+    }
+}
+.used-list-item{
+    & ul{
+        & li{
+            padding-bottom: 42px;
+            &:last-child{
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+.used-list-img{
+    margin-right: 35px;
+    @media #{$lg}{
+        margin-right: 0;
+    }
+    @media #{$md}{
+        margin-right: 0;
+    }
+    @media #{$xs}{
+        margin-right: 0;
+    }
+    & img{
+        width: 100%;
+    }
+}
+// instagram
+.instagram-area{
+     @media #{$lg}{
+         padding-left: 20px;
+         padding-right: 20px;
+      }
+     @media #{$md}{
+         padding-left: 0;
+         padding-right: 0;
+      }
+     @media #{$xs}{
+         padding-left: 0;
+         padding-right: 0;
+      }
+}
+.instagram-img{
+    position: relative;
+    &::before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        content: "";
+        background: #003242;
+        opacity: 0;
+        transition: 0.3s;
+    }
+    & a{
+        display: block;
+        & img{
+            width: 100%;
+        }
+    }
+}
+.instagram-wrapper:hover .instagram-img::before{opacity: .7;}
+.instagram-icon{
+    position: absolute;
+    top: 40px;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+    transition: .3s;
+    opacity: 0;
+    & i{
+        color: $white;
+        font-size: 55px;
+        transition: .3s;
+        &:hover{
+            color: $theme-color;
+        }
+    }
+}
+.instagram-wrapper:hover .instagram-icon{opacity: 1;top: 50%}
+
+// Features List
+.features-list-area {
+    @media #{$xs,$sm} {
+        padding-left: 15px;
+        padding-right: 16px;
+    }
+}
+.features-list-wrapper {
+	border: 1px solid #e6e6e6;
+	margin-top: 80px;
+    @media #{$xs} {
+        padding:25px 25px 0;
+      }
+}
+.features-single-list {
+  padding: 44px 0;
+  @media #{$xs} {
+    padding: 0 0 25px;
+  }
+  .irc-item-heading {
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  .irc-item-content {
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .irc-item {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    @media #{$lg} {
+      align-items: flex-start;
+    }
+  }
+}

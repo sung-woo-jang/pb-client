@@ -1,0 +1,566 @@
+/* 6. banner */
+.banner-pb {
+    @media #{$laptop} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$lg} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$md} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$xs} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.banner-img {
+    overflow: hidden;
+
+    & a {
+        & img {
+            width: 100%;
+            transition: all 1.5s cubic-bezier(0, 0, .2, 1)
+        }
+    }
+}
+
+.banner-wrapper:hover .banner-img img {
+    transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+
+    @media #{$laptop} {
+        top: 30px;
+        left: 20px;
+    }
+
+    @media #{$lg} {
+        top: 30px;
+        left: 20px;
+    }
+
+    @media #{$xs} {
+        top: 10px;
+    }
+
+    & span {
+        font-size: 24px;
+        color: #838383;
+        font-weight: 300;
+
+        @media #{$lg} {
+            font-size: 20px;
+        }
+
+        @media #{$xs} {
+            font-size: 16px;
+        }
+    }
+
+    & h2 {
+        font-size: 40px;
+        font-weight: 500;
+        text-transform: capitalize;
+        margin-top: 7px;
+        margin-bottom: 26px;
+
+        @media #{$laptop} {
+            font-size: 34px;
+        }
+
+        @media #{$lg} {
+            font-size: 26px;
+        }
+
+        @media #{$xs} {
+            font-size: 25px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.banner-03-text {
+    & span {
+        font-weight: 300;
+        color: $black-2;
+        font-size: 40px;
+        line-height: 1;
+
+        @media #{$laptop} {
+            font-size: 26px;
+        }
+
+        @media #{$lg} {
+            font-size: 20px;
+        }
+
+        @media #{$xs} {
+            font-size: 20px;
+        }
+    }
+}
+
+.b-tag {
+    position: absolute;
+    left: 49%;
+    height: 130px;
+    width: 130px;
+    background: $yellow;
+    line-height: 130px;
+    border-radius: 50%;
+    top: 22%;
+    text-align: center;
+
+    @media #{$laptop} {
+        top: 14%;
+    }
+
+    @media #{$lg} {
+        top: 11%;
+    }
+
+    @media #{$md} {
+        top: 11%;
+    }
+
+    @media #{$xs} {
+        display: none;
+    }
+
+    & h2 {
+        font-size: 45px;
+        font-weight: 700;
+        line-height: 0.6;
+        letter-spacing: -1.3px;
+        margin-bottom: 0;
+        position: relative;
+        top: 40px;
+
+        & span {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        &::before {
+            position: absolute;
+            height: 110px;
+            width: 110px;
+            content: "";
+            border: 2px dashed #fdd55e;
+            line-height: 110px;
+            border-radius: 50%;
+            top: -30px;
+            left: 10px;
+        }
+    }
+}
+
+.b-ta {
+    font-size: 20px;
+}
+
+.banner-1-text {
+    @media #{$md} {
+        top: 20px;
+    }
+
+    & h2 {
+        margin-bottom: 16px;
+
+        @media #{$md} {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+    }
+}
+
+.b-02-tag {
+    position: absolute;
+    left: 14%;
+    height: 95px;
+    width: 95px;
+    background: $yellow;
+    line-height: 95px;
+    border-radius: 50%;
+    top: 32%;
+    text-align: center;
+
+    @media #{$lg} {
+        left: 4%;
+    }
+
+    @media #{$md} {
+        left: 4%;
+    }
+
+    @media #{$xs} {
+        left: 4%;
+    }
+
+    & h3 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: .9;
+        letter-spacing: -.3px;
+        margin-bottom: 0;
+        position: relative;
+        top: 28px;
+
+        & span {
+            font-size: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// banner-02
+.banner-02-area {
+    @media #{$laptop} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$lg} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$md} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media #{$xs} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.banner-02-wrapper {
+    padding: 45px 30px 50px 30px;
+
+    @media #{$lg} {
+        padding: 30px 20px 50px 20px;
+    }
+}
+
+.banner-02-text {
+    & span {
+        font-size: 24px;
+        color: #003242;
+        font-weight: 300;
+    }
+
+    & h2 {
+        font-size: 30px;
+        text-transform: capitalize;
+        margin-top: 11px;
+        margin-bottom: 26px;
+    }
+}
+
+.old-price {
+    font-size: 18px;
+    color: #87989e;
+    font-weight: 400;
+    margin-right: 6px;
+    text-decoration: line-through;
+    text-decoration-color: #5c5c5c;
+}
+
+.new-price {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 600;
+    color: $red;
+}
+
+.banner-tag {
+    position: absolute;
+    left: 40px;
+    font-size: 24px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $black;
+    height: 90px;
+    width: 90px;
+    background: $yellow;
+    line-height: 90px;
+    border-radius: 50%;
+    top: 10px;
+
+    @media #{$lg} {
+        left: 0;
+        top: -18px
+    }
+
+    @media #{$xs} {
+        left: 0;
+        top: -18px
+    }
+}
+
+.banner-price {
+    margin-top: 27px;
+    margin-bottom: 27px;
+}
+
+.banner-button a.c-btn {
+    padding: 18px 31px 18px 31px;
+
+    & i {
+        margin-left: 3px;
+    }
+}
+
+// style-3
+.banner-content {
+    position: absolute;
+    top: 25%;
+    z-index: 99;
+    left: 70px;
+
+    @media #{$laptop} {
+        left: 40px;
+        top: 17%;
+    }
+
+    @media #{$lg} {
+        left: 30px;
+        top: 17%;
+    }
+
+    @media #{$md} {
+        left: 30px;
+        top: 20%;
+    }
+
+    @media #{$xs} {
+        left: 15px;
+        top: 15%;
+    }
+
+    & span {
+        font-size: 45px;
+        color: $black-2;
+        font-weight: 300;
+
+        @media #{$laptop} {
+            font-size: 35px;
+        }
+
+        @media #{$lg} {
+            font-size: 30px;
+        }
+
+        @media #{$md} {
+            font-size: 30px;
+        }
+
+        @media #{$xs} {
+            font-size: 26px;
+        }
+    }
+
+    & h2 {
+        font-size: 85px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-top: 4px;
+        margin-bottom: 18px;
+
+        @media #{$laptop} {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        @media #{$lg} {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        @media #{$md} {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        @media #{$xs} {
+            font-size: 24px;
+        }
+    }
+
+    & p {
+        font-size: 18px;
+        color: #003242;
+        line-height: 32px;
+        margin-bottom: 24px;
+
+        @media #{$lg} {
+            margin-bottom: 17px;
+        }
+
+        @media #{$xs} {
+            display: none;
+        }
+
+    }
+}
+
+.bannerss-button a.c-btn {
+    padding: 25px 55px 25px 55px;
+    border-radius: 50px;
+
+    @media #{$xs} {
+        display: none;
+    }
+}
+
+.banners-active .slick-dots {
+    text-align: center;
+    bottom: 90px;
+    position: absolute;
+    left: 70px;
+    z-index: 9;
+
+    @media #{$lg} {
+        bottom: 55px;
+    }
+
+    @media #{$md} {
+        bottom: 50px;
+    }
+}
+
+.banners-active .slick-dots li {
+    display: inline-block;
+    margin: 0 4px;
+}
+
+.banners-active .slick-dots li button {
+    height: 15px;
+    width: 15px;
+    text-indent: -9999px;
+    transition: .3s;
+    padding: 0;
+    border: 3px solid $black;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+}
+
+.banners-active .slick-dots li.slick-active button {
+    border-color: $theme-color;
+    background: $theme-color
+}
+
+//update
+.position-relative {
+    .swiper-pagination-clickable .swiper-pagination-bullet {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        text-indent: -9999px;
+        transition: 0.3s;
+        padding: 0;
+        border: 3px solid #333333;
+        border-radius: 50%;
+        background: none;
+        opacity: unset;
+        cursor: pointer;
+    }
+
+    .banner-pagination {
+        position: absolute;
+        bottom: 90px !important;
+        z-index: 10;
+        left: 70px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        border-color: #4e97fd !important;
+        background: #5996eb !important;
+    }
+}
+
+// Product Banner three
+.c-banner-product {
+    padding: 30px 30px 30px;
+    background: #BBDCF3;
+    min-height: 272px;
+    position: relative;
+    overflow: hidden;
+
+    &.vertical {
+        height: 567px;
+
+        @media #{$xs,$sm,$md} {
+            margin-top: 30px;
+            height: 380px;
+        }
+    }
+}
+
+.c-banner-container {
+    max-width: 1400px;
+}
+
+.c-banner-product-thumb {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 5;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right bottom;
+    transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
+
+    &:hover {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    &.one {
+        height: 90%;
+        width: 100%;
+    }
+
+    &.two {
+        height: 85%;
+        width: 100%;
+    }
+
+    &.vertical {
+        height: 100%;
+        width: 85%;
+
+        @media #{$xs,$sm,$md} {
+            height: 85%;
+        }
+    }
+}
+
+.c-banner-product-content {
+    position: relative;
+    z-index: 10;
+
+    .subtitle {
+        margin-bottom: 10px;
+        display: block;
+        color: #838383;
+    }
+}

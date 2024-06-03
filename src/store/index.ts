@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
+import commonReducer from './slice/commonSlice';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    commom: commonReducer,
+  },
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-export default store;
-
 export type RootState = ReturnType<typeof store.getState>;
-
 export type AppDispatch = typeof store.dispatch;
+export default store;

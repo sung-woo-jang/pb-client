@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-Heavy.eot');
+    src: url('CerebriSans-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-Heavy.woff2') format('woff2'),
+        url('CerebriSans-Heavy.woff') format('woff'),
+        url('CerebriSans-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-Bold.eot');
+    src: url('CerebriSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-Bold.woff2') format('woff2'),
+        url('CerebriSans-Bold.woff') format('woff'),
+        url('CerebriSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-ExtraBold.eot');
+    src: url('CerebriSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-ExtraBold.woff2') format('woff2'),
+        url('CerebriSans-ExtraBold.woff') format('woff'),
+        url('CerebriSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-Medium.eot');
+    src: url('CerebriSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-Medium.woff2') format('woff2'),
+        url('CerebriSans-Medium.woff') format('woff'),
+        url('CerebriSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-Regular.eot');
+    src: url('CerebriSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-Regular.woff2') format('woff2'),
+        url('CerebriSans-Regular.woff') format('woff'),
+        url('CerebriSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('CerebriSans-SemiBold.eot');
+    src: url('CerebriSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('CerebriSans-SemiBold.woff2') format('woff2'),
+        url('CerebriSans-SemiBold.woff') format('woff'),
+        url('CerebriSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,595 @@
+.student-profile-author {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    border-bottom: 1px solid #edeef2;
+
+    &-img {
+        img {
+            width: 200px !important;
+            height: 200px !important;
+            object-fit: cover;
+            border-radius: 50%;
+
+            @media #{$xs,$sm} {
+                width: 80px !important;
+                height: 80px !important;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &-text {
+        span {
+            font-size: 20px;
+            margin-bottom: 5px;
+            display: block;
+        }
+    }
+}
+
+.student-profile-author-name {
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+
+.student-profile-sidebar {
+    background-color: #f8f8f8;
+    padding: 30px;
+    min-height: 100%;
+
+    .nav {
+        flex-direction: column;
+        border-bottom: 0px;
+
+        li {
+            button {
+                display: block;
+                width: 100%;
+                text-align: left;
+                color: #777;
+                border: none;
+                outline: none;
+                padding: 12px 15px;
+                border-radius: 5px;
+
+                i {
+                    min-width: 22px;
+                }
+
+                &.active {
+                    color: #0d6efd;
+
+                    & i {
+                        color: #0d6efd;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.student-profile-content {
+    padding: 25px 0px 30px 14px;
+
+    @media #{$xs} {
+        padding-left: 0px;
+    }
+
+    & h4 {
+        font-size: 20px;
+    }
+}
+
+.student-profile-info {
+    li {
+        display: flex;
+        margin-bottom: 15px;
+
+        h5 {
+            font-size: 16px;
+            margin-bottom: 0px;
+            font-weight: 600;
+            min-width: 230px;
+
+            @media #{$xs} {
+                min-width: 100px;
+            }
+        }
+
+        span {
+            font-size: 16px;
+            color: #777;
+        }
+    }
+}
+
+.inprogress-course {
+    display: flex;
+    gap: 30px;
+    border: 1px solid #edeef2;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @media #{$xs} {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    &-img {
+        width: 300px;
+
+        @media #{$xs} {
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.inprogress-course-rating {
+    margin-bottom: 10px;
+
+    a {
+        font-size: 15px;
+        color: #f8a231;
+        display: inline-block;
+        margin-right: 3px;
+    }
+
+    span {
+        font-size: 16px;
+        color: #777;
+        margin-left: 3px;
+    }
+}
+
+.inprogress-course-text {
+    padding: 20px 20px 20px 0px;
+
+    @media #{$xs} {
+        padding-left: 20px;
+    }
+}
+
+.inprogress-course-lesson {
+    span {
+        color: #777;
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 16px;
+        font-weight: 600;
+        display: inline-block;
+        padding-left: 10px;
+
+        span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1c1d1b;
+        }
+    }
+}
+
+.inprogress-course .progress {
+    --bs-progress-height: 6px;
+    height: var(--bs-progress-height);
+
+    .progress-bar {
+        background: #0d6efd !important;
+    }
+}
+
+.student-profile-reviews-item {
+    border: 1px solid #edeef2;
+    border-radius: 10px;
+}
+
+.student-profile-reviews-course-title {
+    padding: 15px 20px 15px 20px;
+    border-bottom: 1px solid #edeef2;
+
+    h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1c1d1b;
+        margin-bottom: 0px;
+    }
+
+    .copy-button {
+        border: none;
+        background-color: #fff;
+    }
+}
+
+.student-profile-reviews-text {
+    padding: 20px 20px 20px 20px;
+}
+
+.student-profile-reviews-text-wrap {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    .student-profile-review-icon {
+        a {
+            font-size: 16px;
+            color: #f8a231;
+            display: inline-block;
+            margin-right: 3px;
+        }
+
+        i {
+            color: #f8a231;
+        }
+    }
+
+}
+
+.student-profile-review-update {
+    .student-profile-review-update-btn {
+        border: none;
+        background-color: #fff;
+
+        &-btn {
+            margin-right: 15px;
+
+            i {
+                margin-right: 3px;
+            }
+
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+.student-profile-review-content {
+    p {
+        margin-bottom: 0px;
+        padding-right: 50px;
+
+        @media #{$sm,$xs} {
+            padding-right: 0px;
+        }
+    }
+}
+
+.student-profile-enroll {
+    ul {
+        border-bottom: 1px solid #edeef2;
+
+        li {
+            .nav-link {
+                font-size: 16px;
+                color: #777;
+                font-weight: 600;
+                position: relative;
+                border: none;
+                background: $white;
+
+                &:before {
+                    position: absolute;
+                    content: '';
+                    height: 2px;
+                    width: 0%;
+                    background: #0d6efd;
+                    left: 0px;
+                    bottom: 0px;
+                    transition: all linear 0.3s;
+                }
+
+                &.active {
+                    color: #0d6efd;
+
+                    &:before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.contact-from-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.contact-from-input input {
+    height: 60px;
+    width: 100%;
+    background: #f8f8f8;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 4px;
+    outline: 0;
+}
+
+.update-close-btn {
+    height: 35px;
+    background-color: $theme-color;
+    padding: 0 25px;
+    display: inline-block;
+    line-height: 30px;
+    font-size: 16px;
+    color: $white;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 1px solid #ebebeb;
+}
+
+.student-profile-setting-cover-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 250px;
+}
+
+.student-profile-setting-author-img {
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 30px;
+
+    img {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-top: -75px;
+        border: 5px solid #FFF;
+    }
+}
+
+.student-social-profile-link span {
+    display: block;
+    font-weight: 600;
+}
+
+.student-profile-orders {
+    border: 1px solid #edeef2;
+    border-bottom: 0px;
+}
+
+.student-profile-order {
+    border-bottom: 1px solid #edeef2;
+    display: flex;
+}
+
+.student-profile-order-name,
+.student-profile-order-price,
+.student-profile-order-status,
+.student-profile-order-method,
+.student-profile-order-date,
+.student-profile-order-duration,
+.student-profile-order-renew {
+    padding-left: 15px;
+
+    h6 {
+        color: #333333;
+        margin-bottom: 0px;
+        font-size: 16px;
+    }
+
+    span {
+        font-size: 16px;
+        color: #777;
+    }
+}
+
+.student-profile-order-name,
+.student-profile-order-price,
+.student-profile-order-status,
+.student-profile-order-method,
+.student-profile-order-date,
+.student-profile-order-duration,
+.student-profile-order-renew {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.custom-height-80 {
+    min-height: 80px;
+}
+
+.student-profile-order-name {
+    min-width: 120px;
+    width: 13%;
+}
+
+.student-profile-order-price {
+    min-width: 100px;
+    width: 11%;
+
+    @media only screen and (max-width: 1400px) {
+        min-width: 70px;
+        width: 7%;
+    }
+}
+
+.student-profile-order-status {
+    min-width: 125px;
+    width: 13%;
+
+    @media only screen and (max-width: 1400px) {
+        min-width: 100px;
+        width: 9%;
+    }
+}
+
+.student-profile-order-method {
+    min-width: 160px;
+    width: 17%;
+
+    @media only screen and (max-width: 1400px) {
+        min-width: 125px;
+        width: 13%;
+    }
+}
+
+.student-profile-order-duration {
+    min-width: 130px;
+    width: 14%;
+}
+
+.student-profile-order-date {
+    min-width: 150px;
+    width: 16%;
+
+    @media only screen and (max-width: 1400px) {
+        min-width: 130px;
+        width: 12%;
+    }
+}
+
+.student-profile-order-renew {
+    .edu-btn {
+        height: 42px;
+        line-height: 42px;
+        padding: 0 30px;
+    }
+}
+
+.inprogress-course-img img {
+    min-height: 100%;
+}
+
+.student-profile-orders-wrapper {
+    @media only screen and (max-width: 1400px) {
+        overflow-x: auto;
+    }
+}
+
+.student-profile-orders {
+    @media only screen and (max-width: 1400px) {
+        width: 817px;
+    }
+}
+
+//dashboard profile-counter
+.counter-wrapper {
+    padding: 50px 30px 50px 30px;
+    background: #f8f8f8;
+}
+
+.count-number {
+    span {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333333;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 0px;
+        color: #333333;
+    }
+}
+
+.counter-icon svg {
+    margin-bottom: 30px;
+}
+
+.counter-img {
+    svg {
+        margin-bottom: 25px;
+    }
+}
+
+.university-couner-text {
+    span {
+        font-size: 36px;
+        font-weight: 700;
+        color: #9b9b9b;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+}
+
+.university-couner-text {
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        color: #9b9b9b;
+    }
+}
+
+.student-profile-sidebar .nav li button.active,
+.student-profile-sidebar .nav li button.active i {
+    color: var(--bs-link-color);
+}
+
+.bd-password-box {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border: 2px solid #e9e9e9;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 0 40px 0px 15px;
+    position: relative;
+}
+
+.bd-password-box input {
+    border: 0;
+    width: 100%;
+}
+
+.password-toggle-btn {
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.bd-fill__btn {
+    display: inline-flex;
+    height: 60px;
+    background-color: $theme-color;
+    align-items: center;
+    padding: 0 45px;
+    color: $white;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid $theme-color;
+    justify-content: space-evenly;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: all 0.3s ease-out 0s;
+    justify-content: center;
+
+    &:hover {
+        background: #e4573d;
+        border: 1px solid #e4573d;
+        color: $white;
+        border-color: #e4573d;
+    }
+}
+
+//update
+.contact-from-input select {
+    width: 100%;
+    padding: 17px;
+    background-color: #f8f8f8;
+    border: none;
+}
+
+.gender-option {
+    .nice-select {
+        width: 100%;
+    }
+}

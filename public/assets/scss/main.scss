@@ -1,0 +1,61 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Medibazar
+    Description: Medibazar - Medical Equipment Store eCommerce React, Next js Template
+    Author: BDevs
+    Version: 1.1
+
+-----------------------------------------------------------------------------------
+
+    CSS INDEX
+    ===================
+
+    1. Theme default css
+    2. header
+    3. heading
+    4. slider
+    5. btn
+    6. banner
+    7. product
+    8. testimonial
+    9. blog
+    10. features
+    11. footer
+    12. breadcrumb
+    13. about
+    14. counter
+    15. team
+    16. cta
+    17. contact
+
+-----------------------------------------------------------------------------------*/
+
+@import 'bootstrap-variables';
+// @import 'bootstrap/bootstrap';
+@import 'mixins';
+@import 'common';
+@import 'overlay';
+@import 'header';
+@import 'heading';
+@import 'slider';
+@import 'btn';
+@import 'banner';
+@import 'product';
+@import 'testimonial';
+@import 'blog';
+@import 'features';
+@import 'footer';
+@import 'breadcrumb';
+@import 'about';
+@import 'counter';
+@import 'team';
+@import 'cta';
+@import 'preloader';
+@import 'contact';
+@import 'modal';
+@import 'terms-condition';
+@import 'faq';
+@import 'category';
+@import 'user-profile';
+@import 'mobile-menu';
+@import 'steps-shipping';

@@ -1,0 +1,39 @@
+/* 16. cta */
+.cta-bg{
+    background-size: cover;
+    background-position: center center ;
+}
+.cta-wrapper{
+    padding-left: 100px;
+    @media #{$md}{
+        padding-left: 20px;
+    }
+    @media #{$xs}{
+        padding-left: 15px;
+    }
+}
+.cta-text{
+    & span{
+        background: $red;
+        color:$white;
+        display: inline-block;
+	    font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 5px;
+        padding: 4px 15px;
+    }
+    & h2{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-top: 24px;
+        margin-bottom: 20px;
+        @media #{$md}{
+        font-size: 40px;
+        }
+        @media #{$xs}{
+        font-size: 28px;
+        }
+    }
+}

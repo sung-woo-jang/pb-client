@@ -1,0 +1,58 @@
+/* 3. heading */
+.section-title {
+    @media #{$md}{
+       margin-left: 0;
+       margin-right: 0;
+    }
+    @media #{$xs}{
+       margin-left: 0;
+       margin-right: 0;
+    }
+    & h2 {
+        font-size: 30px;
+        margin-bottom: 7px;
+        font-weight: 500;
+        & > span{
+            color:$theme-color;
+        }
+        @media #{$lg}{
+            font-size: 45px;
+        }
+        @media #{$sm}{
+            font-size: 30px;
+        }
+        @media #{$xs}{
+            font-size: 34px;
+            line-height: 1.1;
+        }
+        @media #{$md}{
+            font-size: 42px;
+        }
+    }
+    & p {
+        margin-bottom: 0;
+        font-size: 18px;
+        @media #{$lg}{
+            margin-right: 0;
+        }
+        @media #{$xs}{
+            margin-right: 0;
+        }
+    }
+}
+.white-title{
+    & h2{
+        color:$white;
+    }
+    & p{
+        color:$white;
+        opacity: .6;
+    }
+}
+.white-2-title{
+    & h2{
+        color:$white;
+    }
+}
+
+

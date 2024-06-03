@@ -1,0 +1,37 @@
+/* 14. counter */
+.counter-bg{
+    border-top: 2px solid #f4f4f4;
+}
+.counter-icon{
+    & i{
+        font-size: 50px;
+        color: $red;
+    }
+}
+.counter-text{
+    & h2{
+        font-size: 50px;
+        font-weight: 500;
+        position: relative;
+        margin-top: 26px;
+        margin-bottom: 26px;
+        padding-bottom: 23px;
+        &::before{
+            position: absolute;
+            content: "";
+            height: 2px;
+            width: 50px;
+            background: $black;
+            left: 0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+        }
+    }
+    & span{
+        font-size: 15px;
+        font-weight: 600;
+        color: $body-text-color;
+        text-transform: uppercase;
+    }
+}
