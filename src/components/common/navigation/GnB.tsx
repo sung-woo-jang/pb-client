@@ -1,14 +1,20 @@
+'use client';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { setIsOpenInfoSidebar } from '@/store/slice/commonSlice';
 
-type TGnBProps = {
-  toggleInfoSidebarHandler: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-};
+export default function GnB() {
+  const isOpenInfoSidebar = useAppSelector((state) => state.commom.isOpenInfoSidebar);
+  const dispatch = useAppDispatch();
+  const toggleInfoSidebarHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    dispatch(setIsOpenInfoSidebar(!isOpenInfoSidebar));
+    event.stopPropagation();
+  };
 
-export default function GnB({ toggleInfoSidebarHandler }: TGnBProps) {
   return (
     <AppBar position="static">
       <Toolbar>

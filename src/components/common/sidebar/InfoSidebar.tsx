@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -9,13 +10,17 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { setIsOpenInfoSidebar } from '@/store/slice/commonSlice';
 
-type TSidebarProps = {
-  isOpenInfoSidebar: boolean;
-  toggleInfoSidebarHandler: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-};
+const InfoSidebar = () => {
+  const isOpenInfoSidebar = useAppSelector((state) => state.commom.isOpenInfoSidebar);
+  const dispatch = useAppDispatch();
+  const toggleInfoSidebarHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    dispatch(setIsOpenInfoSidebar(!isOpenInfoSidebar));
+    event.stopPropagation();
+  };
 
-const InfoSidebar = ({ isOpenInfoSidebar, toggleInfoSidebarHandler }: TSidebarProps) => {
   return (
     <>
       <div className={`extra-info ${isOpenInfoSidebar && 'info-open'}`} style={{ backgroundColor: '#6126ef' }}>

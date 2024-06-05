@@ -10,6 +10,9 @@ import { ReduxProviders } from '@/provider/ReduxProvider';
 import ReactQueryProvider from '@/provider/ReactQueryProvider';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { AxiosInterceptor } from '@/api/AxiosInterceptor';
+import GnB from '@/components/common/navigation/GnB';
+import BnB from '@/components/common/navigation/BnB';
+import InfoSidebar from '@/components/common/sidebar/InfoSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +32,12 @@ export default function RootLayout({
         <body className={inter.className} suppressHydrationWarning={true}>
           <ReactQueryProvider>
             <AppRouterCacheProvider>
-              <AxiosInterceptor>{children}</AxiosInterceptor>
+              <AxiosInterceptor>
+                <GnB />
+                {children}
+                <InfoSidebar />
+                <BnB />
+              </AxiosInterceptor>
             </AppRouterCacheProvider>
           </ReactQueryProvider>
         </body>
