@@ -14,16 +14,23 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setIsOpenInfoSidebar } from '@/store/slice/commonSlice';
 
 const InfoSidebar = () => {
-  const isOpenInfoSidebar = useAppSelector((state) => state.commom.isOpenInfoSidebar);
+  const isOpenInfoSidebar = useAppSelector(
+    (state) => state.common.isOpenInfoSidebar
+  );
   const dispatch = useAppDispatch();
-  const toggleInfoSidebarHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const toggleInfoSidebarHandler = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     dispatch(setIsOpenInfoSidebar(!isOpenInfoSidebar));
     event.stopPropagation();
   };
 
   return (
     <>
-      <div className={`extra-info ${isOpenInfoSidebar && 'info-open'}`} style={{ backgroundColor: '#6126ef' }}>
+      <div
+        className={`extra-info ${isOpenInfoSidebar && 'info-open'}`}
+        style={{ backgroundColor: '#6126ef' }}
+      >
         <div className="close-icon">
           <button
             onClick={toggleInfoSidebarHandler}
@@ -34,7 +41,11 @@ const InfoSidebar = () => {
           </button>
         </div>
         <div className="logo-side mb-30">
-          <Avatar alt="Remy Sharp" src="/assets/img/portfolio/p1.jpg" sx={{ width: 60, height: 60 }} />
+          <Avatar
+            alt="Remy Sharp"
+            src="/assets/img/portfolio/p1.jpg"
+            sx={{ width: 60, height: 60 }}
+          />
           <div style={{ color: 'white' }}>
             <div>닉네임</div>
             <div>
