@@ -1,5 +1,5 @@
 'use client';
-import PostCard from '@/components/common/post/PostCard';
+import PostCard from '@/components/post/PostCard';
 
 export default function Page() {
   return (

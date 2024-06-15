@@ -1,11 +1,7 @@
 import './globals.css';
-if (typeof window !== 'undefined') {
-  require('bootstrap/dist/js/bootstrap');
-}
 import '../styles/index.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import { ReduxProviders } from '@/provider/ReduxProvider';
 import ReactQueryProvider from '@/provider/ReactQueryProvider';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
@@ -13,6 +9,10 @@ import { AxiosInterceptor } from '@/api/AxiosInterceptor';
 import GnB from '@/components/common/navigation/GnB';
 import BnB from '@/components/common/navigation/BnB';
 import InfoSidebar from '@/components/common/sidebar/InfoSidebar';
+
+if (typeof window !== 'undefined') {
+  require('bootstrap/dist/js/bootstrap');
+}
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,10 +33,16 @@ export default function RootLayout({
           <ReactQueryProvider>
             <AppRouterCacheProvider>
               <AxiosInterceptor>
-                <GnB />
-                {children}
-                <InfoSidebar />
-                <BnB />
+                <div
+                  style={{
+                    backgroundColor: '#E5E7EB',
+                  }}
+                >
+                  <GnB />
+                  {children}
+                  <InfoSidebar />
+                  <BnB />
+                </div>
               </AxiosInterceptor>
             </AppRouterCacheProvider>
           </ReactQueryProvider>

@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  height: 45px;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  background-color: #1F2937;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.hamburger {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}

@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useAppDispatch } from '@/hooks/redux-hooks';
-import { toggleDrawer } from '@/components/Icon/drawerSlice';
+import { toggleDrawer } from '@/store/slice/drawerSlice';
 
 export default function Comment() {
   const dispatch = useAppDispatch();

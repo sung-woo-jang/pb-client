@@ -3,7 +3,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
-import { setDrawerOpen } from '@/components/Icon/drawerSlice';
+import { setDrawerOpen } from '@/store/slice/drawerSlice';
 
 interface CustomSwipeableDrawerProps {
   children: React.ReactNode;

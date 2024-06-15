@@ -10,27 +10,6 @@
   align-items: center;
 }
 
-.avatarWrapper {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-}
-
-.avatar {
-  border-width: 1px;
-  width: 2rem;
-  height: 2rem;
-}
-
-.postTimestamp {
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: #6b7280;
-}
-
 .timelineImage {
   aspect-ratio: 1 / 1;
   object-fit: fill;

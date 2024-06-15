@@ -1,11 +1,11 @@
 import { CardFooter } from './ui/card';
 import classes from './styles.module.scss';
 
-import { Button } from '@/components/common/post/ui/button';
+import { Button } from '@/components/post/ui/button';
 import { HeartIcon, MessageCircleIcon } from '@/components/Icon';
 import StarRatingTooltip from './StarRatingTooltip';
 import { useAppDispatch } from '@/hooks/redux-hooks';
-import { toggleDrawer } from '@/components/Icon/drawerSlice';
+import { toggleDrawer } from '@/store/slice/drawerSlice';
 
 export default function PostFooter() {
   const dispatch = useAppDispatch();

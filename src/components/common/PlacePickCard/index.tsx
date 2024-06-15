@@ -13,10 +13,7 @@ export default function PlacePickCard() {
         </Link>
         <p className="text-gray-500">육류, 고기요리 - 경상북도 경주시 천군동</p>
       </div>
-      <div className={classes.icon}>
-        <PlacePickIcon />
-        <span className="text-gray-500 mt-1">저장</span>
-      </div>
+      <PlacePickIcon />
     </div>
   );
 }

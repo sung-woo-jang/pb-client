@@ -4,7 +4,7 @@ import Image, { StaticImageData } from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 
-import image1 from './../../../../public/assets/img/slider/02.jpg';
+import image1 from '../../../public/assets/img/slider/02.jpg';
 
 interface HeroDataType {
   id: number;

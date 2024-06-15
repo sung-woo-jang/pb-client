@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import commonReducer from './slice/commonSlice';
-import drawerReducer from '@/components/Icon/drawerSlice';
+import drawerReducer from '@/store/slice/drawerSlice';
 
 const store = configureStore({
   reducer: {
