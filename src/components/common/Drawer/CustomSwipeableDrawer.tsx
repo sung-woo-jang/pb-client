@@ -6,10 +6,12 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setDrawerOpen } from '@/store/slice/drawerSlice';
 
 interface CustomSwipeableDrawerProps {
+  title: string;
   children: React.ReactNode;
 }
 
 export default function CustomSwipeableDrawer({
+  title,
   children,
 }: CustomSwipeableDrawerProps) {
   const dispatch = useAppDispatch();
@@ -52,7 +54,7 @@ export default function CustomSwipeableDrawer({
         >
           {/*빈 칸*/}
           <div />
-          <div>title</div>
+          <div>{title}</div>
           <div style={{ cursor: 'pointer' }} onClick={toggleDrawer(false)}>
             <CloseIcon fontSize={'large'} />
           </div>
