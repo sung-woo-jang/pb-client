@@ -7,19 +7,20 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useAppDispatch } from '@/hooks/redux-hooks';
-import { toggleDrawer } from '@/store/slice/drawerSlice';
+import { toggleCommentDrawer } from '@/store/slice/drawer/slice';
+import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
 
-export default function Comment() {
+export default function CommentDrawer() {
   const dispatch = useAppDispatch();
   return (
-    <>
+    <CustomSwipeableDrawer title={'댓글'}>
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem
             key={text}
             disablePadding
             onClick={() => {
-              dispatch(toggleDrawer());
+              dispatch(toggleCommentDrawer());
             }}
           >
             <ListItemButton>
@@ -32,6 +33,6 @@ export default function Comment() {
         ))}
       </List>
       <Divider />
-    </>
+    </CustomSwipeableDrawer>
   );
 }

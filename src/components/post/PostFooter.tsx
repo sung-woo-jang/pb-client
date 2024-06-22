@@ -4,11 +4,10 @@ import classes from './styles.module.scss';
 import { Button } from '@/components/post/ui/button';
 import { HeartIcon, MessageCircleIcon } from '@/components/Icon';
 import StarRatingTooltip from './StarRatingTooltip';
-import { useAppDispatch } from '@/hooks/redux-hooks';
-import { toggleDrawer } from '@/store/slice/drawerSlice';
+import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 
 export default function PostFooter() {
-  const dispatch = useAppDispatch();
+  const { commentDrawerToggleHandler } = useCommentDrawer();
 
   return (
     <CardFooter className={classes.cardFooter}>
@@ -20,9 +19,7 @@ export default function PostFooter() {
           <Button
             size="icon"
             variant="ghost"
-            onClick={() => {
-              dispatch(toggleDrawer());
-            }}
+            onClick={commentDrawerToggleHandler}
           >
             <MessageCircleIcon className={classes.iconButton} />
           </Button>

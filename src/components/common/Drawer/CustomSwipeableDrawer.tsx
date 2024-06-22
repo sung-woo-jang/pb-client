@@ -3,7 +3,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
-import { setDrawerOpen } from '@/store/slice/drawerSlice';
+import { setCommentDrawerState } from '@/store/slice/drawer/slice';
 
 interface CustomSwipeableDrawerProps {
   title: string;
@@ -15,7 +15,9 @@ export default function CustomSwipeableDrawer({
   children,
 }: CustomSwipeableDrawerProps) {
   const dispatch = useAppDispatch();
-  const isDrawerOpen = useAppSelector((state) => state.drawer.isDrawerOpen);
+  const commentDrawerState = useAppSelector(
+    (state) => state.drawer.commentDrawerState
+  );
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -26,13 +28,13 @@ export default function CustomSwipeableDrawer({
       ) {
         return;
       }
-      dispatch(setDrawerOpen(open));
+      dispatch(setCommentDrawerState(open));
     };
 
   return (
     <SwipeableDrawer
       anchor={'bottom'}
-      open={isDrawerOpen}
+      open={commentDrawerState}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       PaperProps={{

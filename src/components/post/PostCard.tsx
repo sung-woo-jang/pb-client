@@ -4,8 +4,7 @@ import PostImageSwiper from './PostImageSwiper';
 import PostFooter from './PostFooter';
 import PlacePickCard from '../common/PlacePickCard';
 import { Card } from './ui/card';
-import Index from '../common/Drawer/Comment';
-import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
+import CommentDrawer from '../common/Drawer/CommentDrawer';
 import * as React from 'react';
 
 export default function PostCard() {
@@ -15,9 +14,7 @@ export default function PostCard() {
       <PostImageSwiper />
       <PostFooter />
       <PlacePickCard />
-      <CustomSwipeableDrawer title={'댓글'}>
-        <Index />
-      </CustomSwipeableDrawer>
+      <CommentDrawer />
     </Card>
   );
 }
