@@ -2,7 +2,7 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useAppDispatch } from '@/hooks/redux-hooks';
-import { setIsOpenInfoSidebar } from '@/store/slice/commonSlice';
+import { setIsOpenInfoSidebar } from '@/store/slice/common/slice';
 import Link from 'next/link';
 
 export default function Home() {
