@@ -2,22 +2,24 @@ import * as React from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
-import { setCommentDrawerState } from '@/store/slice/drawer/slice';
+import classes from './styles.module.scss';
 
 interface CustomSwipeableDrawerProps {
   title: string;
   children: React.ReactNode;
+  drawerState: boolean;
+  setHandler: (state: boolean) => void;
+  toggleHandler: () => void;
+  buttonRender: boolean;
 }
 
 export default function CustomSwipeableDrawer({
   title,
   children,
+  drawerState,
+  setHandler,
+  buttonRender,
 }: CustomSwipeableDrawerProps) {
-  const dispatch = useAppDispatch();
-  const commentDrawerState = useAppSelector(
-    (state) => state.drawer.commentDrawerState
-  );
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -28,13 +30,13 @@ export default function CustomSwipeableDrawer({
       ) {
         return;
       }
-      dispatch(setCommentDrawerState(open));
+      setHandler(open);
     };
 
   return (
     <SwipeableDrawer
       anchor={'bottom'}
-      open={commentDrawerState}
+      open={drawerState}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       PaperProps={{
@@ -63,6 +65,17 @@ export default function CustomSwipeableDrawer({
         </div>
         {children}
       </Box>
+      {buttonRender && (
+        <div className={classes.buttonWrapper}>
+          <button
+            type="button"
+            className={classes.button}
+            onClick={toggleDrawer(false)}
+          >
+            완료
+          </button>
+        </div>
+      )}
     </SwipeableDrawer>
   );
 }

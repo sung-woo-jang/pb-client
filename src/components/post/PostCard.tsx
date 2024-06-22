@@ -6,6 +6,7 @@ import PlacePickCard from '../common/PlacePickCard';
 import { Card } from './ui/card';
 import CommentDrawer from '../common/Drawer/CommentDrawer';
 import * as React from 'react';
+import AddPPCategory from '@/components/common/Drawer/AddPPCategory';
 
 export default function PostCard() {
   return (
@@ -15,6 +16,7 @@ export default function PostCard() {
       <PostFooter />
       <PlacePickCard />
       <CommentDrawer />
+      <AddPPCategory />
     </Card>
   );
 }

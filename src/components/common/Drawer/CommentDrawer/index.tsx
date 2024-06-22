@@ -6,22 +6,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { useAppDispatch } from '@/hooks/redux-hooks';
-import { toggleCommentDrawer } from '@/store/slice/drawer/slice';
 import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
+import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 
 export default function CommentDrawer() {
-  const dispatch = useAppDispatch();
+  const {
+    commentDrawerToggleHandler,
+    setCommentDrawerHandler,
+    commentDrawerState,
+  } = useCommentDrawer();
   return (
-    <CustomSwipeableDrawer title={'댓글'}>
+    <CustomSwipeableDrawer
+      drawerState={commentDrawerState}
+      setHandler={setCommentDrawerHandler}
+      toggleHandler={commentDrawerToggleHandler}
+      title={'댓글'}
+      buttonRender={false}
+    >
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem
             key={text}
             disablePadding
-            onClick={() => {
-              dispatch(toggleCommentDrawer());
-            }}
+            onClick={commentDrawerToggleHandler}
           >
             <ListItemButton>
               <ListItemIcon>
