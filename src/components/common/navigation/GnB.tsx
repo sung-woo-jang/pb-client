@@ -2,9 +2,10 @@
 
 import React from 'react';
 import classes from './styles.module.scss';
-import { MenuIcon, SquareIcon } from '@/components/Icon';
 import Link from 'next/link';
 import { useSidebarControls } from '@/store/slice/common/useSidebarControls';
+import MenuIcon from '@/components/Icon/MenuIcon';
+import SquareIcon from '@/components/Icon/SquareIcon';
 
 export default function GnB() {
   const { toggleInfoSidebar } = useSidebarControls();

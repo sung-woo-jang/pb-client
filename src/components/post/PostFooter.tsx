@@ -2,9 +2,10 @@ import { CardFooter } from './ui/card';
 import classes from './styles.module.scss';
 
 import { Button } from '@/components/post/ui/button';
-import { HeartIcon, MessageCircleIcon } from '@/components/Icon';
 import StarRatingTooltip from './StarRatingTooltip';
 import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
+import HeartIcon from '@/components/Icon/HeartIcon';
+import MessageCircleIcon from '@/components/Icon/MessageCircleIcon';
 
 export default function PostFooter() {
   const { commentDrawerToggleHandler } = useCommentDrawer();

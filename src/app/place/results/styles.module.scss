@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.searchBox {
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  background-color: #1F2937;
+}
+
+.searchInputIcon {
+  padding: 0.25rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+}
+
+.searchInput {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  flex: 1 1 0;
+  border-radius: 9999px;
+  color: #ffffff;
+  background-color: #374151;
+}
+
+
+.locationWrapper {
+  padding: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.locationTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
