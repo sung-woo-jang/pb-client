@@ -1,7 +1,8 @@
 import classes from './styles.module.scss';
+import { ReactNode } from 'react';
 
 interface TextAreaProps {
-  label: string;
+  label: ReactNode;
   maxLength?: number;
   placeholder: string;
 }
@@ -12,7 +13,7 @@ export default function TextArea({
   maxLength,
 }: TextAreaProps) {
   return (
-    <div className="mt-4">
+    <>
       <div className={classes.inputContainer}>
         <label htmlFor="name" className={`${classes.label} mb-2`}>
           {label}
@@ -25,6 +26,6 @@ export default function TextArea({
         placeholder={placeholder}
         className={classes.input}
       />
-    </div>
+    </>
   );
 }

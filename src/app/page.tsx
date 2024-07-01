@@ -109,7 +109,7 @@ export default function Home() {
             <ul className="ml-4 space-y-2">
               <li>
                 <Link href={'/post'} className="text-gray-700 hover:underline">
-                  글쓰기 - 🔴
+                  글쓰기 - 🟠
                 </Link>
               </li>
             </ul>
