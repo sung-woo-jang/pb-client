@@ -130,7 +130,7 @@ export default function Home() {
                   href={'/management/follow'}
                   className="text-gray-700 hover:underline"
                 >
-                  팔로워 / 팔로잉 관리 - 🔴
+                  팔로워 / 팔로잉 관리 - 🟡
                 </Link>
               </li>
             </ul>
