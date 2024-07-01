@@ -2,9 +2,5 @@
 import PostCard from '@/components/post/PostCard';
 
 export default function Page() {
-  return (
-    <div>
-      <PostCard />
-    </div>
-  );
+  return <PostCard />;
 }

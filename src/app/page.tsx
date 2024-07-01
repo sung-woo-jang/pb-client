@@ -31,7 +31,7 @@ export default function Home() {
                   href={'/newsfeed'}
                   className="text-gray-700 hover:underline"
                 >
-                  뉴스피스 리스트(메인) - 🔴
+                  뉴스피스 리스트(메인) - 🟡
                 </Link>
               </li>
             </ul>
