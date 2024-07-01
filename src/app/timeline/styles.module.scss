@@ -1,0 +1,24 @@
+.timelineWrapper {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  width: 100%;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timelineContainer {
+  display: flex;
+  padding: 1rem;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  margin-top: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+}

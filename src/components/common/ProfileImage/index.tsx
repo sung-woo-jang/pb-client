@@ -6,7 +6,7 @@ import { AvatarFallback } from '@radix-ui/react-avatar';
 
 export default function ProfileImage() {
   return (
-    <Link className={classes.wrapper} href="#">
+    <Link className={classes.wrapper} href={'/timeline'}>
       <Avatar className={classes.avatar}>
         <MuiAvatar
           alt="닉네임"

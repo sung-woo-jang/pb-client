@@ -44,7 +44,7 @@ export default function Home() {
                   href={'/timeline'}
                   className="text-gray-700 hover:underline"
                 >
-                  타임라인 메인 - 🔴
+                  타임라인 메인 - 🟡
                 </Link>
               </li>
               <li>
