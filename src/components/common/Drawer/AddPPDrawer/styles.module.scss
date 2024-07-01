@@ -6,6 +6,12 @@
   background-color: #ffffff;
 }
 
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 .pickPCContainer {
   display: flex;
@@ -20,6 +26,14 @@
   margin-bottom: 1rem;
   color: #374151;
 }
+
+.label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #374151;
+}
+
 
 .colorCircle {
   display: flex;

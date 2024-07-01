@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
 import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import CheckIcon from '@mui/icons-material/Check';
+import TextArea from '@/components/common/TextArea';
 
 const CircleData = [
   { id: 1, color: 'bg-green-500' },
@@ -32,20 +33,12 @@ export default function AddPPCategory() {
       buttonRender={true}
     >
       <div className={classes.wrapper}>
-        <div className="mt-4">
-          <div className={classes.inputContainer}>
-            <label htmlFor="name" className={`${classes.label} mb-2`}>
-              새 카테고리명
-            </label>
-            <span className="text-sm text-gray-500">0/25</span>
-          </div>
-          <input
-            id="name"
-            type="text"
-            placeholder="새 카테고리명을 입력해주세요."
-            className={classes.input}
-          />
-        </div>
+        <TextArea
+          label={'새 카테고리명'}
+          maxLength={25}
+          placeholder={'새 카테고리명을 입력해주세요.'}
+        />
+
         <div className={classes.pickPCContainer}>
           <label htmlFor="name" className={classes.pickPCLabel}>
             색상 선택
@@ -64,34 +57,16 @@ export default function AddPPCategory() {
             ))}
           </div>
         </div>
-        <div className="mt-4">
-          <div className={classes.inputContainer}>
-            <label htmlFor="name" className={classes.label}>
-              메모
-            </label>
-            <span className="text-sm text-gray-500">0/25</span>
-          </div>
-          <input
-            id="name"
-            type="text"
-            placeholder="메모를 남겨주세요"
-            className={classes.input}
-          />
-        </div>
-        <div className="mt-4">
-          <div className={classes.inputContainer}>
-            <label htmlFor="description" className={classes.label}>
-              관련 링크
-            </label>
-            <span className="text-sm text-gray-500">0/25</span>
-          </div>
-          <input
-            id="description"
-            type="text"
-            placeholder="https://"
-            className={classes.input}
-          />
-        </div>
+        <TextArea
+          label={'메모'}
+          maxLength={25}
+          placeholder={'메모를 남겨주세요.'}
+        />
+        <TextArea
+          label={'관련 링크'}
+          maxLength={25}
+          placeholder={'https://.'}
+        />
       </div>
     </CustomSwipeableDrawer>
   );

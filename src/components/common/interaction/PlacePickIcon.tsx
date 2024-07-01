@@ -12,6 +12,7 @@ export default function PlacePickIcon() {
     setToggle();
     ppCategoryDrawerToggleHandler();
   };
+
   return (
     <div onClick={onCLickHandler} className={classes.icon}>
       {toggle ? <FillStar /> : <EmptyStar />}
