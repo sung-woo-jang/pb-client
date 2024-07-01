@@ -109,20 +109,20 @@ export default function Home() {
             <ul className="ml-4 space-y-2">
               <li>
                 <Link href={'/post'} className="text-gray-700 hover:underline">
-                  글쓰기 - 🟠
+                  글쓰기 - 🟡
                 </Link>
               </li>
             </ul>
           </li>
           <li>
-            <h3 className="text-xl font-semibold">- 마이페이지</h3>
+            <h3 className="text-xl font-semibold">- 관리 화면</h3>
             <ul className="ml-4 space-y-2">
               <li>
                 <Link
                   href={'/management/my-page'}
                   className="text-gray-700 hover:underline"
                 >
-                  관리 화면 - 🔴
+                  마이페이지 - 🟡
                 </Link>
               </li>
               <li>
