@@ -3,7 +3,7 @@ import {
   setAddPPCategoryState,
   setAddPPState,
   setCommentDrawerState,
-  toggleAddPPCategoryState,
+  toggleAddPPCategoryDrawerState,
   toggleAddPPState,
   toggleCommentDrawer,
 } from '@/store/slice/drawer/slice';
@@ -34,8 +34,8 @@ export function useCommentDrawer() {
 }
 
 export function useAddPPCategoryDrawer() {
-  const addPPCategoryState = useAppSelector(
-    (state) => state.drawer.addPPCategoryState
+  const addPPCategoryDrawerState = useAppSelector(
+    (state) => state.drawer.addPPCategoryDrawerState
   );
   const dispatch = useAppDispatch();
 
@@ -47,11 +47,11 @@ export function useAddPPCategoryDrawer() {
   };
 
   const ppCategoryDrawerToggleHandler = () => {
-    dispatch(toggleAddPPCategoryState());
+    dispatch(toggleAddPPCategoryDrawerState());
   };
 
   return {
-    addPPCategoryState,
+    addPPCategoryDrawerState,
     ppCategoryDrawerOpenHandler,
     setPPCategoryDrawerHandler,
     ppCategoryDrawerToggleHandler,
@@ -59,7 +59,9 @@ export function useAddPPCategoryDrawer() {
 }
 
 export function useAddPPDrawer() {
-  const addPPDrawer = useAppSelector((state) => state.drawer.addPPState);
+  const addPPDrawerState = useAppSelector(
+    (state) => state.drawer.addPPDrawerState
+  );
   const dispatch = useAppDispatch();
 
   const addPPDrawerOpenHandler = () => {
@@ -75,7 +77,7 @@ export function useAddPPDrawer() {
   };
 
   return {
-    addPPDrawer,
+    addPPDrawerState,
     addPPDrawerOpenHandler,
     setAddPPDrawerHandler,
     addPPDrawerToggleHandler,

@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface drawerState {
   commentDrawerState: boolean;
-  addPPCategoryState: boolean;
-  addPPState: boolean;
+  addPPCategoryDrawerState: boolean;
+  addPPDrawerState: boolean;
 }
 
 const initialState: drawerState = {
   commentDrawerState: false,
-  addPPCategoryState: false,
-  addPPState: false,
+  addPPCategoryDrawerState: false,
+  addPPDrawerState: false,
 };
 
 const { reducer: drawerReducer, actions } = createSlice({
@@ -23,16 +23,16 @@ const { reducer: drawerReducer, actions } = createSlice({
       state.commentDrawerState = !state.commentDrawerState;
     },
     setAddPPCategoryState: (state, action: PayloadAction<boolean>) => {
-      state.addPPCategoryState = action.payload;
+      state.addPPCategoryDrawerState = action.payload;
     },
-    toggleAddPPCategoryState: (state) => {
-      state.addPPCategoryState = !state.addPPCategoryState;
+    toggleAddPPCategoryDrawerState: (state) => {
+      state.addPPCategoryDrawerState = !state.addPPCategoryDrawerState;
     },
     setAddPPState: (state, action: PayloadAction<boolean>) => {
-      state.addPPState = action.payload;
+      state.addPPDrawerState = action.payload;
     },
     toggleAddPPState: (state) => {
-      state.addPPState = !state.addPPState;
+      state.addPPDrawerState = !state.addPPDrawerState;
     },
   },
 });
@@ -41,7 +41,7 @@ export const {
   toggleCommentDrawer,
   setCommentDrawerState,
   setAddPPCategoryState,
-  toggleAddPPCategoryState,
+  toggleAddPPCategoryDrawerState,
   setAddPPState,
   toggleAddPPState,
 } = actions;

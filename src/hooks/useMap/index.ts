@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import initializeMap from '@/hooks/useMap/function/initailizeMap';
 import createMarkers from '@/hooks/useMap/function/createMakers';
 import IMap from '@/hooks/useMap/types';
 import updateMarkersVisibility from '@/hooks/useMap/function/updateMarkersVisibility';
 
-export function useMap({ markers: latLngs, mapRef, infoWindowRef }: IMap) {
+export function useMap({ markers: latLngs }: IMap) {
   // 지도 중심의 초기 좌표를 설정
+  const mapRef = useRef<naver.maps.Map>();
+  const infoWindowRef = useRef<naver.maps.InfoWindow>();
   // 마커
   const [markers, setMarkers] = useState<naver.maps.Marker[]>([]);
   // 37.488388, 126.7406796
@@ -13,7 +15,7 @@ export function useMap({ markers: latLngs, mapRef, infoWindowRef }: IMap) {
   // init ------------------------------------
   useEffect(() => {
     initializeMap(mapRef, infoWindowRef, 37.4671534, 126.6628312);
-  }, []);
+  }, [mapRef, infoWindowRef]);
 
   // marker ------------------------------------
   useEffect(() => {

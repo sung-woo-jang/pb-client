@@ -40,7 +40,9 @@ export default function CustomSwipeableDrawer({
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       PaperProps={{
-        sx: { borderRadius: '30px 30px 0 0' },
+        sx: {
+          borderRadius: '30px 30px 0 0',
+        },
       }}
     >
       <Box

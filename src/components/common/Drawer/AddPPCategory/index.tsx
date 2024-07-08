@@ -20,7 +20,7 @@ const CircleData = [
 export default function AddPPCategory() {
   const [selectedCircle, setSelectedCircle] = useState<number>(1);
   const {
-    addPPCategoryState,
+    addPPCategoryDrawerState,
     setPPCategoryDrawerHandler,
     ppCategoryDrawerToggleHandler,
   } = useAddPPCategoryDrawer();
@@ -28,7 +28,7 @@ export default function AddPPCategory() {
     <CustomSwipeableDrawer
       title="새 카테고리 추가"
       toggleHandler={ppCategoryDrawerToggleHandler}
-      drawerState={addPPCategoryState}
+      drawerState={addPPCategoryDrawerState}
       setHandler={setPPCategoryDrawerHandler}
       buttonRender={true}
     >

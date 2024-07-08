@@ -7,8 +7,8 @@ import ReactQueryProvider from '@/provider/ReactQueryProvider';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { AxiosInterceptor } from '@/api/AxiosInterceptor';
 import GnB from '@/components/common/navigation/GnB';
-import BnB from '@/components/common/navigation/BnB';
 import InfoSidebar from '@/components/common/sidebar/InfoSidebar';
+import Script from 'next/script';
 
 if (typeof window !== 'undefined') {
   require('bootstrap/dist/js/bootstrap');
@@ -33,6 +33,10 @@ export default function RootLayout({
           <ReactQueryProvider>
             <AppRouterCacheProvider>
               <AxiosInterceptor>
+                <Script
+                  strategy="beforeInteractive"
+                  src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8cqmivfoiq&submodules=geocoder"
+                />
                 <div
                   style={{
                     backgroundColor: '#E5E7EB',
@@ -41,7 +45,6 @@ export default function RootLayout({
                   <GnB />
                   {children}
                   <InfoSidebar />
-                  <BnB />
                 </div>
               </AxiosInterceptor>
             </AppRouterCacheProvider>

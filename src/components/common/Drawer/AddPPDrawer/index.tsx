@@ -5,13 +5,13 @@ import classes from './styles.module.scss';
 import TextArea from '@/components/common/TextArea';
 
 export default function AddPPDrawer() {
-  const { addPPDrawerToggleHandler, setAddPPDrawerHandler, addPPDrawer } =
+  const { addPPDrawerToggleHandler, setAddPPDrawerHandler, addPPDrawerState } =
     useAddPPDrawer();
   return (
     <CustomSwipeableDrawer
       title="보문갈비"
       toggleHandler={addPPDrawerToggleHandler}
-      drawerState={addPPDrawer}
+      drawerState={addPPDrawerState}
       setHandler={setAddPPDrawerHandler}
       buttonRender={true}
     >
