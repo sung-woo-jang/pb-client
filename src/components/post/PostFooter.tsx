@@ -1,7 +1,5 @@
-import { CardFooter } from './ui/card';
+import * as React from 'react';
 import classes from './styles.module.scss';
-
-import { Button } from '@/components/post/ui/button';
 import StarRatingTooltip from './StarRatingTooltip';
 import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 import HeartIcon from '@/components/Icon/HeartIcon';
@@ -11,22 +9,23 @@ export default function PostFooter() {
   const { commentDrawerToggleHandler } = useCommentDrawer();
 
   return (
-    <CardFooter className={classes.cardFooter}>
+    <div className={classes.cardFooter}>
       <div className={classes.iconContainer}>
         <div>
           <StarRatingTooltip />
         </div>
         <div>
-          <Button
-            size="icon"
-            variant="ghost"
+          <button
+            className={`${classes.button} ${classes.icon} ${classes.ghost}`}
             onClick={commentDrawerToggleHandler}
           >
             <MessageCircleIcon className={classes.iconButton} />
-          </Button>
-          <Button size="icon" variant="ghost">
+          </button>
+          <button
+            className={`${classes.button} ${classes.icon} ${classes.ghost}`}
+          >
             <HeartIcon className={classes.iconButton} />
-          </Button>
+          </button>
         </div>
       </div>
       <div className={classes.contents}>
@@ -35,6 +34,6 @@ export default function PostFooter() {
         deleniti alias dignissimos voluptas laborum, eum dolorem veniam
         inventore rerum ipsa.
       </div>
-    </CardFooter>
+    </div>
   );
 }

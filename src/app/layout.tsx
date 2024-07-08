@@ -9,6 +9,7 @@ import { AxiosInterceptor } from '@/api/AxiosInterceptor';
 import GnB from '@/components/common/navigation/GnB';
 import InfoSidebar from '@/components/common/sidebar/InfoSidebar';
 import Script from 'next/script';
+import Drawer from '@/components/common/Drawer';
 
 if (typeof window !== 'undefined') {
   require('bootstrap/dist/js/bootstrap');
@@ -45,6 +46,7 @@ export default function RootLayout({
                   <GnB />
                   {children}
                   <InfoSidebar />
+                  <Drawer />
                 </div>
               </AxiosInterceptor>
             </AppRouterCacheProvider>

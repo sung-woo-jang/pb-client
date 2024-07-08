@@ -1,10 +1,10 @@
-import { CardContent } from './ui/card';
 import classes from './styles.module.scss';
 import Image, { StaticImageData } from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 
 import image1 from '../../../public/assets/img/slider/02.jpg';
+import * as React from 'react';
 
 interface HeroDataType {
   id: number;
@@ -23,7 +23,7 @@ export default function PostImageSwiper() {
     { id: 8, image: image1 },
   ];
   return (
-    <CardContent className="p-0">
+    <div className="pt-0 p-0">
       <Swiper>
         {imageArray.map(({ image, id }) => (
           <SwiperSlide key={id} style={{ width: '100%' }}>
@@ -35,6 +35,6 @@ export default function PostImageSwiper() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </CardContent>
+    </div>
   );
 }

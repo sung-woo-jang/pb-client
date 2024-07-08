@@ -24,7 +24,7 @@ function useUpdateHeight(divRef: RefObject<HTMLDivElement>) {
     return () => {
       window.removeEventListener('resize', updateHeight);
     };
-  }, [fullWidth, headerHeight]);
+  }, [divRef, fullWidth, headerHeight]);
 
   return { mapHeight, fullWidth, setFullWidth };
 }

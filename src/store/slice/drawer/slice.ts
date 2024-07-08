@@ -28,10 +28,10 @@ const { reducer: drawerReducer, actions } = createSlice({
     toggleAddPPCategoryDrawerState: (state) => {
       state.addPPCategoryDrawerState = !state.addPPCategoryDrawerState;
     },
-    setAddPPState: (state, action: PayloadAction<boolean>) => {
+    setAddPPDrawerState: (state, action: PayloadAction<boolean>) => {
       state.addPPDrawerState = action.payload;
     },
-    toggleAddPPState: (state) => {
+    toggleAddPPDrawerState: (state) => {
       state.addPPDrawerState = !state.addPPDrawerState;
     },
   },
@@ -42,8 +42,8 @@ export const {
   setCommentDrawerState,
   setAddPPCategoryState,
   toggleAddPPCategoryDrawerState,
-  setAddPPState,
-  toggleAddPPState,
+  setAddPPDrawerState,
+  toggleAddPPDrawerState,
 } = actions;
 
 export default drawerReducer;

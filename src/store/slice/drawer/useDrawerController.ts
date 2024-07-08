@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import {
   setAddPPCategoryState,
-  setAddPPState,
+  setAddPPDrawerState,
   setCommentDrawerState,
   toggleAddPPCategoryDrawerState,
-  toggleAddPPState,
+  toggleAddPPDrawerState,
   toggleCommentDrawer,
 } from '@/store/slice/drawer/slice';
 
@@ -65,15 +65,15 @@ export function useAddPPDrawer() {
   const dispatch = useAppDispatch();
 
   const addPPDrawerOpenHandler = () => {
-    dispatch(setAddPPState(true));
+    dispatch(setAddPPDrawerState(true));
   };
 
   const setAddPPDrawerHandler = (state: boolean) => {
-    dispatch(setAddPPState(state));
+    dispatch(setAddPPDrawerState(state));
   };
 
   const addPPDrawerToggleHandler = () => {
-    dispatch(toggleAddPPState());
+    dispatch(toggleAddPPDrawerState());
   };
 
   return {

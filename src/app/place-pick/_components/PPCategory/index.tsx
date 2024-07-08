@@ -7,7 +7,7 @@ import StarIcon from '@/components/Icon/StarIcon';
 import TrashIcon from '@/components/Icon/TrashIcon';
 
 export default function PPCategory() {
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     { id: 1, title: '전체 보기', isDefault: true },
     { id: 2, title: '맛집', isDefault: false },
     { id: 3, title: '술집', isDefault: false },
