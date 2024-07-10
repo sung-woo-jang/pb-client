@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import classes from './styles.module.scss';
 
-interface CustomSwipeableDrawerProps {
+interface SwipeableDrawerWrapperProps {
   title: string;
   children: React.ReactNode;
   drawerState: boolean;
@@ -13,13 +13,13 @@ interface CustomSwipeableDrawerProps {
   buttonRender: boolean;
 }
 
-export default function CustomSwipeableDrawer({
+export default function SwipeableDrawerWrapper({
   title,
   children,
   drawerState,
   setHandler,
   buttonRender,
-}: CustomSwipeableDrawerProps) {
+}: SwipeableDrawerWrapperProps) {
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (

@@ -3,8 +3,8 @@ import { useMap } from '@/hooks/useMap';
 import { useGetCoordinates } from '@/api/coords/getCoordinates';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { RefObject, useEffect, useRef, useState } from 'react';
-import PPCategory from '@/app/place-pick/_components/PPCategory';
 import { useAppSelector } from '@/hooks/redux-hooks';
+import PPCategory from '@/app/place-pick/_components/PPCategory';
 
 function useUpdateHeight(divRef: RefObject<HTMLDivElement>) {
   const headerHeight = useAppSelector((state) => state.common.headerHeight);

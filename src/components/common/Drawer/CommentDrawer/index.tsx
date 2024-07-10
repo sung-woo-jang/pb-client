@@ -1,12 +1,12 @@
 import Divider from '@mui/material/Divider';
-import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
+import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 import ProfileImage from '@/components/common/ProfileImage';
 import formatTime, { generateTimestamps } from '@/utils/formatTime';
 import { Fragment, useEffect, useState } from 'react';
 import ConfirmModal from '@/components/common/ConfirmModal';
-import useModalController from '@/store/slice/modal/useModalController';
 import { getLabelByCode } from '@/store/slice/modal/modalLabelData';
+import useModalController from '@/store/slice/modal/useModalController';
 
 interface CommentDataType {
   id: number;
@@ -74,7 +74,7 @@ export default function CommentDrawer() {
   };
   return (
     <>
-      <CustomSwipeableDrawer
+      <SwipeableDrawerWrapper
         drawerState={commentDrawerState}
         setHandler={setCommentDrawerHandler}
         toggleHandler={commentDrawerToggleHandler}
@@ -109,7 +109,7 @@ export default function CommentDrawer() {
             )
           )}
         </div>
-      </CustomSwipeableDrawer>
+      </SwipeableDrawerWrapper>
       <ConfirmModal />
     </>
   );

@@ -1,6 +1,6 @@
 import classes from './styles.module.scss';
 import { useState } from 'react';
-import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDrawer';
+import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import { useEditPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import CheckIcon from '@mui/icons-material/Check';
 import TextArea from '@/components/common/TextArea';
@@ -25,7 +25,7 @@ export default function EditPPCategory() {
     editPPCategoryDrawerToggleHandler,
   } = useEditPPCategoryDrawer();
   return (
-    <CustomSwipeableDrawer
+    <SwipeableDrawerWrapper
       title="새 카테고리 수정"
       toggleHandler={editPPCategoryDrawerToggleHandler}
       drawerState={editPPCategoryDrawerState}
@@ -68,6 +68,6 @@ export default function EditPPCategory() {
           placeholder={'https://.'}
         />
       </div>
-    </CustomSwipeableDrawer>
+    </SwipeableDrawerWrapper>
   );
 }

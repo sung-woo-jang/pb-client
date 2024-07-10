@@ -1,17 +1,18 @@
 'use client';
 import { useToggle } from 'usehooks-ts';
 import classes from './styles.module.scss';
-import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
+import { useAddPPDrawer } from '@/store/slice/drawer/useDrawerController';
 import FillStar from '@/components/Icon/FillStar';
 import EmptyStar from '@/components/Icon/EmptyStar';
 
 export default function PlacePickIcon() {
   const [toggle, setToggle] = useToggle(true);
-  const { ppCategoryDrawerToggleHandler } = useAddPPCategoryDrawer();
   const onCLickHandler = () => {
     setToggle();
-    ppCategoryDrawerToggleHandler();
+    addPPDrawerToggleHandler();
   };
+
+  const { addPPDrawerToggleHandler } = useAddPPDrawer();
 
   return (
     <div onClick={onCLickHandler} className={classes.icon}>

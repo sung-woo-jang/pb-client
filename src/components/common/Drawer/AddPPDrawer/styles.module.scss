@@ -52,3 +52,19 @@
   margin-left: .5rem;
 }
 
+.categoryList {
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  padding: 0.5rem;
+  border-bottom-width: 1px;
+}
+
+.categoryBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
