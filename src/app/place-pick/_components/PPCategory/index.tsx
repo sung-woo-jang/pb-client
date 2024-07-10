@@ -5,6 +5,7 @@ import CirclePlusIcon from '@/components/Icon/CirclePlusIcon';
 import FilePenIcon from '@/components/Icon/FilePenIcon';
 import StarIcon from '@/components/Icon/StarIcon';
 import TrashIcon from '@/components/Icon/TrashIcon';
+import { useEditPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 
 export default function PPCategory() {
   const [categories] = useState([
@@ -12,6 +13,7 @@ export default function PPCategory() {
     { id: 2, title: '맛집', isDefault: false },
     { id: 3, title: '술집', isDefault: false },
   ]);
+  const { editPPCategoryDrawerToggleHandler } = useEditPPCategoryDrawer();
   return (
     <>
       <div className={styles.box}>
@@ -32,7 +34,10 @@ export default function PPCategory() {
             </div>
             {!isDefault && (
               <div className={`${styles.categoryList} space-x-2`}>
-                <FilePenIcon className="w-6 h-6" />
+                <FilePenIcon
+                  className="w-6 h-6"
+                  onClick={editPPCategoryDrawerToggleHandler}
+                />
                 <TrashIcon className="w-6 h-6" />
               </div>
             )}

@@ -1,0 +1,40 @@
+
+.wrapper {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+
+.pickPCContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.pickPCLabel {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.colorCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.iconContainer {
+  display: flex;
+  gap: 2rem;
+  margin-left: .5rem;
+}
+

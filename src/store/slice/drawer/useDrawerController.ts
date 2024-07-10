@@ -3,9 +3,11 @@ import {
   setAddPPCategoryState,
   setAddPPDrawerState,
   setCommentDrawerState,
+  setEditPPCategoryDrawerState,
   toggleAddPPCategoryDrawerState,
   toggleAddPPDrawerState,
   toggleCommentDrawer,
+  toggleEditPPCategoryDrawerState,
 } from '@/store/slice/drawer/slice';
 
 export function useCommentDrawer() {
@@ -81,5 +83,32 @@ export function useAddPPDrawer() {
     addPPDrawerOpenHandler,
     setAddPPDrawerHandler,
     addPPDrawerToggleHandler,
+  };
+}
+
+export function useEditPPCategoryDrawer() {
+  const editPPCategoryDrawerState = useAppSelector(
+    (state) => state.drawer.editPPCategoryDrawerState
+  );
+
+  const dispatch = useAppDispatch();
+
+  const editPPCategoryDrawerOpenHandler = () => {
+    dispatch(setEditPPCategoryDrawerState(true));
+  };
+
+  const setEditPPCategoryDrawerHandler = (state: boolean) => {
+    dispatch(setEditPPCategoryDrawerState(state));
+  };
+
+  const editPPCategoryDrawerToggleHandler = () => {
+    dispatch(toggleEditPPCategoryDrawerState());
+  };
+
+  return {
+    editPPCategoryDrawerState,
+    editPPCategoryDrawerOpenHandler,
+    setEditPPCategoryDrawerHandler,
+    editPPCategoryDrawerToggleHandler,
   };
 }

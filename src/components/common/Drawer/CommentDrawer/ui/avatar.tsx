@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import classes from './styles.module.scss';
-import MuiAvatar from '@mui/material/Avatar';
+'use client';
+
 import * as React from 'react';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import { cn } from '@/utils/cn';
@@ -20,6 +19,18 @@ const Avatar = React.forwardRef<
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn('aspect-square h-full w-full', className)}
+    {...props}
+  />
+));
+AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
@@ -27,7 +38,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      'flex h-full w-full items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800',
+      'flex h-full w-full items-center justify-center rounded-full bg-muted',
       className
     )}
     {...props}
@@ -35,27 +46,4 @@ const AvatarFallback = React.forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-interface ProfileImageProps {
-  profileImageUrl: string;
-  createdDate: string;
-  nickname: string;
-}
-
-export default function ProfileImage({
-  profileImageUrl,
-  nickname,
-  createdDate,
-}: ProfileImageProps) {
-  return (
-    <Link className={classes.wrapper} href={'/timeline'}>
-      <Avatar className={classes.avatar}>
-        <MuiAvatar alt={nickname} src={profileImageUrl} />
-        <AvatarFallback>{nickname.substring(0, 2)}</AvatarFallback>
-      </Avatar>
-      <div style={{ display: 'flex', gap: '1rem' }}>
-        {nickname}
-        <p className={classes.postTimestamp}>{createdDate}</p>
-      </div>
-    </Link>
-  );
-}
+export { Avatar, AvatarImage, AvatarFallback };

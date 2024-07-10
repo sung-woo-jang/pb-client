@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface drawerState {
   commentDrawerState: boolean;
   addPPCategoryDrawerState: boolean;
+  editPPCategoryDrawerState: boolean;
   addPPDrawerState: boolean;
 }
 
 const initialState: drawerState = {
   commentDrawerState: false,
   addPPCategoryDrawerState: false,
+  editPPCategoryDrawerState: false,
   addPPDrawerState: false,
 };
 
@@ -34,6 +36,12 @@ const { reducer: drawerReducer, actions } = createSlice({
     toggleAddPPDrawerState: (state) => {
       state.addPPDrawerState = !state.addPPDrawerState;
     },
+    setEditPPCategoryDrawerState: (state, action: PayloadAction<boolean>) => {
+      state.editPPCategoryDrawerState = action.payload;
+    },
+    toggleEditPPCategoryDrawerState: (state) => {
+      state.editPPCategoryDrawerState = !state.editPPCategoryDrawerState;
+    },
   },
 });
 
@@ -44,6 +52,8 @@ export const {
   toggleAddPPCategoryDrawerState,
   setAddPPDrawerState,
   toggleAddPPDrawerState,
+  setEditPPCategoryDrawerState,
+  toggleEditPPCategoryDrawerState,
 } = actions;
 
 export default drawerReducer;
