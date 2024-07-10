@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface commonState {
+interface CommonState {
   isOpenInfoSidebar: boolean;
   headerHeight: number;
 }
 
-const initialState: commonState = {
+const initialState: CommonState = {
   isOpenInfoSidebar: false,
   headerHeight: 0,
 };

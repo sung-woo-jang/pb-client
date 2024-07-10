@@ -3,7 +3,10 @@ import CustomSwipeableDrawer from '@/components/common/Drawer/CustomSwipeableDra
 import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 import ProfileImage from '@/components/common/ProfileImage';
 import formatTime, { generateTimestamps } from '@/utils/formatTime';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import ConfirmModal from '@/components/common/ConfirmModal';
+import useModalController from '@/store/slice/modal/useModalController';
+import { getLabelByCode } from '@/store/slice/modal/modalLabelData';
 
 interface CommentDataType {
   id: number;
@@ -13,13 +16,7 @@ interface CommentDataType {
   profileImageUrl: string;
 }
 
-export default function CommentDrawer() {
-  const {
-    commentDrawerToggleHandler,
-    setCommentDrawerHandler,
-    commentDrawerState,
-  } = useCommentDrawer();
-
+const useTempCommentData = () => {
   const [commentData, setCommentData] = useState<CommentDataType[]>([]);
 
   useEffect(() => {
@@ -58,40 +55,62 @@ export default function CommentDrawer() {
       },
     ]);
   }, []);
+
+  return commentData;
+};
+
+export default function CommentDrawer() {
+  const {
+    commentDrawerToggleHandler,
+    setCommentDrawerHandler,
+    commentDrawerState,
+  } = useCommentDrawer();
+  const commentData = useTempCommentData();
+  const { setLabelHandler, setModalStateHandler } = useModalController();
+
+  const confirmHandler = () => {
+    setLabelHandler(getLabelByCode('MO-CO-DE'));
+    setModalStateHandler(true);
+  };
   return (
-    <CustomSwipeableDrawer
-      drawerState={commentDrawerState}
-      setHandler={setCommentDrawerHandler}
-      toggleHandler={commentDrawerToggleHandler}
-      title={'댓글'}
-      buttonRender={false}
-    >
-      <div className="rounded-t-lg">
-        {commentData.map(
-          ({ createDate, contents, id, profileImageUrl, nickname }) => (
-            <div key={id} className="p-4 space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    {/*  TODO: 임시 데이터 수정 */}
-                    <ProfileImage
-                      profileImageUrl={profileImageUrl}
-                      nickname={nickname}
-                      createdDate={createDate}
-                    />
-                    <div className="text-sm text-gray-500 space-x-2">
-                      <button>수정</button>
-                      <button>삭제</button>
+    <>
+      <CustomSwipeableDrawer
+        drawerState={commentDrawerState}
+        setHandler={setCommentDrawerHandler}
+        toggleHandler={commentDrawerToggleHandler}
+        title={'댓글'}
+        buttonRender={false}
+      >
+        <div className="rounded-t-lg">
+          {commentData.map(
+            ({ createDate, contents, id, profileImageUrl, nickname }) => (
+              <Fragment key={id}>
+                <div className="p-4 space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        {/*  TODO: 임시 데이터 수정 */}
+                        <ProfileImage
+                          profileImageUrl={profileImageUrl}
+                          nickname={nickname}
+                          createdDate={createDate}
+                        />
+                        <div className="text-sm text-gray-500 space-x-2">
+                          <button>수정</button>
+                          <button onClick={confirmHandler}>삭제</button>
+                        </div>
+                      </div>
+                      <p className="mt-1 ml-4 text-black">{contents}</p>
                     </div>
                   </div>
-                  <p className="mt-1 ml-4 text-black">{contents}</p>
                 </div>
-              </div>
-            </div>
-          )
-        )}
-      </div>
-      <Divider />
-    </CustomSwipeableDrawer>
+                <Divider />
+              </Fragment>
+            )
+          )}
+        </div>
+      </CustomSwipeableDrawer>
+      <ConfirmModal />
+    </>
   );
 }

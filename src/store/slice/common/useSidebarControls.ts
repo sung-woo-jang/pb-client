@@ -1,4 +1,3 @@
-// Custom hook for InfoSidebar controls
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setIsOpenInfoSidebar } from '@/store/slice/common/slice';
 
