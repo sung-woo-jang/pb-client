@@ -1,20 +1,24 @@
 import styles from './styles.module.scss';
-import CirclePlusIcon from '@/components/Icon/CirclePlusIcon';
-import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
+import {
+  useAddPPCategoryDrawer,
+  useAddPPDrawer,
+} from '@/store/slice/drawer/useDrawerController';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 export default function AddCategoryButton() {
   const { ppCategoryDrawerOpenHandler } = useAddPPCategoryDrawer();
+  const { setAddPPDrawerHandler } = useAddPPDrawer();
+  const addPPCategoryHandler = () => {
+    setAddPPDrawerHandler(false);
+    ppCategoryDrawerOpenHandler();
+  };
   return (
     <div className="p-2">
       <div className={`${styles.categoryList}`}>
-        <CirclePlusIcon
-          className="w-6 h-6 cursor-pointer"
-          onClick={ppCategoryDrawerOpenHandler}
-        />
-        <span
-          className="ml-2 cursor-pointer"
-          onClick={ppCategoryDrawerOpenHandler}
-        >
+        <div className="cursor-pointer">
+          <AddCircleOutlineOutlinedIcon onClick={ppCategoryDrawerOpenHandler} />
+        </div>
+        <span className="ml-2 cursor-pointer" onClick={addPPCategoryHandler}>
           플픽 카테고리 추가
         </span>
       </div>

@@ -8,8 +8,9 @@ export default function createMarkers({ latLngs }: ICreateMarkers) {
   return latLngs?.map(([lat, lng]) => {
     return new naver.maps.Marker({
       icon: {
-        content: getMarkerContent(size),
-        size: new naver.maps.Size(size, size),
+        // content: getMarkerContent(size),
+        url: '/marker.png',
+        size: new naver.maps.Size(30, 30),
       },
       position: new naver.maps.LatLng(lat, lng),
       clickable: true,

@@ -65,7 +65,7 @@ export default function Home() {
                   href={'/place-pick'}
                   className="text-gray-700 hover:underline"
                 >
-                  플픽 카테고리 리스트 - 🔴
+                  플픽 카테고리 리스트 - 🟠
                 </Link>
               </li>
               <li>
@@ -83,7 +83,7 @@ export default function Home() {
             <ul className="ml-4 space-y-2">
               <li>
                 <Link href={'/place'} className="text-gray-700 hover:underline">
-                  검색 메인 - 🔴
+                  검색 메인 - 🟠
                 </Link>
               </li>
               <li>

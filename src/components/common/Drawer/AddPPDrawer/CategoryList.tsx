@@ -1,18 +1,23 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import CircleIcon from '@/components/Icon/CircleIcon';
+import StarsIcon from '@mui/icons-material/Stars';
 
 interface CategoryListProps {
   title: string;
+  color: string;
   children: React.ReactNode;
 }
 
-export default function CategoryList({ children, title }: CategoryListProps) {
+export default function CategoryList({
+  children,
+  title,
+  color,
+}: CategoryListProps) {
   return (
     <div className={styles.box}>
       <div className={styles.categoryBox}>
         <div className={`${styles.categoryList}`}>
-          <CircleIcon className="w-6 h-6" />
+          <StarsIcon sx={{ color }} />
           <span className="ml-2">{title}</span>
         </div>
         {children}

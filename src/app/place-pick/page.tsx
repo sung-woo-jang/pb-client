@@ -2,32 +2,9 @@
 import { useMap } from '@/hooks/useMap';
 import { useGetCoordinates } from '@/api/coords/getCoordinates';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
-import { RefObject, useEffect, useRef, useState } from 'react';
-import { useAppSelector } from '@/hooks/redux-hooks';
+import { useRef } from 'react';
 import PPCategory from '@/app/place-pick/_components/PPCategory';
-
-function useUpdateHeight(divRef: RefObject<HTMLDivElement>) {
-  const headerHeight = useAppSelector((state) => state.common.headerHeight);
-  const [mapHeight, setMapHeight] = useState<string>('100%');
-  const [fullWidth, setFullWidth] = useState<boolean>(false);
-  useEffect(() => {
-    const updateHeight = () => {
-      if (divRef.current) {
-        const newMapHeight = fullWidth
-          ? `calc(100vh - ${divRef.current.scrollHeight + headerHeight}px)`
-          : '90%';
-        setMapHeight(newMapHeight);
-      }
-    };
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, [divRef, fullWidth, headerHeight]);
-
-  return { mapHeight, fullWidth, setFullWidth };
-}
+import useUpdateHeight from '@/hooks/temp/useUpdateHeight';
 
 export default function Page() {
   // 네이버 지도 객체를 저장할 참조를 생성

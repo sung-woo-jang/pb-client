@@ -1,8 +1,9 @@
 import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
 import HeartIcon from '@/components/Icon/HeartIcon';
 import BookmarkIcon from '@/components/Icon/BookmarkIcon';
-import FilePenIcon from '@/components/Icon/FilePenIcon';
 import Image from 'next/image';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import * as React from 'react';
 
 export default function ResultBox() {
   return (
@@ -32,7 +33,7 @@ export default function ResultBox() {
       </div>
       <div className="flex items-center justify-around border-t pt-2">
         <button className="flex items-center">
-          <FilePenIcon className="w-4 h-4 mr-1" />
+          <CreateOutlinedIcon />
           글쓰기
         </button>
         <button className="flex items-center">

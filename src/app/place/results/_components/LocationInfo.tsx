@@ -1,8 +1,8 @@
 import styles from '../styles.module.scss';
-import GreenPlacePicker from '@/components/Icon/GreenPlacePicker';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import PlaceIcon from '@mui/icons-material/Place';
 
 export default function LocationInfo() {
   const place = '"스타벅스"';
@@ -10,8 +10,12 @@ export default function LocationInfo() {
     <div className={styles.locationWrapper}>
       <div className={styles.locationTop}>
         <div className="flex">
-          <GreenPlacePicker />
-          <div className="ml-2 text-green-500 font-semibold">
+          <PlaceIcon
+            sx={{
+              color: '#49FF3F',
+            }}
+          />
+          <div className="ml-2  font-semibold" style={{ color: '#49FF3F' }}>
             위치 정보 없음
           </div>
         </div>

@@ -1,6 +1,6 @@
 import TextArea from '@/components/common/TextArea';
-import FilePenIcon from '@/components/Icon/FilePenIcon';
 import ContentsBox from '@/components/common/ContentsBox';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import * as React from 'react';
 
 export default function Review() {
@@ -13,7 +13,7 @@ export default function Review() {
         maxLength={400}
         label={
           <div className="flex items-center space-x-2">
-            <FilePenIcon className="w-6 h-6 text-gray-500" />
+            <CreateOutlinedIcon />
             <p className="text-lg font-bold text-gray-500">
               리뷰를 작성해주세요
             </p>

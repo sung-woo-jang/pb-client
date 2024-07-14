@@ -2,19 +2,10 @@ import classes from './styles.module.scss';
 import { useState } from 'react';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
-import CheckIcon from '@mui/icons-material/Check';
 import TextArea from '@/components/common/TextArea';
-
-const CircleData = [
-  { id: 1, color: 'bg-green-500' },
-  { id: 2, color: 'bg-orange-500' },
-  { id: 3, color: 'bg-yellow-500' },
-  { id: 4, color: 'bg-green-500' },
-  { id: 5, color: 'bg-teal-500' },
-  { id: 6, color: 'bg-blue-500' },
-  { id: 7, color: 'bg-purple-500' },
-  { id: 8, color: 'bg-pink-500' },
-];
+import CircleIcon from '@mui/icons-material/Circle';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import COLORS from '@/constants/COLORS';
 
 // button을 맨 밑에 두려면 CustomSwipeableDrawer의 밑에 button 컴포넌트를 만들면 됨
 export default function AddPPCategory() {
@@ -24,6 +15,7 @@ export default function AddPPCategory() {
     setPPCategoryDrawerHandler,
     ppCategoryDrawerToggleHandler,
   } = useAddPPCategoryDrawer();
+
   return (
     <SwipeableDrawerWrapper
       title="새 카테고리 추가"
@@ -44,15 +36,19 @@ export default function AddPPCategory() {
             색상 선택
           </label>
           <div className={classes.iconContainer}>
-            {CircleData.map(({ id, color }) => (
+            {COLORS.CIRCLE.map(({ id, color }) => (
               <div
                 key={id}
-                className={`${classes.colorCircle} ${color}`}
+                className="cursor-pointer"
                 onClick={() => {
                   setSelectedCircle(id);
                 }}
               >
-                {selectedCircle === id && <CheckIcon className="h-4 w-4" />}
+                {selectedCircle === id ? (
+                  <CheckCircleIcon sx={{ color, fontSize: '28px' }} />
+                ) : (
+                  <CircleIcon sx={{ color, fontSize: '28px' }} />
+                )}
               </div>
             ))}
           </div>
