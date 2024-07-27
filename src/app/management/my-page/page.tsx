@@ -58,10 +58,12 @@ export default function Page() {
           </Button>
         </div>
         <div className="flex items-center justify-between py-2 border-t">
-          <div className="flex items-center">
-            <UserIcon className="w-6 h-6 mr-2" />
-            <span>팔로우 관리</span>
-          </div>
+          <Link href={'follow'}>
+            <div className="flex items-center">
+              <UserIcon className="w-6 h-6 mr-2" />
+              <span>팔로우 관리</span>
+            </div>
+          </Link>
           <Link
             href={'/management/follow'}
             className="text-gray-700 hover:underline"

@@ -1,7 +1,10 @@
 import styles from './styles.module.scss';
 import React, { useState } from 'react';
 import StarIcon from '@/components/Icon/StarIcon';
-import { useEditPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
+import {
+  useEditPPCategoryDrawer,
+  usePPCategoryDetailListDrawer,
+} from '@/store/slice/drawer/useDrawerController';
 import StarsIcon from '@mui/icons-material/Stars';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
@@ -14,6 +17,9 @@ export default function PPCategory() {
     { id: 3, title: '술집', color: '#FE8803', isDefault: false },
   ]);
   const { editPPCategoryDrawerToggleHandler } = useEditPPCategoryDrawer();
+  const { ppCategoryDetailListDrawerToggleHandler } =
+    usePPCategoryDetailListDrawer();
+
   return (
     <>
       <div className={styles.box}>
@@ -28,7 +34,10 @@ export default function PPCategory() {
       {categories.map(({ id, color, isDefault, title }) => (
         <div key={id} className={styles.box}>
           <div className={styles.categoryBox}>
-            <div className={`${styles.categoryList}`}>
+            <div
+              className={`${styles.categoryList}`}
+              onClick={ppCategoryDetailListDrawerToggleHandler}
+            >
               <StarsIcon sx={{ color }} />
               <span className="ml-2">{title}</span>
             </div>

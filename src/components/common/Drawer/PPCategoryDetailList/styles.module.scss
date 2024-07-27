@@ -1,0 +1,66 @@
+
+.wrapper {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+// styles.module.scss
+
+.editButton {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.list {
+  > li + li {
+    margin-top: 1rem;
+  }
+}
+
+.listItem {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  .name {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .category {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .memo {
+    font-size: 0.875rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  .videoLink {
+    font-size: 0.875rem;
+    color: #3b82f6;
+    text-decoration: underline;
+  }
+
+  .address {
+    font-size: 0.875rem;
+    color: #374151;
+  }
+
+  .optionsButton {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}

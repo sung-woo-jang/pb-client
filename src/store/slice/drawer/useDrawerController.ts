@@ -4,10 +4,12 @@ import {
   setAddPPDrawerState,
   setCommentDrawerState,
   setEditPPCategoryDrawerState,
+  setPPCategoryDetailListDrawerState,
   toggleAddPPCategoryDrawerState,
   toggleAddPPDrawerState,
   toggleCommentDrawer,
   toggleEditPPCategoryDrawerState,
+  togglePPCategoryDetailListDrawerState,
 } from '@/store/slice/drawer/slice';
 
 export function useCommentDrawer() {
@@ -110,5 +112,30 @@ export function useEditPPCategoryDrawer() {
     editPPCategoryDrawerOpenHandler,
     setEditPPCategoryDrawerHandler,
     editPPCategoryDrawerToggleHandler,
+  };
+}
+
+export function usePPCategoryDetailListDrawer() {
+  const ppCategoryDetailListDrawerState = useAppSelector(
+    (state) => state.drawer.ppCategoryDetailListDrawerState
+  );
+  const dispatch = useAppDispatch();
+
+  const ppCategoryDetailListDrawerOpenHandler = () => {
+    dispatch(setPPCategoryDetailListDrawerState(true));
+  };
+
+  const setPPCategoryDetailListDrawerHandler = (state: boolean) => {
+    dispatch(setPPCategoryDetailListDrawerState(state));
+  };
+  const ppCategoryDetailListDrawerToggleHandler = () => {
+    dispatch(togglePPCategoryDetailListDrawerState());
+  };
+
+  return {
+    ppCategoryDetailListDrawerState,
+    ppCategoryDetailListDrawerToggleHandler,
+    setPPCategoryDetailListDrawerHandler,
+    ppCategoryDetailListDrawerOpenHandler,
   };
 }

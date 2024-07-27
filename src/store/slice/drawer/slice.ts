@@ -5,6 +5,7 @@ interface drawerState {
   addPPCategoryDrawerState: boolean;
   editPPCategoryDrawerState: boolean;
   addPPDrawerState: boolean;
+  ppCategoryDetailListDrawerState: boolean;
 }
 
 const initialState: drawerState = {
@@ -12,6 +13,7 @@ const initialState: drawerState = {
   addPPCategoryDrawerState: false,
   editPPCategoryDrawerState: false,
   addPPDrawerState: false,
+  ppCategoryDetailListDrawerState: false,
 };
 
 const { reducer: drawerReducer, actions } = createSlice({
@@ -42,6 +44,16 @@ const { reducer: drawerReducer, actions } = createSlice({
     toggleEditPPCategoryDrawerState: (state) => {
       state.editPPCategoryDrawerState = !state.editPPCategoryDrawerState;
     },
+    setPPCategoryDetailListDrawerState: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
+      state.ppCategoryDetailListDrawerState = action.payload;
+    },
+    togglePPCategoryDetailListDrawerState: (state) => {
+      state.ppCategoryDetailListDrawerState =
+        !state.ppCategoryDetailListDrawerState;
+    },
   },
 });
 
@@ -54,6 +66,8 @@ export const {
   toggleAddPPDrawerState,
   setEditPPCategoryDrawerState,
   toggleEditPPCategoryDrawerState,
+  setPPCategoryDetailListDrawerState,
+  togglePPCategoryDetailListDrawerState,
 } = actions;
 
 export default drawerReducer;
