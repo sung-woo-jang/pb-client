@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import SearchIcon from '@/components/Icon/SearchIcon';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
-import { arrowBackIosIconStyle } from '@/app/place/results/_components/SearchBox/styles';
+import { arrowBackIosIconStyle } from '@/app/place/results/_components/SearchBox/cssProps.styles';
 
 export default function SearchBox() {
   const { setIsFocusedState } = useSearchBoxControls();

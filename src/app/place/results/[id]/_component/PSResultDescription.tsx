@@ -5,7 +5,7 @@ import StarIcon from '@/components/Icon/StarIcon';
 
 export default function PsResultDescription() {
   return (
-    <div className="mt-4">
+    <div className="mt-4 ml-2">
       <h2 className="text-xl font-bold">영미리찻집 하오샤브샤브</h2>
       <div className={classes.summary}>
         <StarIcon className="h-4 w-4 text-yellow-400" />

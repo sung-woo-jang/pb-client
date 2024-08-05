@@ -71,6 +71,9 @@ export function useAddPPDrawer() {
   const addPPDrawerOpenHandler = () => {
     dispatch(setAddPPDrawerState(true));
   };
+  const addPPDrawerCloseHandler = () => {
+    dispatch(setAddPPDrawerState(false));
+  };
 
   const setAddPPDrawerHandler = (state: boolean) => {
     dispatch(setAddPPDrawerState(state));
@@ -85,6 +88,7 @@ export function useAddPPDrawer() {
     addPPDrawerOpenHandler,
     setAddPPDrawerHandler,
     addPPDrawerToggleHandler,
+    addPPDrawerCloseHandler,
   };
 }
 

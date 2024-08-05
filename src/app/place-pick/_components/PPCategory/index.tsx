@@ -8,7 +8,7 @@ import {
 import StarsIcon from '@mui/icons-material/Stars';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
 
 export default function PPCategory() {
   const [categories] = useState([
@@ -52,13 +52,7 @@ export default function PPCategory() {
           </div>
         </div>
       ))}
-
-      <div className="p-2">
-        <div className={styles.categoryList}>
-          <AddCircleOutlineOutlinedIcon className="w-6 h-6" />
-          <span className="ml-2">플픽 카테고리 추가</span>
-        </div>
-      </div>
+      <AddCategoryButton />
     </>
   );
 }

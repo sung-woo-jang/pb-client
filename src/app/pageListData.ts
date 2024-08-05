@@ -26,10 +26,7 @@ export const pageList: PageListState[] = [
   },
   {
     head: '플픽',
-    list: [
-      { link: '/place-pick', title: '플픽 카테고리 리스트 - 🟠' },
-      { link: '/place-pick/1', title: '플픽 카테고리별 리스트 - 🟡' },
-    ],
+    list: [{ link: '/place-pick', title: '플픽 카테고리 리스트 - 🟡' }],
   },
   {
     head: '장소 검색',

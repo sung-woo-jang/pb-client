@@ -9,8 +9,12 @@ import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategor
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function AddPPDrawer() {
-  const { addPPDrawerToggleHandler, setAddPPDrawerHandler, addPPDrawerState } =
-    useAddPPDrawer();
+  const {
+    addPPDrawerToggleHandler,
+    setAddPPDrawerHandler,
+    addPPDrawerState,
+    addPPDrawerCloseHandler,
+  } = useAddPPDrawer();
 
   const [categories, setCategories] = useState([
     { id: 2, title: '맛집', checked: false, color: '#FF596D' },
@@ -64,7 +68,9 @@ export default function AddPPDrawer() {
                 </button>
               </CategoryList>
             ))}
-            <AddCategoryButton />
+            <div onClick={addPPDrawerCloseHandler}>
+              <AddCategoryButton />
+            </div>
           </div>
         </div>
       </div>
