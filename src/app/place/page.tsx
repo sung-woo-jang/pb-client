@@ -2,25 +2,39 @@
 import { useGetCoordinates } from '@/api/coords/getCoordinates';
 import { useMap } from '@/hooks/useMap';
 import SearchBox from '@/app/place/results/_components/SearchBox';
-import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
+import { useEffect, useRef } from 'react';
+import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
+import SearchHistory from '@/app/place/results/_components/SearchHistory';
 
 export default function Page() {
   const { data: markers } = useGetCoordinates();
   useMap({ markers });
+  const searchBoxRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const { isFocused } = useSearchBoxControls();
+
+  useEffect(() => {
+    if (mapRef.current) {
+      const searchBoxHeight = searchBoxRef.current
+        ? searchBoxRef.current.offsetHeight
+        : 0;
+      mapRef.current.style.height = `calc(100vh - ${searchBoxHeight}px)`;
+    }
+  }, [isFocused]);
+
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <SearchBox />
-      <div className="flex flex-col items-center justify-center w-full h-screen border border-black">
-        <div className="flex flex-col items-center justify-center flex-1">
-          <BiotechOutlinedIcon sx={{ width: '12rem', height: '12rem' }} />
-          <p className="mt-4 text-gray-400">최근 검색 기록이 없습니다.</p>
-        </div>
+    <div className="w-screen h-screen flex flex-col">
+      <div ref={searchBoxRef}>
+        <SearchBox />
       </div>
+      {isFocused && <SearchHistory />}
       <div
         id="map"
+        ref={mapRef}
+        className="flex-grow"
         style={{
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
+          height: '100%',
           transition: 'all ease 0.5s',
         }}
       />
