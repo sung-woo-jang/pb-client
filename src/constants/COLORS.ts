@@ -1,4 +1,4 @@
-enum CircleColors {
+export enum CircleColors {
   RED = '#FF596D',
   ORANGE = '#FE8803',
   YELLOW = '#FEC802',

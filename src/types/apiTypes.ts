@@ -1,4 +1,4 @@
-type SucessStatusCodeMessage = {
+type SuccessStatusCodeMessage = {
   200: 'OK';
   201: 'Created';
   202: 'Accepted';
@@ -7,9 +7,10 @@ type SucessStatusCodeMessage = {
   205: 'Reset Content';
   206: 'Partial Content';
 };
+
 export interface CommonResponse {
   success: boolean;
   timestamp: Date;
-  message: SucessStatusCodeMessage[keyof SucessStatusCodeMessage];
+  message: SuccessStatusCodeMessage[keyof SuccessStatusCodeMessage];
   isLogin: boolean;
 }
