@@ -15,7 +15,7 @@ export const pageList: PageListState[] = [
   },
   {
     head: '뉴스피드',
-    list: [{ link: '/newsfeed', title: '뉴스피스 리스트(메인) - 🟡' }],
+    list: [{ link: '/newsfeed', title: '뉴스피드 리스트(메인) - 🟡' }],
   },
   {
     head: '타임라인',

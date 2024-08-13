@@ -1,7 +1,3 @@
-/* ******** GET ******** */
-/* ******** POST ******** */
-/* ******** Updata ******** */
-/* ******** Delete ******** */
 import { NumberString } from '@/types/commonTypes';
 
 export const API_URL = {
@@ -32,8 +28,6 @@ export const API_URL = {
     GET_CATEGORY_WITH_PLACE_PICKS: (id: NumberString) =>
       `pl-pick-category/${id}`,
     DELETE_OR_RESTORE_CATEGORY: (id: NumberString) => `pl-pick-category/${id}`,
-    FIND_ONE_WITH_DELETED: (id: NumberString) =>
-      `pl-pick-category/${id}/with-deleted`,
   },
   PLACE_PICK: {
     CREATE_PLACE_PICK: 'place-pick',
