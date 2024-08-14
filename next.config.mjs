@@ -3,23 +3,18 @@
  */
 
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '8000',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'backbone',
-        port: '8000',
-        pathname: '/**',
-      },
-    ],
-  },
-  output: 'standalone',
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '8000',
+                pathname: '/dummy/**',
+            },
+
+        ],
+    },
+    output: 'standalone',
 };
 
 export default nextConfig;
