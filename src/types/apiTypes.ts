@@ -8,11 +8,6 @@ type SuccessStatusCodeMessage = {
   206: 'Partial Content';
 };
 
-export interface IBaseApiResponse {
-  id: number;
-  createdAt: Date;
-}
-
 export interface CommonResponse<T> {
   status: number;
   message: SuccessStatusCodeMessage[keyof SuccessStatusCodeMessage];

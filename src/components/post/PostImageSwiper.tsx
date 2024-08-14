@@ -1,35 +1,29 @@
+'use client';
 import classes from './styles.module.scss';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
-
-import image1 from '../../../public/assets/img/slider/02.jpg';
 import * as React from 'react';
+import { IImage } from '@/api/newsfeed/getNewsFeeds';
 
-interface HeroDataType {
-  id: number;
-  image: StaticImageData;
+interface IPostImageSwiperProps {
+  images: IImage[];
 }
 
-export default function PostImageSwiper() {
-  const imageArray: HeroDataType[] = [
-    { id: 1, image: image1 },
-    { id: 2, image: image1 },
-    { id: 3, image: image1 },
-    { id: 4, image: image1 },
-    { id: 5, image: image1 },
-    { id: 6, image: image1 },
-    { id: 7, image: image1 },
-    { id: 8, image: image1 },
-  ];
+export default function PostImageSwiper({ images }: IPostImageSwiperProps) {
+  // TODO 1: width, height 문제 해결하기
+  // TODO 2: BASE_URL 환경별로 세팅되도록 수정
+  const BASE_URL = (path: string) => 'http://localhost:8000/dummy/' + path;
   return (
     <div className="pt-0 p-0">
       <Swiper>
-        {imageArray.map(({ image, id }) => (
+        {images.map(({ image_path, id }) => (
           <SwiperSlide key={id} style={{ width: '100%' }}>
             <Image
-              src={image}
+              src={BASE_URL(image_path)}
               className={classes.timelineImage}
+              width={3000}
+              height={3000}
               alt="image not found"
             />
           </SwiperSlide>

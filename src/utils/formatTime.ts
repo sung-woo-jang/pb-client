@@ -19,7 +19,7 @@ export const generateTimestamps = () => {
   };
 };
 
-function formatTime(timestamp: string) {
+function formatTime(timestamp: Date) {
   const now = dayjs();
   const time = dayjs(timestamp);
   const diff = now.diff(time, 'hour');

@@ -1,3 +1,4 @@
+// TODO: react-icon으로 변경
 export default function HeartIcon(props: any) {
   return (
     <svg

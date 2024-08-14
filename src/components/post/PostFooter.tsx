@@ -3,23 +3,39 @@ import classes from './styles.module.scss';
 import StarRatingTooltip from './StarRatingTooltip';
 import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 import HeartIcon from '@/components/Icon/HeartIcon';
-import MessageCircleIcon from '@/components/Icon/MessageCircleIcon';
+import { FiMessageCircle } from 'react-icons/fi';
 
-export default function PostFooter() {
-  const { commentDrawerToggleHandler } = useCommentDrawer();
+interface IPostFooterProps {
+  postId: number;
+  rate: number;
+  content: string;
+}
+
+export default function PostFooter({
+  rate,
+  content,
+  postId,
+}: IPostFooterProps) {
+  const { commentDrawerToggleHandler, setPostIdHandler } = useCommentDrawer();
+
+  const commentButtonClickHandler = () => {
+    setPostIdHandler(postId);
+    commentDrawerToggleHandler();
+  };
 
   return (
     <div className={classes.cardFooter}>
       <div className={classes.iconContainer}>
         <div>
-          <StarRatingTooltip />
+          <StarRatingTooltip rate={rate} />
         </div>
         <div>
           <button
             className={`${classes.button} ${classes.icon} ${classes.ghost}`}
-            onClick={commentDrawerToggleHandler}
+            onClick={commentButtonClickHandler}
           >
-            <MessageCircleIcon className={classes.iconButton} />
+            {/*TODO: 게시글 id로 관련 댓글 api 호출 후 open 되도록*/}
+            <FiMessageCircle className={classes.iconButton} />
           </button>
           <button
             className={`${classes.button} ${classes.icon} ${classes.ghost}`}
@@ -28,12 +44,7 @@ export default function PostFooter() {
           </button>
         </div>
       </div>
-      <div className={classes.contents}>
-        컨텐츠 영역 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Velit reiciendis ad officiis beatae est libero quam placeat animi soluta
-        deleniti alias dignissimos voluptas laborum, eum dolorem veniam
-        inventore rerum ipsa.
-      </div>
+      <div className={classes.contents}>{content}</div>
     </div>
   );
 }

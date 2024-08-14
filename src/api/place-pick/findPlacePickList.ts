@@ -5,7 +5,7 @@ import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CommonResponse } from '@/types/apiTypes';
 
-interface IPlaceCategory {
+export interface IPlaceCategory {
   place_category_name: string;
   place_category_name_detail: string;
   id: number;

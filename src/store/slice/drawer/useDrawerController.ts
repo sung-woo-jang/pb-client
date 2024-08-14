@@ -4,6 +4,7 @@ import {
   setAddPPDrawerState,
   setCommentDrawerState,
   setEditPPCategoryDrawerState,
+  setPostId,
   setPPCategoryDetailListDrawerState,
   toggleAddPPCategoryDrawerState,
   toggleAddPPDrawerState,
@@ -16,6 +17,9 @@ export function useCommentDrawer() {
   const commentDrawerState = useAppSelector(
     (state) => state.drawer.commentDrawerState
   );
+
+  const postId = useAppSelector((state) => state.drawer.postId);
+
   const dispatch = useAppDispatch();
 
   const commentDrawerOpenHandler = () => {
@@ -29,11 +33,17 @@ export function useCommentDrawer() {
     dispatch(toggleCommentDrawer());
   };
 
+  const setPostIdHandler = (postId: number) => {
+    dispatch(setPostId(postId));
+  };
+
   return {
+    postId,
     commentDrawerState,
     commentDrawerOpenHandler,
     commentDrawerToggleHandler,
     setCommentDrawerHandler,
+    setPostIdHandler,
   };
 }
 

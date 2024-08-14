@@ -4,14 +4,25 @@ import PostHeader from './PostHeader';
 import PostImageSwiper from './PostImageSwiper';
 import PostFooter from './PostFooter';
 import PlacePickCard from '../common/PlacePickCard';
+import { IGetNewsfeedApiResponseData } from '@/api/newsfeed/getNewsFeeds';
 
-export default function PostCard() {
+interface IPostCardProps {
+  newsfeed: IGetNewsfeedApiResponseData;
+}
+
+export default function PostCard({ newsfeed }: IPostCardProps) {
+  const { visitDate, content, user, images, place, rate, id } = newsfeed;
+
   return (
     <div className={classes.card}>
-      <PostHeader />
-      <PostImageSwiper />
-      <PostFooter />
-      <PlacePickCard />
+      <PostHeader
+        visitDate={visitDate}
+        nickname={user.nickname}
+        profileImageUrl={user.profileImage}
+      />
+      <PostImageSwiper images={images} />
+      <PostFooter postId={id} content={content} rate={rate} />
+      <PlacePickCard place={place} />
     </div>
   );
 }

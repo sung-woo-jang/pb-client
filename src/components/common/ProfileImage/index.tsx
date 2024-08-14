@@ -37,24 +37,28 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 interface ProfileImageProps {
   profileImageUrl: string;
-  createdDate: string;
+  visitDate: string;
   nickname: string;
 }
 
 export default function ProfileImage({
   profileImageUrl,
   nickname,
-  createdDate,
+  visitDate,
 }: ProfileImageProps) {
   return (
     <Link className={classes.wrapper} href={'/timeline'}>
       <Avatar className={classes.avatar}>
-        <MuiAvatar alt={nickname} src={profileImageUrl} />
+        {/* TODO: src 수정 */}
+        <MuiAvatar
+          alt={nickname}
+          src={`http://localhost:8000/dummy/profile_image/${profileImageUrl}`}
+        />
         <AvatarFallback>{nickname.substring(0, 2)}</AvatarFallback>
       </Avatar>
       <div style={{ display: 'flex', gap: '1rem' }}>
         {nickname}
-        <p className={classes.postTimestamp}>{createdDate}</p>
+        <p className={classes.postTimestamp}>{visitDate}</p>
       </div>
     </Link>
   );

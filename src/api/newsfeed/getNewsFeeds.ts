@@ -2,19 +2,16 @@ import { axiosInstance } from '@/api/axiosInstance';
 import { API_URL } from '@/constants/API_URL';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
-import { CommonResponse, IBaseApiResponse } from '@/types/apiTypes';
+import { CommonResponse } from '@/types/apiTypes';
 import { IUser } from '@/types/userTypes';
+import { IPlaceCategory } from '@/api/place-pick/findPlacePickList';
 
 interface IKeyword {
   id: number;
   keyword: string;
 }
 
-interface IComment extends IBaseApiResponse {
-  comment: string;
-}
-
-interface IPlace extends IBaseApiResponse {
+export interface IPlace {
   title: string;
   address: string;
   road_address: string;
@@ -22,9 +19,12 @@ interface IPlace extends IBaseApiResponse {
   telephone: string;
   mapx: number;
   mapy: number;
+  placeCategory: IPlaceCategory;
 }
 
-interface IImage extends IBaseApiResponse {
+export interface IImage {
+  id: number;
+  createdAt: Date;
   image_path: string;
 }
 
@@ -34,13 +34,15 @@ interface ILike {
   createdAt: Date;
 }
 
-interface IGetNewsfeedApiResponseData {
+export interface IGetNewsfeedApiResponseData {
+  id: number;
+  visitDate: Date;
+  createdAt: Date;
   content: string;
   rate: number;
   user: IUser;
   likes: ILike[];
   keywords: IKeyword[];
-  comments: IComment[];
   place: IPlace;
   images: IImage[];
 }

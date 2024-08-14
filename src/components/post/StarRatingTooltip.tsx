@@ -1,7 +1,6 @@
 import HelpIcon from '@mui/icons-material/Help';
 import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip';
 import Rating from '@mui/material/Rating';
-import { SyntheticEvent, useState } from 'react';
 import { styled } from '@mui/material/styles';
 
 const StyledRating = styled(Rating)({
@@ -33,20 +32,16 @@ const ratingTooltip = [
   { id: 3, description: '음식이 정말 훌륭하고, 꼭 한번 경험해봐야 하는 맛집.' },
 ];
 
-export default function StarRatingTooltip() {
-  const [rate, setRate] = useState<number | null>(2);
-  const rateValueChangeHandler = (
-    event: SyntheticEvent<Element, Event>,
-    newValue: number | null
-  ) => {
-    setRate(newValue);
-  };
+interface IStarRatingTooltipProps {
+  rate: number;
+}
+
+export default function StarRatingTooltip({ rate }: IStarRatingTooltipProps) {
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <StyledRating
         name="simple-controlled"
         value={rate}
-        onChange={rateValueChangeHandler}
         size="large"
         readOnly
         max={3}

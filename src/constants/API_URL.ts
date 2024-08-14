@@ -13,6 +13,7 @@ export const API_URL = {
     LOGOUT: `auth/logout`,
   },
   COMMENT: {
+    GET_COMMENT: (postId: NumberString) => `comment/${postId}`,
     CREATE_COMMENT: 'comment',
   },
   POST: {
