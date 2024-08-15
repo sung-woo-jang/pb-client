@@ -11,7 +11,7 @@ import ReadMoreText from '@/components/common/ReadMoreText';
 export default function PsResultReview() {
   const [createdDate, setCreatedDate] = useState<string>('');
   useEffect(() => {
-    setCreatedDate(formatTime(generateTimestamps().nDaysAgo));
+    setCreatedDate(formatTime(new Date(generateTimestamps().nDaysAgo)));
   }, []);
 
   return (
@@ -37,11 +37,11 @@ export default function PsResultReview() {
             profileImageUrl={
               'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202211/14/16d84d9f-7f3d-498c-a9cb-c4de2ee45655.jpg'
             }
-            nickname={'김지은'}
-            createdDate={createdDate}
+            userName={'김지은'}
+            visitDate={createdDate}
           />
           <div className={classes.rating}>
-            <StarRatingTooltip />
+            <StarRatingTooltip rate={2} />
           </div>
         </div>
       </div>

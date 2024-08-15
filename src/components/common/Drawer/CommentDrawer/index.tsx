@@ -45,7 +45,7 @@ export default function CommentDrawer() {
                       <div className="flex items-center justify-between">
                         <ProfileImage
                           profileImageUrl={user.profileImage}
-                          nickname={user.nickname}
+                          userName={user.name}
                           visitDate={dayjs(createdAt).format('YYYY-MM-DD')}
                         />
                         <div className="text-sm text-gray-500 space-x-2">

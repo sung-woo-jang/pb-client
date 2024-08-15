@@ -17,7 +17,7 @@ export default function PostCard({ newsfeed }: IPostCardProps) {
     <div className={classes.card}>
       <PostHeader
         visitDate={visitDate}
-        nickname={user.nickname}
+        userName={user.name}
         profileImageUrl={user.profileImage}
       />
       <PostImageSwiper images={images} />

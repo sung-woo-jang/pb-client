@@ -38,12 +38,12 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 interface ProfileImageProps {
   profileImageUrl: string;
   visitDate: string;
-  nickname: string;
+  userName: string;
 }
 
 export default function ProfileImage({
   profileImageUrl,
-  nickname,
+  userName,
   visitDate,
 }: ProfileImageProps) {
   return (
@@ -51,13 +51,13 @@ export default function ProfileImage({
       <Avatar className={classes.avatar}>
         {/* TODO: src 수정 */}
         <MuiAvatar
-          alt={nickname}
+          alt={userName}
           src={`http://localhost:8000/dummy/profile_image/${profileImageUrl}`}
         />
-        <AvatarFallback>{nickname.substring(0, 2)}</AvatarFallback>
+        <AvatarFallback>{userName.substring(0, 2)}</AvatarFallback>
       </Avatar>
       <div style={{ display: 'flex', gap: '1rem' }}>
-        {nickname}
+        {userName}
         <p className={classes.postTimestamp}>{visitDate}</p>
       </div>
     </Link>

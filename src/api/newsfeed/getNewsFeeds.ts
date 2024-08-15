@@ -28,12 +28,6 @@ export interface IImage {
   image_path: string;
 }
 
-interface ILike {
-  user_id: string;
-  post_id: number;
-  createdAt: Date;
-}
-
 export interface IGetNewsfeedApiResponseData {
   id: number;
   visitDate: Date;
@@ -41,7 +35,6 @@ export interface IGetNewsfeedApiResponseData {
   content: string;
   rate: number;
   user: IUser;
-  likes: ILike[];
   keywords: IKeyword[];
   place: IPlace;
   images: IImage[];

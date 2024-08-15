@@ -7,19 +7,19 @@ import formatTime from '@/utils/formatTime';
 interface IPostHeaderProps {
   profileImageUrl: string;
   visitDate: Date;
-  nickname: string;
+  userName: string;
 }
 
 export default function PostHeader({
   visitDate,
-  nickname,
+  userName,
   profileImageUrl,
 }: IPostHeaderProps) {
   return (
     <div className={classes.cardHeader}>
       <ProfileImage
         profileImageUrl={profileImageUrl}
-        nickname={nickname}
+        userName={userName}
         visitDate={formatTime(visitDate)}
       />
       <div style={{ cursor: 'pointer' }}>
