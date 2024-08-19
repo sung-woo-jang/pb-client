@@ -1,9 +1,9 @@
 import classes from './styles.module.scss';
 import { useState } from 'react';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
-import { useEditPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import CheckIcon from '@mui/icons-material/Check';
 import TextArea from '@/components/common/TextArea';
+import useEditPPCategoryDrawer from '@/store/slice/drawer/editPPCategoryDrawer/useEditPPCategoryDrawer';
 
 const CircleData = [
   { id: 1, color: 'bg-green-500' },
