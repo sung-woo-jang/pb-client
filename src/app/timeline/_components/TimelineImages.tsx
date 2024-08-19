@@ -1,15 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { generatePostImageUrl } from '@/utils/generateImageUrl';
+import { IPost } from '@/api/timeline/getTimelineList';
 
-export default function TimelineImages() {
+interface ITimelineImagesProps {
+  posts: IPost[];
+}
+
+export default function TimelineImages({ posts }: ITimelineImagesProps) {
   return (
     <div className="grid grid-cols-3 gap-2 mt-4">
-      {[1, 2, 3, 4, 5, 6].map((value) => (
-        <Link key={value} href={`/timeline/${value}`}>
+      {posts.map(({ id, images }) => (
+        <Link key={id} href={`/timeline/${id}`}>
           <Image
-            key={value}
-            src="/imageBox.png"
-            alt={`temp-${value}`}
+            src={generatePostImageUrl(images[0].image_path)}
+            alt={images[0].image_path}
+            style={{ width: '100px', height: '100px' }}
             width={100}
             height={100}
           />

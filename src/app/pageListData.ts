@@ -20,7 +20,10 @@ export const pageList: PageListState[] = [
   {
     head: '타임라인',
     list: [
-      { link: '/timeline', title: '타임라인 메인 - 🟡' },
+      {
+        link: '/timeline/user/rl09VdoqlP-Bsx-3j38H1G1iHUo-o2-swqMGi2JZhGA',
+        title: '특정 유저의 타임라인 - 🟢',
+      },
       { link: '/timeline/1', title: '타임라인 상세보기 - 🟢' },
     ],
   },

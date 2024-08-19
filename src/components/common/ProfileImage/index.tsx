@@ -39,15 +39,17 @@ interface ProfileImageProps {
   profileImageUrl: string;
   visitDate: string;
   userName: string;
+  userId: string;
 }
 
 export default function ProfileImage({
   profileImageUrl,
   userName,
   visitDate,
+  userId,
 }: ProfileImageProps) {
   return (
-    <Link className={classes.wrapper} href={'/timeline'}>
+    <Link className={classes.wrapper} href={`/timeline/user/${userId}`}>
       <Avatar className={classes.avatar}>
         {/* TODO: src 수정 */}
         <MuiAvatar

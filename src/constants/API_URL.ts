@@ -42,6 +42,9 @@ export const API_URL = {
     FOLLOWING: 'follow',
     GET_FOLLOW_LIST: 'follow',
     GET_FOLLOW_COUNT: 'follow/count',
+    GET_FOLLOW_LIST_BY_USER_ID: (userId: NumberString) => `follow/${userId}`,
+    GET_FOLLOW_COUNT_BY_USER_ID: (userId: NumberString) =>
+      `follow/count/${userId}`,
   },
   LIKE: {
     TOGGLE_LIKE_POST: 'like',
