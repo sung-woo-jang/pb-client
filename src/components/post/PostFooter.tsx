@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classes from './styles.module.scss';
 import StarRatingTooltip from './StarRatingTooltip';
-import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
 import HeartIcon from '@/components/Icon/HeartIcon';
 import { FiMessageCircle } from 'react-icons/fi';
+import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawer';
 
 interface IPostFooterProps {
   postId: number;
@@ -16,10 +16,11 @@ export default function PostFooter({
   content,
   postId,
 }: IPostFooterProps) {
-  const { commentDrawerToggleHandler, setPostIdHandler } = useCommentDrawer();
+  const { commentDrawerToggleHandler, setCommentPostIdHandler } =
+    useCommentDrawer();
 
   const commentButtonClickHandler = () => {
-    setPostIdHandler(postId);
+    setCommentPostIdHandler(postId);
     commentDrawerToggleHandler();
   };
 

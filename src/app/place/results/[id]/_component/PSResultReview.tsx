@@ -34,6 +34,7 @@ export default function PsResultReview() {
         <div className="flex items-center">
           {/*  TODO: 임시 데이터 수정 */}
           <ProfileImage
+            userId={'rl09VdoqlP-Bsx-3j38H1G1iHUo-o2-swqMGi2JZhGA'}
             profileImageUrl={
               'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202211/14/16d84d9f-7f3d-498c-a9cb-c4de2ee45655.jpg'
             }

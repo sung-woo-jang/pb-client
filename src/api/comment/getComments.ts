@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
 interface IUser {
+  id: string;
   name: string;
   nickname: string;
   profileImage: string;

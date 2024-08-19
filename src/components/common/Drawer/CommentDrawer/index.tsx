@@ -1,6 +1,6 @@
 import Divider from '@mui/material/Divider';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
-import { useCommentDrawer } from '@/store/slice/drawer/useDrawerController';
+
 import ProfileImage from '@/components/common/ProfileImage';
 import { Fragment } from 'react';
 import ConfirmModal from '@/components/common/ConfirmModal';
@@ -8,17 +8,18 @@ import { getLabelByCode } from '@/store/slice/modal/modalLabelData';
 import useModalController from '@/store/slice/modal/useModalController';
 import useGetComments from '@/api/comment/getComments';
 import dayjs from 'dayjs';
+import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawer';
 
 export default function CommentDrawer() {
   const {
     commentDrawerToggleHandler,
     setCommentDrawerHandler,
     commentDrawerState,
-    postId,
+    commentPostId,
   } = useCommentDrawer();
   const { setLabelHandler, setModalStateHandler } = useModalController();
 
-  const { data, isSuccess } = useGetComments(postId, commentDrawerState);
+  const { data, isSuccess } = useGetComments(commentPostId, commentDrawerState);
 
   const confirmHandler = () => {
     setLabelHandler(getLabelByCode('MO-CO-DE'));
@@ -44,6 +45,7 @@ export default function CommentDrawer() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <ProfileImage
+                          userId={user.id}
                           profileImageUrl={user.profileImage}
                           userName={user.name}
                           visitDate={dayjs(createdAt).format('YYYY-MM-DD')}

@@ -1,7 +1,7 @@
-import { usePPCategoryDetailListDrawer } from '@/store/slice/drawer/useDrawerController';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import classes from './styles.module.scss';
 import { FaEdit, FaEllipsisV } from 'react-icons/fa';
+import usePPCategoryDetailListDrawer from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/usePPCategoryDetailListDrawer';
 
 interface PlaceState {
   id: number;

@@ -2,50 +2,11 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import {
   setAddPPCategoryState,
   setAddPPDrawerState,
-  setCommentDrawerState,
   setEditPPCategoryDrawerState,
-  setPostId,
-  setPPCategoryDetailListDrawerState,
   toggleAddPPCategoryDrawerState,
   toggleAddPPDrawerState,
-  toggleCommentDrawer,
   toggleEditPPCategoryDrawerState,
-  togglePPCategoryDetailListDrawerState,
 } from '@/store/slice/drawer/slice';
-
-export function useCommentDrawer() {
-  const commentDrawerState = useAppSelector(
-    (state) => state.drawer.commentDrawerState
-  );
-
-  const postId = useAppSelector((state) => state.drawer.postId);
-
-  const dispatch = useAppDispatch();
-
-  const commentDrawerOpenHandler = () => {
-    dispatch(setCommentDrawerState(true));
-  };
-  const setCommentDrawerHandler = (state: boolean) => {
-    dispatch(setCommentDrawerState(state));
-  };
-
-  const commentDrawerToggleHandler = () => {
-    dispatch(toggleCommentDrawer());
-  };
-
-  const setPostIdHandler = (postId: number) => {
-    dispatch(setPostId(postId));
-  };
-
-  return {
-    postId,
-    commentDrawerState,
-    commentDrawerOpenHandler,
-    commentDrawerToggleHandler,
-    setCommentDrawerHandler,
-    setPostIdHandler,
-  };
-}
 
 export function useAddPPCategoryDrawer() {
   const addPPCategoryDrawerState = useAppSelector(
@@ -126,30 +87,5 @@ export function useEditPPCategoryDrawer() {
     editPPCategoryDrawerOpenHandler,
     setEditPPCategoryDrawerHandler,
     editPPCategoryDrawerToggleHandler,
-  };
-}
-
-export function usePPCategoryDetailListDrawer() {
-  const ppCategoryDetailListDrawerState = useAppSelector(
-    (state) => state.drawer.ppCategoryDetailListDrawerState
-  );
-  const dispatch = useAppDispatch();
-
-  const ppCategoryDetailListDrawerOpenHandler = () => {
-    dispatch(setPPCategoryDetailListDrawerState(true));
-  };
-
-  const setPPCategoryDetailListDrawerHandler = (state: boolean) => {
-    dispatch(setPPCategoryDetailListDrawerState(state));
-  };
-  const ppCategoryDetailListDrawerToggleHandler = () => {
-    dispatch(togglePPCategoryDetailListDrawerState());
-  };
-
-  return {
-    ppCategoryDetailListDrawerState,
-    ppCategoryDetailListDrawerToggleHandler,
-    setPPCategoryDetailListDrawerHandler,
-    ppCategoryDetailListDrawerOpenHandler,
   };
 }

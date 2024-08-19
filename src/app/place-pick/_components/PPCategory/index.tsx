@@ -1,13 +1,11 @@
-import {
-  useEditPPCategoryDrawer,
-  usePPCategoryDetailListDrawer,
-} from '@/store/slice/drawer/useDrawerController';
+import { useEditPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
 import useFindUserCategories from '@/api/pl-pick-category/findUserCategories';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { CircleColors } from '@/constants/COLORS';
 import CategoryItem from '@/app/place-pick/_components/PPCategory/CategoryItem';
 import CategoryHeader from '@/app/place-pick/_components/PPCategory/CategoryHeader';
+import usePPCategoryDetailListDrawer from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/usePPCategoryDetailListDrawer';
 
 const ALL_CATEGORIES_TITLE = '전체 보기';
 
