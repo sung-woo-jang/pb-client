@@ -27,6 +27,8 @@ export const API_URL = {
   PL_PICK_CATEGORY: {
     CREATE_PL_PICK_CATEGORY: 'pl-pick-category',
     FIND_USER_CATEGORIES: 'pl-pick-category',
+    FIND_USER_CATEGORIES_BY_USER_ID: (userId: NumberString) =>
+      `pl-pick-category/user/${userId}`,
     GET_CATEGORY_WITH_PLACE_PICKS: (id: NumberString) =>
       `pl-pick-category/${id}`,
     DELETE_OR_RESTORE_CATEGORY: (id: NumberString) => `pl-pick-category/${id}`,

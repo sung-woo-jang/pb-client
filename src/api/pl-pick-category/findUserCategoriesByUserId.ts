@@ -4,6 +4,8 @@ import { CircleColors } from '@/constants/COLORS';
 import { CommonResponse } from '@/types/apiTypes';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { NumberString } from '@/types/commonTypes';
+import * as _ from 'lodash';
 
 interface IFindUserCategoriesResponseData {
   title: string;
@@ -14,19 +16,20 @@ interface IFindUserCategoriesResponseData {
   createdAt: Date;
 }
 
-const findUserCategories = async () => {
+const findCategoriesByUserId = async (userId: NumberString) => {
   const { data } = await axiosInstance.get<
     CommonResponse<IFindUserCategoriesResponseData[]>
-  >(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES);
+  >(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES_BY_USER_ID(userId));
   return data;
 };
 
-const useFindUserCategories = () =>
+const useFindCategoriesByUserId = (userId: NumberString) =>
   useQuery<CommonResponse<IFindUserCategoriesResponseData[]>>({
     queryKey: generateQueryKeysFromUrl(
-      API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
+      API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES_BY_USER_ID(userId)
     ),
-    queryFn: findUserCategories,
+    queryFn: () => findCategoriesByUserId(userId),
+    enabled: !_.isUndefined(userId),
   });
 
-export default useFindUserCategories;
+export default useFindCategoriesByUserId;
