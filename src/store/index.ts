@@ -12,10 +12,10 @@ const store = configureStore({
   reducer: {
     common: commonReducer,
     ppCategoryDetailListDrawer: ppCategoryDetailListDrawerReducer,
-    editPPCategoryDrawer: editPPCategoryDrawerReducer,
     addPPCategoryDrawer: addPPCategoryDrawerReducer,
     addPPDrawer: addPPDrawerReducer,
     commentDrawer: commentDrawerReducer,
+    editPPCategoryDrawer: editPPCategoryDrawerReducer,
     modal: modalReducer,
     searchBox: searchBoxReducer,
   },

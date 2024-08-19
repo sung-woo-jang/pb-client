@@ -30,8 +30,9 @@ export default function usePPCategoryDetailListDrawer() {
   };
 
   return {
-    setPPCategoryIdHandler,
+    ppCategoryId,
     ppCategoryDetailListDrawerState,
+    setPPCategoryIdHandler,
     ppCategoryDetailListDrawerToggleHandler,
     setPPCategoryDetailListDrawerHandler,
     ppCategoryDetailListDrawerOpenHandler,

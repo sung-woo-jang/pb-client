@@ -5,7 +5,7 @@ import { IGetNewsfeedApiResponseData } from '@/api/newsfeed/getNewsFeeds';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 const getPostDetail = async (postId: NumberString) => {
   const { data } = await axiosInstance.get<

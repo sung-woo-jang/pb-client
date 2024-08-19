@@ -2,56 +2,27 @@ import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWr
 import classes from './styles.module.scss';
 import { FaEdit, FaEllipsisV } from 'react-icons/fa';
 import usePPCategoryDetailListDrawer from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/usePPCategoryDetailListDrawer';
-
-interface PlaceState {
-  id: number;
-  alias: string | null;
-  name: string | null;
-  category: string | null;
-  memo: string | null;
-  videoLink: string | null;
-  address: string | null;
-}
-
-const places: PlaceState[] = [
-  {
-    id: 1,
-    alias: '',
-    name: '맛집 1',
-    category: '일식집',
-    memo: '진짜 맛있는 집',
-    videoLink: 'https://www.youtube.com/watch?v=d7Yf6kxp9XM',
-    address: '서울특별시 강남구 강남대로 98길 12-5 (역삼동)',
-  },
-  {
-    id: 2,
-    alias: '',
-    name: '맛집 2',
-    category: '장소 카테고리',
-    memo: '메모할 내용',
-    address: '서울특별시 강남구 강남대로 98길 12-5 (역삼동)',
-    videoLink: '',
-  },
-  {
-    id: 3,
-    alias: '',
-    memo: '',
-    category: '',
-    videoLink: '',
-    name: '맛집 3',
-    address: '서울특별시 강남구 강남대로 98길 12-5 (역삼동)',
-  },
-];
+import useGetCategoryWithPlacePicks from '@/api/pl-pick-category/getCategoryWithPlacePicks';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export default function PPCategoryDetailList() {
   const {
+    ppCategoryId,
     ppCategoryDetailListDrawerState,
     ppCategoryDetailListDrawerToggleHandler,
     setPPCategoryDetailListDrawerHandler,
   } = usePPCategoryDetailListDrawer();
+  const { data, isSuccess, isLoading } = useGetCategoryWithPlacePicks(
+    ppCategoryId,
+    ppCategoryDetailListDrawerState
+  );
+  if (isLoading) return <LoadingSpinner size={60} />;
+  if (!isSuccess) return null;
+  const { data: categoryWithPlacePicks } = data;
+  const { placePicks, title } = categoryWithPlacePicks;
   return (
     <SwipeableDrawerWrapper
-      title="카테고리 이름"
+      title={title}
       toggleHandler={ppCategoryDetailListDrawerToggleHandler}
       drawerState={ppCategoryDetailListDrawerState}
       setHandler={setPPCategoryDetailListDrawerHandler}
@@ -62,22 +33,24 @@ export default function PPCategoryDetailList() {
           <FaEdit className={classes.icon} /> 편집
         </button>
         <ul className={classes.list}>
-          {places.map((place) => (
-            <li key={place.id} className={classes.listItem}>
-              <h3 className={classes.name}>{place.name}</h3>
-              <p className={classes.category}>{place.category}</p>
-              {place.memo && <p className={classes.memo}>{place.memo}</p>}
-              {place.videoLink && (
+          {placePicks.map(({ place_id, place, memo, link }) => (
+            <li key={place_id} className={classes.listItem}>
+              <h3 className={classes.name}>{place.title}</h3>
+              <p className={classes.category}>
+                {place.placeCategory.place_category_name_detail}
+              </p>
+              {memo && <p className={classes.memo}>{memo}</p>}
+              {link && (
                 <a
-                  href={place.videoLink}
+                  href={link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={classes.videoLink}
                 >
-                  {place.videoLink}
+                  {link}
                 </a>
               )}
-              <p className={classes.address}>{place.address}</p>
+              <p className={classes.address}>{place.road_address}</p>
               <button className={classes.optionsButton}>
                 <FaEllipsisV />
               </button>

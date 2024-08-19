@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { CommonResponse } from '@/types/apiTypes';
 import { NumberString } from '@/types/commonTypes';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 interface IFollowCountResponseData {
   followings: number;

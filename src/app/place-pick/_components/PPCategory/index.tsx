@@ -1,3 +1,4 @@
+'use client';
 import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
 import useFindUserCategories from '@/api/pl-pick-category/findUserCategories';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
@@ -11,8 +12,13 @@ const ALL_CATEGORIES_TITLE = '전체 보기';
 
 export default function PPCategory() {
   const { editPPCategoryDrawerToggleHandler } = useEditPPCategoryDrawer();
-  const { ppCategoryDetailListDrawerToggleHandler } =
+  const { ppCategoryDetailListDrawerToggleHandler, setPPCategoryIdHandler } =
     usePPCategoryDetailListDrawer();
+
+  const categoryItemClickHandler = (categoryId: number) => {
+    setPPCategoryIdHandler(categoryId);
+    ppCategoryDetailListDrawerToggleHandler();
+  };
 
   const { data, isLoading, isSuccess } = useFindUserCategories();
 
@@ -33,7 +39,7 @@ export default function PPCategory() {
           key={id}
           color={picker_color}
           title={title}
-          onClickCategory={ppCategoryDetailListDrawerToggleHandler}
+          onClickCategory={() => categoryItemClickHandler(id)}
           onClickEdit={editPPCategoryDrawerToggleHandler}
           onClickDelete={() => console.log('Delete category', id)}
         />
