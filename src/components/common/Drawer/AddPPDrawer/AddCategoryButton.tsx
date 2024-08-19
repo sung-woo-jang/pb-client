@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
-import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import useAddPPCategoryDrawer from '@/store/slice/drawer/addPPCategoryDrawer/useAddPPCategoryDrawer';
 
 export default function AddCategoryButton() {
   const { ppCategoryDrawerOpenHandler } = useAddPPCategoryDrawer();

@@ -1,11 +1,11 @@
 import classes from './styles.module.scss';
 import { useState } from 'react';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
-import { useAddPPCategoryDrawer } from '@/store/slice/drawer/useDrawerController';
 import TextArea from '@/components/common/TextArea';
 import CircleIcon from '@mui/icons-material/Circle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import COLORS from '@/constants/COLORS';
+import useAddPPCategoryDrawer from '@/store/slice/drawer/addPPCategoryDrawer/useAddPPCategoryDrawer';
 
 // button을 맨 밑에 두려면 CustomSwipeableDrawer의 밑에 button 컴포넌트를 만들면 됨
 export default function AddPPCategory() {

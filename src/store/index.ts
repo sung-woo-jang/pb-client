@@ -5,12 +5,14 @@ import modalReducer from '@/store/slice/modal/slice';
 import searchBoxReducer from '@/store/slice/searchBox/slice';
 import ppCategoryDetailListDrawerReducer from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/slice';
 import commentDrawerReducer from '@/store/slice/drawer/commentDrawer/slice';
+import addPPCategoryDrawerReducer from '@/store/slice/drawer/addPPCategoryDrawer/slice';
 
 const store = configureStore({
   reducer: {
     common: commonReducer,
     drawer: drawerReducer,
     ppCategoryDetailListDrawer: ppCategoryDetailListDrawerReducer,
+    addPPCategoryDrawer: addPPCategoryDrawerReducer,
     commentDrawer: commentDrawerReducer,
     modal: modalReducer,
     searchBox: searchBoxReducer,
