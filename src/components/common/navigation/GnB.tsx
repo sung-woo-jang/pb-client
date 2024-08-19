@@ -5,9 +5,9 @@ import classes from './styles.module.scss';
 import Link from 'next/link';
 import { useSidebarControls } from '@/store/slice/common/useSidebarControls';
 import MenuIcon from '@/components/Icon/MenuIcon';
-import SquareIcon from '@/components/Icon/SquareIcon';
 import { useAppDispatch } from '@/hooks/redux-hooks';
 import { setHeaderHeight } from '@/store/slice/common/slice';
+import Image from 'next/image';
 
 export default function GnB() {
   const { toggleInfoSidebar } = useSidebarControls();
@@ -27,7 +27,7 @@ export default function GnB() {
   return (
     <header className={classes.header} ref={headerRef}>
       <Link href={'/'} className={classes.headerContainer}>
-        <SquareIcon className={classes.logo} />
+        <Image src={'/logo.png'} alt={'logo'} width={30} height={30} />
         <span>플벗</span>
       </Link>
       <MenuIcon

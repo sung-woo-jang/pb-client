@@ -15,13 +15,13 @@ export const pageList: PageListState[] = [
   },
   {
     head: '뉴스피드',
-    list: [{ link: '/newsfeed', title: '뉴스피드 리스트(메인) - 🟡' }],
+    list: [{ link: '/newsfeed', title: '뉴스피드 리스트(메인) - 🟢' }],
   },
   {
     head: '타임라인',
     list: [
       { link: '/timeline', title: '타임라인 메인 - 🟡' },
-      { link: '/timeline/1', title: '타임라인 상세보기 - 🟡' },
+      { link: '/timeline/1', title: '타임라인 상세보기 - 🟢' },
     ],
   },
   {
