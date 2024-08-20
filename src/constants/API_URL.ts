@@ -22,6 +22,7 @@ export const API_URL = {
   },
   PLACE: {
     CREATE_PLACE: 'place',
+    SEARCH_PLACE: 'place/search',
     CREATE_PLACE_CATEGORY: 'place/category',
   },
   PL_PICK_CATEGORY: {

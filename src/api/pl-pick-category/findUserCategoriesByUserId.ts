@@ -5,7 +5,7 @@ import { CommonResponse } from '@/types/apiTypes';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 interface IFindUserCategoriesResponseData {
   title: string;

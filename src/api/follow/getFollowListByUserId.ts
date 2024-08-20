@@ -3,7 +3,7 @@ import { API_URL } from '@/constants/API_URL';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { CommonResponse } from '@/types/apiTypes';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { NumberString } from '@/types/commonTypes';
 
 enum FollowStatus {

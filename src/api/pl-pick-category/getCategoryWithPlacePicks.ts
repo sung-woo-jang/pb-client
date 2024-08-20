@@ -5,7 +5,7 @@ import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CircleColors } from '@/constants/COLORS';
 import { CommonResponse } from '@/types/apiTypes';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 interface IPlaceCategory {
   id: number;

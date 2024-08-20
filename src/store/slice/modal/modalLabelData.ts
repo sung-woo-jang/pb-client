@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 type Code = 'MO-WP-DE' | 'MO-PC-DE' | 'MO-CO-DE' | 'MO-LO-ED';
 

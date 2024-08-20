@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CommonResponse } from '@/types/apiTypes';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 export interface IPlaceCategory {
   place_category_name: string;
