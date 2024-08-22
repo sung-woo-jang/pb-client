@@ -17,7 +17,7 @@ interface IPlaceCategory {
   place_category_name_detail: string;
 }
 
-interface ISearchPlacesResponseData {
+export interface ISearchPlacesResponseData {
   title: string;
   address: string;
   road_address: string;
@@ -29,7 +29,8 @@ interface ISearchPlacesResponseData {
   createdAt: Date;
   placeCategory: IPlaceCategory;
   similarity: number;
-  distance: number;
+  distance: number | null;
+  placePickCount: number;
 }
 
 const searchPlace = async (query: ISearchPlacesQuery) => {

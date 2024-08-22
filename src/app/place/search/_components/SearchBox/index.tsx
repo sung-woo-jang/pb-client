@@ -2,14 +2,25 @@
 import styles from './styles.module.scss';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
-import { arrowBackIosIconStyle } from '@/app/place/results/_components/SearchBox/cssProps.styles';
+import { arrowBackIosIconStyle } from '@/app/place/search/_components/SearchBox/cssProps.styles';
 import { FaSearch } from 'react-icons/fa';
-import React, { useState } from 'react';
+import React from 'react';
+import * as _ from 'lodash';
+import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { setInputText } from '@/store/slice/searchBox/slice';
 
 export default function SearchBox() {
   const { setIsFocusedState } = useSearchBoxControls();
-  const [inputText, setInputText] = useState('');
+  const inputText = useAppSelector((state) => state.searchBox.inputText);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
+  const inputTextChangeHandler = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setInputText(value));
+  };
   const handleFocus = () => {
     setIsFocusedState(true);
   };
@@ -18,18 +29,13 @@ export default function SearchBox() {
     setIsFocusedState(false);
   };
 
-  const inputTextChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-  };
-
   const searchPlaceHandler = () => {
-    console.log(inputText);
+    if (!_.isEmpty(inputText))
+      router.push(`/place/search?keyword=${inputText}`);
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      searchPlaceHandler();
-    }
+    if (e.key === 'Enter') searchPlaceHandler();
   };
 
   return (
@@ -39,8 +45,8 @@ export default function SearchBox() {
         type="text"
         placeholder="ex) 스타벅스"
         onFocus={handleFocus}
-        value={inputText}
         onChange={inputTextChangeHandler}
+        value={inputText}
         className={styles.searchInput}
         onKeyDown={onKeyDownHandler}
       />

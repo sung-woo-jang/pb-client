@@ -1,10 +1,10 @@
 'use client';
 import { useGetCoordinates } from '@/api/coords/getCoordinates';
 import { useMap } from '@/hooks/useMap';
-import SearchBox from '@/app/place/results/_components/SearchBox';
+import SearchBox from '@/app/place/search/_components/SearchBox';
 import { useEffect, useRef } from 'react';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
-import SearchHistory from '@/app/place/results/_components/SearchHistory';
+import SearchHistory from '@/app/place/search/_components/SearchHistory';
 
 export default function Page() {
   const { data: markers } = useGetCoordinates();

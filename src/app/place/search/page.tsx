@@ -1,11 +1,12 @@
 'use client';
 import styles from './styles.module.scss';
-import ResultBox from '@/app/place/results/_components/ResultBox';
-import LocationInfo from '@/app/place/results/_components/LocationInfo';
-import SearchBox from '@/app/place/results/_components/SearchBox';
+import SearchPlaceInfo from '@/app/place/search/_components/SearchPlaceInfo';
+import LocationInfo from '@/app/place/search/_components/LocationInfo';
+import SearchBox from '@/app/place/search/_components/SearchBox';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSearchPlaces, { ISearchPlacesQuery } from '@/api/place/searchPlaces';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -14,6 +15,7 @@ export default function Page() {
   );
 
   useEffect(() => {
+    // Todo: keyword에 값이 없으면 그에 따른 작업 추가
     const keyword = searchParams.get('keyword');
     if (!keyword) return; // keyword is required, so we return if it's not present
 
@@ -36,13 +38,19 @@ export default function Page() {
     setParsedParams(params);
   }, [searchParams]);
 
-  useSearchPlaces(parsedParams || { keyword: '' });
+  const { data, isSuccess, isLoading } = useSearchPlaces(
+    parsedParams || { keyword: '' }
+  );
 
   return (
     <div className={styles.container}>
       <SearchBox />
       <LocationInfo />
-      <ResultBox />
+      {isLoading && <LoadingSpinner />}
+      {isSuccess &&
+        data.data.map((placeInfo) => (
+          <SearchPlaceInfo key={placeInfo.id} placeInfo={placeInfo} />
+        ))}
     </div>
   );
 }
