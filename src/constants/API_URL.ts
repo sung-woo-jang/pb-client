@@ -1,4 +1,5 @@
 import { NumberString } from '@/types/commonTypes';
+import { ISearchPlacesQuery } from '@/api/place/searchPlaces';
 
 export const API_URL = {
   BASE_URL: process.env.BASE_URL,
@@ -19,6 +20,32 @@ export const API_URL = {
   POST: {
     GET_POST_DETAIL: (postId: NumberString) => `post/${postId}`,
     CREATE_POST: `post`,
+  },
+  SEARCH: {
+    GET_SEARCH_PLACE: (query: ISearchPlacesQuery) => {
+      const baseUrl = 'search';
+      const queryParams = new URLSearchParams();
+
+      queryParams.append('keyword', encodeURIComponent(query.keyword));
+
+      if (query.offset !== undefined) {
+        queryParams.append('offset', query.offset.toString());
+      }
+
+      if (query.limit !== undefined) {
+        queryParams.append('limit', query.limit.toString());
+      }
+
+      if (query.mapx !== undefined) {
+        queryParams.append('mapx', query.mapx.toString());
+      }
+
+      if (query.mapy !== undefined) {
+        queryParams.append('mapy', query.mapy.toString());
+      }
+
+      return `${baseUrl}?${queryParams.toString()}`;
+    },
   },
   PLACE: {
     CREATE_PLACE: 'place',

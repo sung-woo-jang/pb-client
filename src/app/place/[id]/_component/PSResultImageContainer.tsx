@@ -1,6 +1,6 @@
-import classes from '@/app/place/results/[id]/styles.module.scss';
+import classes from '@/app/place/[id]/styles.module.scss';
 import Image from 'next/image';
-import placeHolder from '../../../../../../public/placeholder.svg';
+import placeHolder from '../../../../../public/placeholder.svg';
 
 export default function PSResultImageContainer() {
   return (

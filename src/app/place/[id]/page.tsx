@@ -1,8 +1,8 @@
 'use client';
 import classes from './styles.module.scss';
-import PSResultImageContainer from '@/app/place/results/[id]/_component/PSResultImageContainer';
-import PsResultDescription from '@/app/place/results/[id]/_component/PSResultDescription';
-import PsResultReview from '@/app/place/results/[id]/_component/PSResultReview';
+import PSResultImageContainer from '@/app/place/[id]/_component/PSResultImageContainer';
+import PsResultDescription from '@/app/place/[id]/_component/PSResultDescription';
+import PsResultReview from '@/app/place/[id]/_component/PSResultReview';
 import Separator from '@/components/common/Separator';
 
 export default function Page() {

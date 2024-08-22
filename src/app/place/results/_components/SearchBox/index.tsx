@@ -4,13 +4,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
 import { arrowBackIosIconStyle } from '@/app/place/results/_components/SearchBox/cssProps.styles';
 import { FaSearch } from 'react-icons/fa';
-import React, { useEffect, useState } from 'react';
-import useSearchPlacesMutation from '@/api/place/searchPlaces';
+import React, { useState } from 'react';
 
 export default function SearchBox() {
   const { setIsFocusedState } = useSearchBoxControls();
   const [inputText, setInputText] = useState('');
-  const { mutate, data, isSuccess } = useSearchPlacesMutation();
+
   const handleFocus = () => {
     setIsFocusedState(true);
   };
@@ -24,19 +23,8 @@ export default function SearchBox() {
   };
 
   const searchPlaceHandler = () => {
-    mutate({
-      keyword: inputText,
-      mapx: 126.6540756,
-      mapy: 37.4665222,
-      limit: 10,
-    });
+    console.log(inputText);
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(data.data);
-    }
-  }, [data, isSuccess]);
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -49,7 +37,7 @@ export default function SearchBox() {
       <ArrowBackIosIcon sx={arrowBackIosIconStyle} onClick={handleBlur} />
       <input
         type="text"
-        placeholder="스타벅스"
+        placeholder="ex) 스타벅스"
         onFocus={handleFocus}
         value={inputText}
         onChange={inputTextChangeHandler}

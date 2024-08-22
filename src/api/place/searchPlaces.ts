@@ -1,14 +1,20 @@
 import { axiosInstance } from '@/api/axiosInstance';
 import { API_URL } from '@/constants/API_URL';
 import { CommonResponse } from '@/types/apiTypes';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
-interface ISearchPlacesBody {
+export interface ISearchPlacesQuery {
   keyword: string;
+  offset?: number;
   limit?: number;
   mapx?: number;
   mapy?: number;
+}
+
+interface IPlaceCategory {
+  place_category_name: string;
+  place_category_name_detail: string;
 }
 
 interface ISearchPlacesResponseData {
@@ -21,29 +27,24 @@ interface ISearchPlacesResponseData {
   mapy: number;
   id: number;
   createdAt: Date;
+  placeCategory: IPlaceCategory;
   similarity: number;
+  distance: number;
 }
 
-const searchPlaces = async (body: ISearchPlacesBody) => {
-  const { data } = await axiosInstance.post<
-    CommonResponse<ISearchPlacesResponseData>
-  >(API_URL.PLACE.SEARCH_PLACE, body);
+const searchPlace = async (query: ISearchPlacesQuery) => {
+  const { data } = await axiosInstance.get<
+    CommonResponse<ISearchPlacesResponseData[]>
+  >(API_URL.SEARCH.GET_SEARCH_PLACE(query));
+
   return data;
 };
 
-const useSearchPlacesMutation = () => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useMutation({
-    mutationFn: searchPlaces,
-    onSuccess: (data, variables, context) => {
-      queryClient.setQueryData(['searchResults', variables.keyword], data.data);
-
-      // Redirect to the search results page
-      router.push(`/place/results`);
-    },
+const useSearchPlaces = (query: ISearchPlacesQuery) =>
+  useQuery({
+    queryKey: generateQueryKeysFromUrl(API_URL.SEARCH.GET_SEARCH_PLACE(query)),
+    queryFn: () => searchPlace(query),
+    enabled: query.keyword.length > 0,
   });
-};
 
-export default useSearchPlacesMutation;
+export default useSearchPlaces;

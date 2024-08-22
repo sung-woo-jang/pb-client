@@ -1,4 +1,4 @@
-import classes from '@/app/place/results/[id]/styles.module.scss';
+import classes from '@/app/place/[id]/styles.module.scss';
 import PlacePickIcon from '@/components/common/interaction/PlacePickIcon';
 import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
 import StarIcon from '@/components/Icon/StarIcon';

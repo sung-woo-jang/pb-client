@@ -1,8 +1,8 @@
 import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
-import HeartIcon from '@/components/Icon/HeartIcon';
 import BookmarkIcon from '@/components/Icon/BookmarkIcon';
-import Image from 'next/image';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import { TbMapPinHeart } from 'react-icons/tb';
+
 import * as React from 'react';
 
 export default function ResultBox() {
@@ -19,16 +19,10 @@ export default function ResultBox() {
             </p>
           </div>
         </div>
-        <Image
-          src={'/placeholder.svg'}
-          alt={'image1'}
-          width={120}
-          height={120}
-        />
       </div>
 
       <div className="flex items-center mb-2">
-        <HeartIcon className="w-6 h-6 text-red-500" />
+        <TbMapPinHeart className="w-6 h-6 text-red-500" />
         <p className="ml-1 text-lg font-semibold">3</p>
       </div>
       <div className="flex items-center justify-around border-t pt-2">
