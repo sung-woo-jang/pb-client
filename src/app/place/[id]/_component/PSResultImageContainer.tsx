@@ -1,25 +1,26 @@
 import classes from '@/app/place/[id]/styles.module.scss';
-import Image from 'next/image';
-import placeHolder from '../../../../../public/placeholder.svg';
+import { ISearchPlaceDetailImages } from '@/api/search/getSearchPlaceDetail';
+import ConfigurableSourceImage from '@/components/common/ConfigurableSourceImage';
 
-export default function PSResultImageContainer() {
+interface IPSResultImageContainerProps {
+  images: ISearchPlaceDetailImages[];
+}
+
+export default function PSResultImageContainer({
+  images,
+}: IPSResultImageContainerProps) {
   return (
     <div className={classes.imageContainer}>
-      <Image
-        src={placeHolder}
-        alt="Restaurant Image 1"
-        className={classes.image}
-      />
-      <Image
-        src={placeHolder}
-        alt="Restaurant Image 2"
-        className={classes.image}
-      />
-      <Image
-        src={placeHolder}
-        alt="Restaurant Image 3"
-        className={classes.image}
-      />
+      {images.map(({ image_path, id }) => (
+        <ConfigurableSourceImage
+          src={image_path}
+          alt={image_path}
+          key={id}
+          className={classes.image}
+          width={100}
+          height={100}
+        />
+      ))}
     </div>
   );
 }

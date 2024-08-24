@@ -5,7 +5,7 @@ import LocationInfo from '@/app/place/search/_components/LocationInfo';
 import SearchBox from '@/app/place/search/_components/SearchBox';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import useSearchPlaces, { ISearchPlacesQuery } from '@/api/place/searchPlaces';
+import useSearchPlaces, { ISearchPlacesQuery } from '@/api/search/searchPlaces';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export default function Page() {

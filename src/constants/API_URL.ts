@@ -1,5 +1,5 @@
 import { NumberString } from '@/types/commonTypes';
-import { ISearchPlacesQuery } from '@/api/place/searchPlaces';
+import { ISearchPlacesQuery } from '@/api/search/searchPlaces';
 
 export const API_URL = {
   BASE_URL: process.env.BASE_URL,
@@ -22,6 +22,8 @@ export const API_URL = {
     CREATE_POST: `post`,
   },
   SEARCH: {
+    GET_SEARCH_PLACE_DETAIL: (placeId: NumberString) => `search/${placeId}`,
+
     GET_SEARCH_PLACE: (query: ISearchPlacesQuery) => {
       const baseUrl = 'search';
       const queryParams = new URLSearchParams();

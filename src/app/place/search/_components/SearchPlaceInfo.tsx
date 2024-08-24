@@ -4,7 +4,7 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { TbMapPinHeart } from 'react-icons/tb';
 
 import * as React from 'react';
-import { ISearchPlacesResponseData } from '@/api/place/searchPlaces';
+import { ISearchPlacesResponseData } from '@/api/search/searchPlaces';
 import { FaPhoneAlt } from 'react-icons/fa';
 import convertKmToM from '@/utils/convertKmToM';
 
@@ -14,7 +14,6 @@ interface ISearchPlaceInfoProps {
 
 export default function SearchPlaceInfo({ placeInfo }: ISearchPlaceInfoProps) {
   const {
-    address,
     road_address,
     placeCategory,
     description,
