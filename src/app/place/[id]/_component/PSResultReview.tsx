@@ -7,6 +7,7 @@ import StarRatingTooltip from '@/components/post/StarRatingTooltip';
 import formatTime, { generateTimestamps } from '@/utils/formatTime';
 import { useEffect, useState } from 'react';
 import ReadMoreText from '@/components/common/ReadMoreText';
+import KeywordBox from '@/components/post/KeywordBox';
 
 export default function PsResultReview() {
   const [createdDate, setCreatedDate] = useState<string>('');
@@ -31,6 +32,15 @@ export default function PsResultReview() {
             className="object-cover rounded-md mr-8"
           />
         </div>
+        <KeywordBox
+          keywords={[
+            { id: 1, keyword: '고기 좋아 불어요' },
+            { id: 2, keyword: '맛있어 보이네요' },
+            { id: 3, keyword: '안돼요가기싫어요' },
+            { id: 4, keyword: '빵점 줄라요' },
+            { id: 5, keyword: '직원 짱 구려요' },
+          ]}
+        />
         <div className="flex items-center">
           {/*  TODO: 임시 데이터 수정 */}
           <ProfileImage

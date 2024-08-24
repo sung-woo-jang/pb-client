@@ -36,7 +36,7 @@ export const pageList: PageListState[] = [
     list: [
       { link: '/place', title: '검색 메인 - 🟡' },
       { link: '/place/results', title: '검색 결과 - 🟡' },
-      { link: '/place/results/apple', title: '검색 결과 상세 - 🟡' },
+      { link: '/place/apple', title: '검색 결과 상세 - 🟡' },
     ],
   },
   {

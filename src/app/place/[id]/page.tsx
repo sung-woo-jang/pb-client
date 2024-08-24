@@ -12,7 +12,7 @@ export default function Page() {
         <div style={{ backgroundColor: 'white' }}>
           <PSResultImageContainer />
           <PsResultDescription />
-          <h3 className="text-lg font-bold mb-2">팔로워 리뷰 · 27</h3>
+          <h3 className="text-lg font-bold mb-2">리뷰 · 27</h3>
           <Separator />
           <PsResultReview />
         </div>
