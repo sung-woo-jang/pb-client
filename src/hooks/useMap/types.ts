@@ -1,3 +1,3 @@
 export default interface IMap {
-  markers?: [number, number][];
+  coords?: [number, number][];
 }

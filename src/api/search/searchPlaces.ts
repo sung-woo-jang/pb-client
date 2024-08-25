@@ -42,10 +42,15 @@ const searchPlace = async (query: ISearchPlacesQuery) => {
 };
 
 const useSearchPlaces = (query: ISearchPlacesQuery) =>
-  useQuery({
+  useQuery<
+    CommonResponse<ISearchPlacesResponseData[]>,
+    unknown,
+    ISearchPlacesResponseData[]
+  >({
     queryKey: generateQueryKeysFromUrl(API_URL.SEARCH.GET_SEARCH_PLACE(query)),
     queryFn: () => searchPlace(query),
     enabled: query.keyword.length > 0,
+    select: (data) => data.data,
   });
 
 export default useSearchPlaces;

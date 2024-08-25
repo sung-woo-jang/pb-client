@@ -65,6 +65,7 @@ export const API_URL = {
   },
   PLACE_PICK: {
     CREATE_PLACE_PICK: 'place-pick',
+    GET_ALL_MY_PLACE_PICK: 'place-pick',
     FIND_PLACE_PICK_LIST: (id: NumberString) => `place-pick/${id}`,
   },
   TIMELINE: {

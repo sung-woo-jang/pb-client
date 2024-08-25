@@ -4,7 +4,7 @@ import createMarkers from '@/hooks/useMap/function/createMakers';
 import IMap from '@/hooks/useMap/types';
 import updateMarkersVisibility from '@/hooks/useMap/function/updateMarkersVisibility';
 
-export function useMap({ markers: latLngs }: IMap) {
+export function useMap({ coords }: IMap) {
   // 지도 중심의 초기 좌표를 설정
   const mapRef = useRef<naver.maps.Map>();
   const infoWindowRef = useRef<naver.maps.InfoWindow>();
@@ -20,11 +20,11 @@ export function useMap({ markers: latLngs }: IMap) {
   // marker ------------------------------------
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !latLngs) return;
+    if (!map || !coords) return;
 
     // 마커 세팅
-    setMarkers(createMarkers({ latLngs }));
-  }, [mapRef, latLngs]);
+    setMarkers(createMarkers({ coords }));
+  }, [mapRef, coords]);
 
   useEffect(() => {
     updateMarkersVisibility(mapRef, markers);

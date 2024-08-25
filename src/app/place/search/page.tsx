@@ -1,5 +1,5 @@
 'use client';
-import styles from './styles.module.scss';
+import styles from './styles/styles.module.scss';
 import SearchPlaceInfo from '@/app/place/search/_components/SearchPlaceInfo';
 import LocationInfo from '@/app/place/search/_components/LocationInfo';
 import SearchBox from '@/app/place/search/_components/SearchBox';
@@ -16,7 +16,9 @@ export default function Page() {
 
   useEffect(() => {
     // Todo: keyword에 값이 없으면 그에 따른 작업 추가
+    // ex) 다른 페이지로 이동
     const keyword = searchParams.get('keyword');
+
     if (!keyword) return; // keyword is required, so we return if it's not present
 
     const params: ISearchPlacesQuery = {
@@ -48,7 +50,7 @@ export default function Page() {
       <LocationInfo />
       {isLoading && <LoadingSpinner />}
       {isSuccess &&
-        data.data.map((placeInfo) => (
+        data.map((placeInfo) => (
           <SearchPlaceInfo key={placeInfo.id} placeInfo={placeInfo} />
         ))}
     </div>

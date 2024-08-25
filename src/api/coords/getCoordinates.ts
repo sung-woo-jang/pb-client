@@ -1,19 +1,32 @@
-import { data } from '@/app/place-pick/data';
 import { useQuery } from '@tanstack/react-query';
+import { API_URL } from '@/constants/API_URL';
+import { axiosInstance } from '@/api/axiosInstance';
+import { CommonResponse } from '@/types/apiTypes';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
-type Coordinates = [number, number];
+interface IGetAllMyPlacePickResponseData {
+  coords: [number, number][];
+}
 
-const delay = (): Promise<Coordinates[]> => {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve(data);
-    }, 1000)
-  );
+export const getAllMyPlacePick = async () => {
+  const { data } = await axiosInstance.get<
+    CommonResponse<IGetAllMyPlacePickResponseData>
+  >(API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK);
+
+  return data;
 };
 
-export const getCoordinates = async (): Promise<Coordinates[]> => {
-  return await delay();
-};
+const useGetAllMyPlacePick = () =>
+  useQuery<
+    CommonResponse<IGetAllMyPlacePickResponseData>,
+    unknown,
+    IGetAllMyPlacePickResponseData
+  >({
+    queryKey: generateQueryKeysFromUrl(
+      API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
+    ),
+    queryFn: getAllMyPlacePick,
+    select: (data) => data.data,
+  });
 
-export const useGetCoordinates = () =>
-  useQuery({ queryKey: ['coordinates'], queryFn: getCoordinates });
+export default useGetAllMyPlacePick;
