@@ -1,16 +1,16 @@
+import MarkerContent from '../../../components/Icon/MarkerContent';
+
 interface ICreateMarkers {
-  latLngs: [number, number][];
+  coords: [number, number][];
 }
 
-export default function createMarkers({ latLngs }: ICreateMarkers) {
-  const size = 12;
-
-  return latLngs?.map(([lat, lng]) => {
+function createMarkers({ coords }: ICreateMarkers) {
+  return coords.map(([lat, lng]) => {
     return new naver.maps.Marker({
       icon: {
-        // content: getMarkerContent(size),
-        url: '/marker.png',
-        size: new naver.maps.Size(30, 30),
+        content: MarkerContent({}),
+        // url: '/marker.png',
+        // size: new naver.maps.Size(30, 30),
       },
       position: new naver.maps.LatLng(lat, lng),
       clickable: true,
@@ -18,8 +18,4 @@ export default function createMarkers({ latLngs }: ICreateMarkers) {
   });
 }
 
-export function getMarkerContent(size: number) {
-  return `<img src="/marker.png" style="width: ${size}px;height: ${size}px;box-shadow: 0 0 7px 1px #0267FF;border-radius: ${
-    size / 2
-  }px" alt="" />`;
-}
+export default createMarkers;
