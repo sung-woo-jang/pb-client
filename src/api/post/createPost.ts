@@ -1,29 +1,64 @@
-import { axiosInstance } from '@/api/axiosInstance';
+import { formInstance } from '@/api/axiosInstance';
 import { API_URL } from '@/constants/API_URL';
 import { useMutation } from '@tanstack/react-query';
-import { ICreatePlaceBody } from '@/api/place/createPlace';
-import { ICreatePlaceCategoryRequestBody } from '@/api/place/createPlaceCategory';
+import { useRouter } from 'next/navigation';
+import { CommonResponse } from '@/types/apiTypes';
 
-interface ICreateKeywordRequestBody {
-  keyword: string;
-}
+type Keyword = { keyword: string };
 
 interface ICreatePostRequestBody {
   content: string;
   visitDate: Date;
   rate: number;
-  placeImages: File[];
-  place: ICreatePlaceBody;
-  placeCategory: ICreatePlaceCategoryRequestBody;
+  placeImages: FileList;
   placeId: number;
-  keywords: ICreateKeywordRequestBody[];
+  keywords: Keyword[];
+}
+
+interface ICreatePostResponseData {
+  user: {
+    id: string;
+    name: string;
+    nickname: string;
+    email: string;
+    profileImage: string;
+  };
+  id: number;
 }
 
 const createPost = async (body: ICreatePostRequestBody) => {
-  const { data } = await axiosInstance.post(API_URL.POST.CREATE_POST, body);
+  const formData = new FormData();
+  Object.entries(body).forEach(([key, value]) => {
+    if (key === 'keywords') {
+      value.forEach((keywordObj: Keyword, index: number) => {
+        formData.append(`keywords[${index}][keyword]`, keywordObj.keyword);
+      });
+    } else if (key !== 'placeImages') {
+      formData.append(key, String(value));
+    }
+  });
+
+  for (let i = 0; i < body.placeImages.length; i++) {
+    formData.append('placeImages', body.placeImages[i]);
+  }
+
+  const { data } = await formInstance.post(API_URL.POST.CREATE_POST, formData);
   return data;
 };
 
-const useCreatePost = () => useMutation({ mutationFn: createPost });
+const useCreatePost = () => {
+  const router = useRouter();
+  return useMutation<
+    CommonResponse<ICreatePostResponseData>,
+    Error,
+    ICreatePostRequestBody
+  >({
+    mutationFn: createPost,
+    onSuccess: (response) => {
+      const { data } = response;
+      router.push(`timeline/${data.id}`);
+    },
+  });
+};
 
 export default useCreatePost;

@@ -3,37 +3,27 @@ import Button from '@mui/material/Button';
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { togglePostEditorKeyword } from '@/store/slice/postEditor/slice';
 
+const sx: SxProps<Theme> = {
+  color: 'black',
+  borderColor: 'gray',
+};
+
+const checkedSX: SxProps<Theme> = {
+  color: '#73A9FE',
+  borderColor: '#73A9FE',
+  background: '#EFF4FD',
+  fontWeight: 'bold',
+};
 export default function TagPicker() {
-  const sx: SxProps<Theme> = {
-    color: 'black',
-    borderColor: 'gray',
-  };
+  const dispatch = useAppDispatch();
 
-  const checkedSX: SxProps<Theme> = {
-    color: '#73A9FE',
-    borderColor: '#73A9FE',
-    background: '#EFF4FD',
-    fontWeight: 'bold',
-  };
-
-  const [buttonLabel, setButtonLabel] = React.useState([
-    { id: 1, label: '맛있어요', isCheck: false },
-    { id: 2, label: '깨끗해요', isCheck: false },
-    { id: 3, label: '친절해요', isCheck: false },
-    { id: 4, label: '조용해요', isCheck: false },
-    { id: 5, label: '분위기가 좋아요', isCheck: false },
-    { id: 6, label: '예약이 편리해요', isCheck: false },
-    { id: 7, label: '주차하기 편해요', isCheck: false },
-    { id: 8, label: '서비스가 좋아요', isCheck: false },
-  ]);
+  const keywords = useAppSelector((state) => state.postEditor.keywords);
 
   const toggleCheck = (id: number) => {
-    setButtonLabel((prevState) =>
-      prevState.map((item) =>
-        item.id === id ? { ...item, isCheck: !item.isCheck } : item
-      )
-    );
+    dispatch(togglePostEditorKeyword(id));
   };
 
   return (
@@ -50,7 +40,7 @@ export default function TagPicker() {
         className="p-6 pt-0 grid grid-cols-2 gap-2 mt-4"
         style={{ overflow: 'auto' }}
       >
-        {buttonLabel.map(({ label, id, isCheck }) => (
+        {keywords.map(({ label, id, isCheck }) => (
           <Button
             key={id}
             variant="outlined"

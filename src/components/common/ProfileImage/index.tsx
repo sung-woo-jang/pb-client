@@ -54,7 +54,7 @@ export default function ProfileImage({
         {/* TODO: src 수정 */}
         <MuiAvatar
           alt={userName}
-          src={`http://localhost:8000/dummy/profile_image/${profileImageUrl}`}
+          src={`http://localhost:8000/uploads/profile_image/${profileImageUrl}`}
         />
         <AvatarFallback>{userName.substring(0, 2)}</AvatarFallback>
       </Avatar>
