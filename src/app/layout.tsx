@@ -1,5 +1,4 @@
 import './globals.css';
-import '../styles/index.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReduxProviders } from '@/provider/ReduxProvider';
@@ -7,7 +6,6 @@ import ReactQueryProvider from '@/provider/ReactQueryProvider';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { AxiosInterceptor } from '@/api/AxiosInterceptor';
 import GnB from '@/components/common/navigation/GnB';
-import InfoSidebar from '@/components/common/sidebar/InfoSidebar';
 import Script from 'next/script';
 import Drawer from '@/components/common/Drawer';
 
@@ -45,7 +43,6 @@ export default function RootLayout({
                 >
                   <GnB />
                   {children}
-                  <InfoSidebar />
                   <Drawer />
                 </div>
               </AxiosInterceptor>

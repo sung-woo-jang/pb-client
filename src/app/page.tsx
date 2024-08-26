@@ -1,24 +1,15 @@
 'use client';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useAppDispatch } from '@/hooks/redux-hooks';
-import { setIsOpenInfoSidebar } from '@/store/slice/common/slice';
 import Link from 'next/link';
 import { pageList } from '@/app/pageListData';
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-
-  const setInfoSidebarHandler = () => {
-    dispatch(setIsOpenInfoSidebar(false));
-  };
-
   return (
     <main className="flex justify-center items-center min-h-screen bg-gray-100">
       <CssBaseline />
       <Box
         sx={{ height: '100vh' }}
-        onClick={setInfoSidebarHandler}
         className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg"
       >
         <h2 className="text-2xl font-bold mb-4">Page List</h2>
