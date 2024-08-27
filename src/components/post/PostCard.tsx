@@ -11,7 +11,7 @@ interface IPostCardProps {
 }
 
 export default function PostCard({ newsfeed }: IPostCardProps) {
-  const { visitDate, content, user, images, place, rate, id } = newsfeed;
+  const { visitDate, content, user, images, place, rate, id, likes } = newsfeed;
 
   return (
     <div className={classes.card}>
@@ -22,7 +22,7 @@ export default function PostCard({ newsfeed }: IPostCardProps) {
         userId={user.id}
       />
       <PostImageSwiper images={images} />
-      <PostFooter postId={id} content={content} rate={rate} />
+      <PostFooter postId={id} content={content} rate={rate} likes={likes} />
       <PlacePickCard place={place} />
     </div>
   );

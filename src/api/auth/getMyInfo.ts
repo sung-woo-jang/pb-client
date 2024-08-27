@@ -20,9 +20,10 @@ const getMyInfo = async () => {
 };
 
 const useGetMyInfo = () =>
-  useQuery<CommonResponse<IMyInfo>>({
+  useQuery<CommonResponse<IMyInfo>, unknown, IMyInfo>({
     queryKey: generateQueryKeysFromUrl(API_URL.AUTH.GET_MY_INFO),
     queryFn: getMyInfo,
+    select: (data) => data.data,
   });
 
 export default useGetMyInfo;

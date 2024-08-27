@@ -38,6 +38,7 @@ export interface IGetNewsfeedApiResponseData {
   keywords: IKeyword[];
   place: IPlace;
   images: IImage[];
+  likes: { user_id: string }[];
 }
 
 const getNewsFeeds = async () => {
@@ -49,9 +50,14 @@ const getNewsFeeds = async () => {
 };
 
 const useGetNewsFeeds = () =>
-  useQuery<CommonResponse<IGetNewsfeedApiResponseData[]>>({
+  useQuery<
+    CommonResponse<IGetNewsfeedApiResponseData[]>,
+    unknown,
+    IGetNewsfeedApiResponseData[]
+  >({
     queryKey: generateQueryKeysFromUrl(API_URL.NEWSFEED.GET_NEWS_FEEDS),
     queryFn: getNewsFeeds,
+    select: (data) => data.data,
   });
 
 export default useGetNewsFeeds;

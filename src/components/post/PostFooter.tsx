@@ -1,27 +1,58 @@
 import * as React from 'react';
 import classes from './styles.module.scss';
 import StarRatingTooltip from './StarRatingTooltip';
-import HeartIcon from '@/components/Icon/HeartIcon';
 import { FiMessageCircle } from 'react-icons/fi';
 import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawer';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
+import useLikeCheck from '@/hooks/useLikeCheck';
+import useToggleLikePost from '@/api/like/toggleLikePost';
+import { useQueryClient } from '@tanstack/react-query';
+import { usePathname } from 'next/navigation';
 
 interface IPostFooterProps {
   postId: number;
   rate: number;
   content: string;
+  likes: { user_id: string }[];
 }
 
 export default function PostFooter({
   rate,
   content,
   postId,
+  likes,
 }: IPostFooterProps) {
+  const pathname = usePathname();
+  const queryClient = useQueryClient();
   const { commentDrawerToggleHandler, setCommentPostIdHandler } =
     useCommentDrawer();
-
+  const { mutateAsync } = useToggleLikePost();
   const commentButtonClickHandler = () => {
     setCommentPostIdHandler(postId);
     commentDrawerToggleHandler();
+  };
+
+  const { isChecked, setIsChecked } = useLikeCheck(likes);
+
+  const toggleIconHandler = async () => {
+    await mutateAsync({ post_id: postId });
+    // TODO: 낙관적으로 업데이트 하도록 되어있으니 수정할것
+    setIsChecked(!isChecked);
+
+    if (pathname === '/newsfeed') {
+      await queryClient.refetchQueries({
+        queryKey: generateQueryKeysFromUrl(API_URL.NEWSFEED.GET_NEWS_FEEDS),
+      });
+    }
+    if (pathname.includes('timeline')) {
+      await queryClient.refetchQueries({
+        queryKey: generateQueryKeysFromUrl(
+          API_URL.POST.GET_POST_DETAIL(postId)
+        ),
+      });
+    }
   };
 
   return (
@@ -39,9 +70,24 @@ export default function PostFooter({
             <FiMessageCircle className={classes.iconButton} />
           </button>
           <button
+            onClick={toggleIconHandler}
             className={`${classes.button} ${classes.icon} ${classes.ghost}`}
           >
-            <HeartIcon className={classes.iconButton} />
+            {isChecked ? (
+              <FaHeart
+                className={classes.iconButton}
+                style={{
+                  color: '#F67576',
+                }}
+              />
+            ) : (
+              <FaRegHeart
+                className={classes.iconButton}
+                style={{
+                  color: '#F67576',
+                }}
+              />
+            )}
           </button>
         </div>
       </div>
