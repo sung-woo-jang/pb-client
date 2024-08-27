@@ -4,7 +4,6 @@ import { useMutation } from '@tanstack/react-query';
 
 interface ICreateCommentBody {
   post_id: number;
-  author_account: string;
   comment: string;
 }
 
@@ -16,6 +15,10 @@ const createComment = async (body: ICreateCommentBody) => {
   return data;
 };
 
-const useCreateComment = () => useMutation({ mutationFn: createComment });
+const useCreateComment = () => {
+  return useMutation({
+    mutationFn: createComment,
+  });
+};
 
 export default useCreateComment;

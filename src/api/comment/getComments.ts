@@ -27,9 +27,14 @@ const getComments = async (postId: NumberString) => {
 };
 
 const useGetComments = (postId: NumberString, commentDrawerState: boolean) =>
-  useQuery<CommonResponse<IGetCommentsResponseData[]>>({
+  useQuery<
+    CommonResponse<IGetCommentsResponseData[]>,
+    unknown,
+    IGetCommentsResponseData[]
+  >({
     queryKey: generateQueryKeysFromUrl(API_URL.COMMENT.GET_COMMENT(postId)),
     queryFn: () => getComments(postId),
+    select: (data) => data.data,
     enabled: commentDrawerState,
   });
 

@@ -9,10 +9,6 @@ import GnB from '@/components/common/navigation/GnB';
 import Script from 'next/script';
 import Drawer from '@/components/common/Drawer';
 
-if (typeof window !== 'undefined') {
-  require('bootstrap/dist/js/bootstrap');
-}
-
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
