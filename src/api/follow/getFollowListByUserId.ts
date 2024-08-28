@@ -3,7 +3,7 @@ import { API_URL } from '@/constants/API_URL';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { CommonResponse } from '@/types/apiTypes';
-import * as _ from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 import { NumberString } from '@/types/commonTypes';
 
 enum FollowStatus {
@@ -36,7 +36,7 @@ const useGetFollowListByUserId = (userId: NumberString) =>
       API_URL.FOLLOW.GET_FOLLOW_LIST_BY_USER_ID(userId)
     ),
     queryFn: () => getFollowListByUserId(userId),
-    enabled: !_.isUndefined(userId),
+    enabled: !isUndefined(userId),
   });
 
 export default useGetFollowListByUserId;

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import useCreatePost from '@/api/post/createPost';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import usePostEditor from '@/store/slice/postEditor/usePostEditor';
-import * as _ from 'lodash';
+import isNull from 'lodash/isNull';
 
 export default function ExitArea() {
   const { mutate } = useCreatePost();
@@ -18,11 +18,11 @@ export default function ExitArea() {
   } = useAppSelector((state) => state.postEditor);
   const { keywords } = usePostEditor();
   const createPostMutateHandler = () => {
-    if (_.isNull(placeImages)) {
+    if (isNull(placeImages)) {
       console.log('이미지 없음');
       return;
     }
-    if (_.isNull(visitDate)) {
+    if (isNull(visitDate)) {
       console.log('방문일자 없음');
       return;
     }

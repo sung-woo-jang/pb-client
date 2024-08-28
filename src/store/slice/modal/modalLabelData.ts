@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import find from 'lodash/find';
 
 type Code = 'MO-WP-DE' | 'MO-PC-DE' | 'MO-CO-DE' | 'MO-LO-ED';
 
@@ -27,5 +27,5 @@ export const label_data: LabelData[] = [
 ];
 
 export const getLabelByCode = (code: Code): string => {
-  return _.find(label_data, { code })?.label as string;
+  return find(label_data, { code })?.label as string;
 };

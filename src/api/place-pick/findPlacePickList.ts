@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CommonResponse } from '@/types/apiTypes';
-import * as _ from 'lodash';
+import gt from 'lodash/gt';
 
 export interface IPlaceCategory {
   place_category_name: string;
@@ -53,7 +53,7 @@ const useFindPlacePickList = (id: NumberString) =>
       API_URL.PLACE_PICK.FIND_PLACE_PICK_LIST(id)
     ),
     queryFn: () => findPlacePickList(id),
-    enabled: _.gt(id, 0),
+    enabled: gt(id, 0),
   });
 
 export default useFindPlacePickList;

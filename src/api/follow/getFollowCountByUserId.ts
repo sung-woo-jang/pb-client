@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { CommonResponse } from '@/types/apiTypes';
 import { NumberString } from '@/types/commonTypes';
-import * as _ from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 
 interface IFollowCountResponseData {
   followings: number;
@@ -24,7 +24,7 @@ const useGetFollowCountByUserId = (userId: NumberString) =>
       API_URL.FOLLOW.GET_FOLLOW_COUNT_BY_USER_ID(userId)
     ),
     queryFn: () => getFollowCountByUserId(userId),
-    enabled: !_.isUndefined(userId),
+    enabled: !isUndefined(userId),
   });
 
 export default useGetFollowCountByUserId;

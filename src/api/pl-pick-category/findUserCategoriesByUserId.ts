@@ -5,7 +5,7 @@ import { CommonResponse } from '@/types/apiTypes';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
-import * as _ from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 
 interface IFindUserCategoriesResponseData {
   title: string;
@@ -29,7 +29,7 @@ const useFindCategoriesByUserId = (userId: NumberString) =>
       API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES_BY_USER_ID(userId)
     ),
     queryFn: () => findCategoriesByUserId(userId),
-    enabled: !_.isUndefined(userId),
+    enabled: !isUndefined(userId),
   });
 
 export default useFindCategoriesByUserId;

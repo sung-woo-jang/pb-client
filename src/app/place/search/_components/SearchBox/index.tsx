@@ -5,7 +5,7 @@ import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
 import { arrowBackIosIconStyle } from '@/app/place/search/_components/SearchBox/cssProps.styles';
 import { FaSearch } from 'react-icons/fa';
 import React from 'react';
-import * as _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setInputText } from '@/store/slice/searchBox/slice';
@@ -30,8 +30,7 @@ export default function SearchBox() {
   };
 
   const searchPlaceHandler = () => {
-    if (!_.isEmpty(inputText))
-      router.push(`/place/search?keyword=${inputText}`);
+    if (!isEmpty(inputText)) router.push(`/place/search?keyword=${inputText}`);
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {

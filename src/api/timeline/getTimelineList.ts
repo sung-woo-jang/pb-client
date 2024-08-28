@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CommonResponse } from '@/types/apiTypes';
-import * as _ from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 
 interface IImage {
   id: number;
@@ -38,7 +38,7 @@ const useGetTimelineList = (userId: NumberString) =>
       API_URL.TIMELINE.GET_TIMELINE_LIST(userId)
     ),
     queryFn: () => getTimelineList(userId),
-    enabled: !_.isUndefined(userId),
+    enabled: !isUndefined(userId),
   });
 
 export default useGetTimelineList;
