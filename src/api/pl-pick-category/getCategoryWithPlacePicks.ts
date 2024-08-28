@@ -5,7 +5,7 @@ import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { NumberString } from '@/types/commonTypes';
 import { CircleColors } from '@/constants/COLORS';
 import { CommonResponse } from '@/types/apiTypes';
-import * as _ from 'lodash';
+import gt from 'lodash/gt';
 
 interface IPlaceCategory {
   id: number;
@@ -53,7 +53,7 @@ const useGetCategoryWithPlacePicks = (id: NumberString, drawerState: boolean) =>
       API_URL.PL_PICK_CATEGORY.GET_CATEGORY_WITH_PLACE_PICKS(id)
     ),
     queryFn: () => getCategoryWithPlacePicks(id),
-    enabled: _.gt(id, 0) && drawerState,
+    enabled: gt(id, 0) && drawerState,
   });
 
 export default useGetCategoryWithPlacePicks;

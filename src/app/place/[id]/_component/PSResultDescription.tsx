@@ -12,7 +12,7 @@ interface IPsResultDescriptionProps {
 export default function PsResultDescription({
   place,
 }: IPsResultDescriptionProps) {
-  const { place_average_rate, road_address, total_posts, title } = place;
+  const { place_average_rate, road_address, total_posts, title, id } = place;
   return (
     <div className="mt-4 ml-2">
       <h2 className="text-xl font-bold">{title}</h2>
@@ -32,7 +32,7 @@ export default function PsResultDescription({
       </div>
       <div className="flex items-center mt-4">
         {/*TODO*/}
-        <PlacePickIcon />
+        <PlacePickIcon placeId={id} placeTitle={title} />
       </div>
     </div>
   );

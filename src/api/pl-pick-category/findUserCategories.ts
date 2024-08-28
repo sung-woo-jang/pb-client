@@ -22,11 +22,16 @@ const findUserCategories = async () => {
 };
 
 const useFindUserCategories = () =>
-  useQuery<CommonResponse<IFindUserCategoriesResponseData[]>>({
+  useQuery<
+    CommonResponse<IFindUserCategoriesResponseData[]>,
+    unknown,
+    IFindUserCategoriesResponseData[]
+  >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
     ),
     queryFn: findUserCategories,
+    select: (data) => data.data,
   });
 
 export default useFindUserCategories;

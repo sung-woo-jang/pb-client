@@ -13,7 +13,6 @@ interface IPlaceDetailPageProps {
 
 export default function Page({ params: { id } }: IPlaceDetailPageProps) {
   const { isSuccess, data, isLoading } = useSearchPlaceDetail(id);
-
   if (isLoading) {
     return <LoadingSpinner size={60} />;
   } else if (isSuccess) {

@@ -12,6 +12,7 @@ interface IKeyword {
 }
 
 export interface IPlace {
+  id: number;
   title: string;
   address: string;
   road_address: string;

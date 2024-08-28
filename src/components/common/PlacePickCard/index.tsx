@@ -9,12 +9,12 @@ interface IPlacePickCardProps {
 }
 
 export default function PlacePickCard({ place }: IPlacePickCardProps) {
-  const { title, road_address, placeCategory } = place;
+  const { title, road_address, placeCategory, id } = place;
   const { place_category_name, place_category_name_detail } = placeCategory;
   return (
     <div className={classes.wrapper}>
       <div className={classes.main}>
-        <Link href={'#'} className={classes.title}>
+        <Link href={`/place/${id}`} className={classes.title}>
           {title}
           <ChevronRightIcon sx={{ cursor: 'pointer' }} />
         </Link>
@@ -22,7 +22,7 @@ export default function PlacePickCard({ place }: IPlacePickCardProps) {
           {place_category_name}, {place_category_name_detail} - {road_address}
         </p>
       </div>
-      <PlacePickIcon />
+      <PlacePickIcon placeId={id} placeTitle={title} />
     </div>
   );
 }

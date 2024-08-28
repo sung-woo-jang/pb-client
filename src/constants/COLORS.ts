@@ -15,6 +15,7 @@ export enum CircleColors {
 }
 
 const COLORS = {
+  // TODO: 코드 테이블 구현 시 거기서 가져오기
   CIRCLE: [
     { id: 1, color: CircleColors.RED },
     { id: 2, color: CircleColors.ORANGE },
@@ -30,5 +31,9 @@ const COLORS = {
     { id: 12, color: CircleColors.GRAY },
     { id: 13, color: CircleColors.LIGHT_GRAY },
   ],
+  CHECK_CIRCLE: {
+    UN_SELECTED: '#1FFF11',
+    SELECTED: '#BBC3CF',
+  },
 };
 export default COLORS;

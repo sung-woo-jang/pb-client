@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import classes from './styles.module.scss';
 import StarRatingTooltip from './StarRatingTooltip';
 import { FiMessageCircle } from 'react-icons/fi';
@@ -6,10 +7,11 @@ import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawe
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { API_URL } from '@/constants/API_URL';
-import useLikeCheck from '@/hooks/useLikeCheck';
 import useToggleLikePost from '@/api/like/toggleLikePost';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
+import useGetMyInfo from '@/api/auth/getMyInfo';
+import some from 'lodash/some';
 
 interface IPostFooterProps {
   postId: number;
@@ -24,6 +26,13 @@ export default function PostFooter({
   postId,
   likes,
 }: IPostFooterProps) {
+  const { data: myInfo, isSuccess } = useGetMyInfo();
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(isSuccess && some(likes, { user_id: myInfo.id }));
+  }, [likes, myInfo, isSuccess]);
+
   const pathname = usePathname();
   const queryClient = useQueryClient();
   const { commentDrawerToggleHandler, setCommentPostIdHandler } =
@@ -33,8 +42,6 @@ export default function PostFooter({
     setCommentPostIdHandler(postId);
     commentDrawerToggleHandler();
   };
-
-  const { isChecked, setIsChecked } = useLikeCheck(likes);
 
   const toggleIconHandler = async () => {
     await mutateAsync({ post_id: postId });

@@ -1,6 +1,5 @@
 'use client';
 import useUpdateHeight from '@/hooks/temp/useUpdateHeight';
-import useGetAllMyPlacePick from '@/api/coords/getCoordinates';
 import { useMap } from '@/hooks/useMap';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import {
@@ -9,6 +8,7 @@ import {
   PPCategoryContainerStyle,
 } from '@/app/place-pick/styles/cssProps.styles';
 import React, { useRef } from 'react';
+import useGetAllMyPlacePick from '@/api/place-pick/getAllMyPlacePick';
 
 export default function Layout({
   children,

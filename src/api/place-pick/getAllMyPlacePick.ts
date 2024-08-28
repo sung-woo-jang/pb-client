@@ -4,13 +4,22 @@ import { axiosInstance } from '@/api/axiosInstance';
 import { CommonResponse } from '@/types/apiTypes';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
-interface IGetAllMyPlacePickResponseData {
+export interface IGetAllMyPlacePickResponseData {
+  place_id: number;
+  place: {
+    mapx: number;
+    mapy: number;
+  };
+}
+
+interface IAllMyPlacePickTData {
+  place_id: Set<number>;
   coords: [number, number][];
 }
 
 export const getAllMyPlacePick = async () => {
   const { data } = await axiosInstance.get<
-    CommonResponse<IGetAllMyPlacePickResponseData>
+    CommonResponse<IGetAllMyPlacePickResponseData[]>
   >(API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK);
 
   return data;
@@ -18,15 +27,25 @@ export const getAllMyPlacePick = async () => {
 
 const useGetAllMyPlacePick = () =>
   useQuery<
-    CommonResponse<IGetAllMyPlacePickResponseData>,
+    CommonResponse<IGetAllMyPlacePickResponseData[]>,
     unknown,
-    IGetAllMyPlacePickResponseData
+    IAllMyPlacePickTData
   >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
     ),
     queryFn: getAllMyPlacePick,
-    select: (data) => data.data,
+    select: (data) =>
+      data.data.reduce<IAllMyPlacePickTData>(
+        (acc, { place_id, place: { mapx, mapy } }) => {
+          acc.place_id.add(place_id);
+          acc.coords.push([mapy, mapx]);
+          return acc;
+        },
+        { place_id: new Set(), coords: [] }
+      ),
+    staleTime: Infinity,
+    gcTime: 1000 * 60 * 60 * 24, // 1시간
   });
 
 export default useGetAllMyPlacePick;

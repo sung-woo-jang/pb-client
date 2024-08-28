@@ -11,6 +11,7 @@ interface SwipeableDrawerWrapperProps {
   setHandler: (state: boolean) => void;
   toggleHandler: () => void;
   buttonRender: boolean;
+  onCompleteClick?: () => Promise<void>;
 }
 
 export default function SwipeableDrawerWrapper({
@@ -19,6 +20,7 @@ export default function SwipeableDrawerWrapper({
   drawerState,
   setHandler,
   buttonRender,
+  onCompleteClick,
 }: SwipeableDrawerWrapperProps) {
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -30,8 +32,21 @@ export default function SwipeableDrawerWrapper({
       ) {
         return;
       }
+      if (
+        event.type === 'keydown' &&
+        (event.target as HTMLElement).tagName === 'INPUT'
+      ) {
+        return;
+      }
       setHandler(open);
     };
+
+  const handleCompleteClick = async () => {
+    if (onCompleteClick) {
+      await onCompleteClick();
+    }
+    setHandler(false); // 드로어를 닫습니다
+  };
 
   return (
     <SwipeableDrawer
@@ -72,7 +87,7 @@ export default function SwipeableDrawerWrapper({
           <button
             type="button"
             className={classes.button}
-            onClick={toggleDrawer(false)}
+            onClick={handleCompleteClick}
           >
             완료
           </button>

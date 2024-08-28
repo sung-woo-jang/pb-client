@@ -1,11 +1,11 @@
 'use client';
-import useGetAllMyPlacePick from '@/api/coords/getCoordinates';
 import SearchBox from '@/app/place/search/_components/SearchBox';
 import { useRef } from 'react';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
 import SearchHistory from '@/app/place/search/_components/SearchHistory';
 import NaverMap from '@/app/place/_components/NaverMap';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import useGetAllMyPlacePick from '@/api/place-pick/getAllMyPlacePick';
 
 export default function Page() {
   const { data, isSuccess, isLoading } = useGetAllMyPlacePick();

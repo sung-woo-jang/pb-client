@@ -20,31 +20,30 @@ export default function PPCategory() {
     ppCategoryDetailListDrawerToggleHandler();
   };
 
-  const { data, isLoading, isSuccess } = useFindUserCategories();
+  const { data: categories, isLoading, isSuccess } = useFindUserCategories();
 
   if (isLoading) return <LoadingSpinner size={60} />;
-  if (!isSuccess) return null;
-  const { data: categories } = data;
-
-  return (
-    <>
-      <CategoryHeader count={categories.length + 1} />
-      <CategoryItem
-        color={CircleColors.GRAY}
-        title={ALL_CATEGORIES_TITLE}
-        onClickCategory={ppCategoryDetailListDrawerToggleHandler}
-      />
-      {categories.map(({ id, picker_color, title }) => (
+  if (isSuccess) {
+    return (
+      <>
+        <CategoryHeader count={categories.length + 1} />
         <CategoryItem
-          key={id}
-          color={picker_color}
-          title={title}
-          onClickCategory={() => categoryItemClickHandler(id)}
-          onClickEdit={editPPCategoryDrawerToggleHandler}
-          onClickDelete={() => console.log('Delete category', id)}
+          color={CircleColors.GRAY}
+          title={ALL_CATEGORIES_TITLE}
+          onClickCategory={ppCategoryDetailListDrawerToggleHandler}
         />
-      ))}
-      <AddCategoryButton />
-    </>
-  );
+        {categories.map(({ id, picker_color, title }) => (
+          <CategoryItem
+            key={id}
+            color={picker_color}
+            title={title}
+            onClickCategory={() => categoryItemClickHandler(id)}
+            onClickEdit={editPPCategoryDrawerToggleHandler}
+            onClickDelete={() => console.log('Delete category', id)}
+          />
+        ))}
+        <AddCategoryButton />
+      </>
+    );
+  }
 }
