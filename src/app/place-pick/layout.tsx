@@ -19,7 +19,9 @@ export default function Layout({
   const divRef = useRef<HTMLDivElement>(null);
   const { mapHeight, fullWidth, setFullWidth } = useUpdateHeight(divRef);
   const { data } = useGetAllMyPlacePick();
-  useMap({ coords: data?.coords });
+
+  useMap({ placeDetails: data?.placeDetails });
+
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <OpenInFullIcon

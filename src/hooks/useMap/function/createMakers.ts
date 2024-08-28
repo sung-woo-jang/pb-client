@@ -1,14 +1,22 @@
 import MarkerContent from '../../../components/Icon/MarkerContent';
+import { CircleColors } from '@/constants/COLORS';
 
 interface ICreateMarkers {
-  coords: [number, number][];
+  placeDetails: [
+    number,
+    {
+      coords: [number, number];
+      pickerColor: CircleColors;
+    },
+  ][];
 }
 
-function createMarkers({ coords }: ICreateMarkers) {
-  return coords.map(([lat, lng]) => {
+function createMarkers({ placeDetails }: ICreateMarkers) {
+  return placeDetails.map(([placeId, details]) => {
+    const [lat, lng] = details.coords;
     return new naver.maps.Marker({
       icon: {
-        content: MarkerContent({}),
+        content: MarkerContent({ color: details.pickerColor }),
         // url: '/marker.png',
         // size: new naver.maps.Size(30, 30),
       },

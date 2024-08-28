@@ -12,6 +12,7 @@ export default function Page() {
 
   const searchBoxRef = useRef<HTMLDivElement | null>(null);
   const { isFocused } = useSearchBoxControls();
+
   if (isLoading) return <LoadingSpinner size={60} />;
   if (isSuccess) {
     return (
@@ -20,7 +21,10 @@ export default function Page() {
           <SearchBox />
         </div>
         {isFocused && <SearchHistory />}
-        <NaverMap coords={data.coords} searchBoxRef={searchBoxRef} />
+        <NaverMap
+          placeDetails={data.placeDetails}
+          searchBoxRef={searchBoxRef}
+        />
       </div>
     );
   }

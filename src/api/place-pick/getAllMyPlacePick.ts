@@ -3,6 +3,7 @@ import { API_URL } from '@/constants/API_URL';
 import { axiosInstance } from '@/api/axiosInstance';
 import { CommonResponse } from '@/types/apiTypes';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { CircleColors } from '@/constants/COLORS';
 
 export interface IGetAllMyPlacePickResponseData {
   place_id: number;
@@ -10,11 +11,17 @@ export interface IGetAllMyPlacePickResponseData {
     mapx: number;
     mapy: number;
   };
+  plPickCategory: {
+    picker_color: CircleColors;
+  };
 }
 
 interface IAllMyPlacePickTData {
-  place_id: Set<number>;
-  coords: [number, number][];
+  placeIds: Set<number>;
+  placeDetails: [
+    number,
+    { coords: [number, number]; pickerColor: CircleColors },
+  ][];
 }
 
 export const getAllMyPlacePick = async () => {
@@ -35,17 +42,30 @@ const useGetAllMyPlacePick = () =>
       API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
     ),
     queryFn: getAllMyPlacePick,
-    select: (data) =>
-      data.data.reduce<IAllMyPlacePickTData>(
-        (acc, { place_id, place: { mapx, mapy } }) => {
-          acc.place_id.add(place_id);
-          acc.coords.push([mapy, mapx]);
-          return acc;
-        },
-        { place_id: new Set(), coords: [] }
-      ),
+    select: (data) => {
+      const placeIds = new Set<number>();
+      const placeDetailsMap = new Map<
+        number,
+        { coords: [number, number]; pickerColor: CircleColors }
+      >();
+
+      data.data.forEach(
+        ({ place_id, place: { mapx, mapy }, plPickCategory }) => {
+          placeIds.add(place_id);
+          placeDetailsMap.set(place_id, {
+            coords: [mapy, mapx],
+            pickerColor: plPickCategory.picker_color,
+          });
+        }
+      );
+
+      return {
+        placeIds,
+        placeDetails: Array.from(placeDetailsMap.entries()),
+      };
+    },
     staleTime: Infinity,
-    gcTime: 1000 * 60 * 60 * 24, // 1시간
+    gcTime: 1000 * 60 * 60 * 24, // 24시간
   });
 
 export default useGetAllMyPlacePick;

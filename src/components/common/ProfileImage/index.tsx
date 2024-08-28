@@ -60,7 +60,7 @@ export default function ProfileImage({
       </Avatar>
       <div style={{ display: 'flex', gap: '1rem' }}>
         {userName}
-        <p className={classes.postTimestamp}>{visitDate}</p>
+        <p className={classes.postTimestamp}>방문일자 {visitDate}</p>
       </div>
     </Link>
   );

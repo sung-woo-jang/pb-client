@@ -1,13 +1,23 @@
 import { useMap } from '@/hooks/useMap';
 import { MutableRefObject, useEffect, useRef } from 'react';
+import { CircleColors } from '@/constants/COLORS';
 
 interface INaverMapProps {
-  coords: [number, number][];
+  placeDetails: [
+    number,
+    {
+      coords: [number, number];
+      pickerColor: CircleColors;
+    },
+  ][];
   searchBoxRef: MutableRefObject<HTMLDivElement | null>;
 }
 
-export default function NaverMap({ coords, searchBoxRef }: INaverMapProps) {
-  useMap({ coords });
+export default function NaverMap({
+  placeDetails,
+  searchBoxRef,
+}: INaverMapProps) {
+  useMap({ placeDetails });
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

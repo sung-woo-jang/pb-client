@@ -33,7 +33,8 @@ export default function PlacePickIcon({
 
   useEffect(() => {
     // TODO: Set Object 사용으로 인한 무한루프 문제 이거 어떻게 해결할 방법 구해야 함
-    setIsPicked(isSuccess && data.place_id.has(placeId));
+    setIsPicked(isSuccess && data.placeIds.has(placeId));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, placeId]);
   return (
     <div onClick={onCLickHandler} className={classes.icon}>
