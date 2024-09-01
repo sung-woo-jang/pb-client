@@ -6,7 +6,7 @@ import ReadMoreText from '@/components/common/ReadMoreText';
 import KeywordBox from '@/components/post/KeywordBox';
 import { IPost } from '@/api/search/getSearchPlaceDetail';
 import generateYYYYMMDD from '@/utils/generateYYYY_MM_DD';
-import ConfigurableSourceImage from '@/components/common/ConfigurableSourceImage';
+import ImageGallery from '@/components/common/ImageGallery';
 
 interface IPsResultReviewProps {
   post: IPost;
@@ -20,17 +20,10 @@ export default function PsResultReview({ post }: IPsResultReviewProps) {
       <div className="bg-white p-3">
         <div className="rounded-md flex">
           <ReadMoreText text={content} />
-          <ConfigurableSourceImage
-            src={images[0].image_path}
-            width={100}
-            height={100}
-            alt={images[0].image_path}
-            className="rounded-md ml-4 mr-4"
-          />
+          <ImageGallery images={images} maxThumbnails={1} />
         </div>
         <KeywordBox keywords={keywords} />
         <div className="flex items-center">
-          {/*  TODO: 임시 데이터 수정 */}
           <ProfileImage
             userId={user.id}
             profileImageUrl={user.profileImage}
