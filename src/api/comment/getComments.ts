@@ -12,7 +12,7 @@ interface IUser {
   profileImage: string;
 }
 
-interface IGetCommentsResponseData {
+export interface IGetCommentsResponseData {
   id: number;
   comment: string;
   createdAt: Date;

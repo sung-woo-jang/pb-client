@@ -1,60 +1,50 @@
 import { MouseEvent, useRef } from 'react';
-import classes from './styles.module.scss';
-
-// material
-import Button from '@mui/material/Button';
 import useModalController from '@/store/slice/modal/useModalController';
 
 export default function ConfirmModal() {
   const { label, modalState, setModalStateHandler } = useModalController();
-  // 취소 버튼 클릭시 실행되는 함수
-  const cancelButtonHandler = () => {
-    setModalStateHandler(false);
-  };
-  // 확인 버튼 클릭시 실행되는 함수
-  const confirmButtonHandler = () => {
-    setModalStateHandler(false);
-  };
-  // 모달의 배경 참조
-  const modalBackground = useRef(null);
+  const modalBackground = useRef<HTMLDivElement>(null);
 
-  // 모달 영역 바깥 클릭시 모달을 닫는 함수
+  const closeModal = () => {
+    setModalStateHandler(false);
+  };
+
   const closeOnOutsideClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === modalBackground.current) {
-      setModalStateHandler(false);
+      closeModal();
     }
   };
 
-  return (
-    <>
-      {modalState && (
-        <div
-          ref={modalBackground}
-          onClick={closeOnOutsideClick}
-          className={classes.modalWrap}
-        >
-          <div className={classes.modalContent}>
-            <div className={classes.modalBody}>{label}</div>
+  if (!modalState) return null;
 
-            <div className={classes.modalFooter}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={cancelButtonHandler}
-              >
-                아니요
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={confirmButtonHandler}
-              >
-                예
-              </Button>
-            </div>
-          </div>
+  return (
+    <div
+      ref={modalBackground}
+      onClick={closeOnOutsideClick}
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1300]"
+    >
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[70%] bg-white rounded-lg shadow-xl min-w-[340px] max-w-[calc(100vw-32px)] flex flex-col items-center">
+        <div className="w-full p-5 text-center">
+          <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
+            확인
+          </h3>
+          <p className="text-sm text-gray-500 mb-6 overflow-auto">{label}</p>
         </div>
-      )}
-    </>
+        <div className="w-full flex justify-around items-center p-4 border-t border-gray-200">
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors"
+          >
+            아니요
+          </button>
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          >
+            예
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

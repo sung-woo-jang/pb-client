@@ -16,7 +16,7 @@ interface UserInfo {
 }
 
 export default function Page() {
-  const { isSuccess, refetch, data } = useGetMyInfo();
+  const { data, isSuccess } = useGetMyInfo();
   const handleNaverLogin = () => {
     const width = 500;
     const height = 600;
@@ -33,7 +33,6 @@ export default function Page() {
     const checkLoginStatus = setInterval(() => {
       if (loginWindow?.closed) {
         clearInterval(checkLoginStatus);
-        refetch().then();
       }
     }, 500);
   };
@@ -41,10 +40,8 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSuccess && !isUndefined(data)) {
-      router.push('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (isSuccess && !isUndefined(data)) router.push('/');
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, router]);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-6 px-4">

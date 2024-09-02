@@ -1,10 +1,8 @@
 'use client';
 import { axiosInstance } from './axiosInstance';
-import { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import axios from 'axios';
-
-// import { setIsLogin } from '@/store/slice/authSlice';
 
 interface Props {
   children: React.ReactNode;
@@ -13,23 +11,25 @@ interface Props {
 function AxiosInterceptor({ children }: Props) {
   const pathname = usePathname();
   const router = useRouter();
+
+  const handleUnauthorized = useCallback(() => {
+    if (pathname !== '/login') {
+      router.push('/login');
+    }
+  }, [pathname, router]);
+
   useEffect(() => {
     const responseInterceptor = axiosInstance.interceptors.response.use(
       (response) => {
-        if (response && !response.data.isLogin && pathname !== '/login') {
-          // 현재 페이지가 로그인 페이지가 아닐 때만 리다이렉트
-          router.push('/login');
+        if (response && !response.data.isLogin) {
+          handleUnauthorized();
         }
+
         return response;
       },
       (error) => {
-        if (
-          error.response &&
-          !error.response.data.isLogin &&
-          pathname !== '/login'
-        ) {
-          // 현재 페이지가 로그인 페이지가 아닐 때만 리다이렉트
-          router.push('/login');
+        if (error.response && !error.response.data.isLogin) {
+          handleUnauthorized();
         }
         return Promise.reject(error);
       }
@@ -54,7 +54,7 @@ function AxiosInterceptor({ children }: Props) {
       axiosInstance.interceptors.request.eject(requestInterceptor);
       axiosInstance.interceptors.response.eject(responseInterceptor);
     };
-  }, [pathname]);
+  }, [handleUnauthorized, pathname]);
   return children;
 }
 
