@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ConfigurableSourceImage from '@/components/common/ConfigurableSourceImage';
 
 interface UserInfo {
   id: string;
@@ -73,7 +74,12 @@ export default function Logout() {
           <p>Name: {user.name}</p>
           <p>Email: {user.email}</p>
           {user.profileImage && (
-            <img src={user.profileImage} alt="Profile" width={50} height={50} />
+            <ConfigurableSourceImage
+              src={user.profileImage}
+              alt="Profile"
+              width={50}
+              height={50}
+            />
           )}
           <button onClick={handleLogout}>Logout</button>
         </div>

@@ -18,9 +18,13 @@ export default function PsResultReview({ post }: IPsResultReviewProps) {
   return (
     <div className={classes.reviewWrapper}>
       <div className="bg-white p-3">
-        <div className="rounded-md flex">
-          <ReadMoreText text={content} />
-          <ImageGallery images={images} maxThumbnails={1} />
+        <div className="rounded-md flex flex-col">
+          <div className="w-full mb-3">
+            <ImageGallery images={images} maxThumbnails={2} />
+          </div>
+          <div className="w-full">
+            <ReadMoreText text={content} />
+          </div>
         </div>
         <KeywordBox keywords={keywords} />
         <div className="flex items-center">

@@ -7,14 +7,6 @@ import useGetMyInfo from '@/api/auth/getMyInfo';
 import { useRouter } from 'next/navigation';
 import isUndefined from 'lodash/isUndefined';
 
-interface UserInfo {
-  id: string;
-  name: string;
-  nickname: string;
-  email: string;
-  profileImage: string;
-}
-
 export default function Page() {
   const { data, isSuccess } = useGetMyInfo();
   const handleNaverLogin = () => {

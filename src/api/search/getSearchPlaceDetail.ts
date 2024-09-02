@@ -53,11 +53,16 @@ const getSearchPlaceDetail = async (placeId: NumberString) => {
 };
 
 const useSearchPlaceDetail = (placeId: NumberString) =>
-  useQuery<CommonResponse<IGetSearchPlaceDetail>>({
+  useQuery<
+    CommonResponse<IGetSearchPlaceDetail>,
+    unknown,
+    IGetSearchPlaceDetail
+  >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.SEARCH.GET_SEARCH_PLACE_DETAIL(placeId)
     ),
     queryFn: () => getSearchPlaceDetail(placeId),
+    select: (data) => data.data,
   });
 
 export default useSearchPlaceDetail;

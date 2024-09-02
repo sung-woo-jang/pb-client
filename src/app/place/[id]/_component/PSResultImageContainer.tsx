@@ -17,7 +17,7 @@ export default function PSResultImageContainer({
         <Image src={noImage} alt={'noImage'} width={1000} height={1000} />
       )}
       {images.length !== 0 && (
-        <ImageGallery images={images} maxThumbnails={3} />
+        <ImageGallery images={images} maxThumbnails={2} />
       )}
     </div>
   );

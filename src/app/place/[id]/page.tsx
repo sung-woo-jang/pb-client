@@ -16,7 +16,7 @@ export default function Page({ params: { id } }: IPlaceDetailPageProps) {
   if (isLoading) {
     return <LoadingSpinner size={60} />;
   } else if (isSuccess) {
-    const { post: posts, ...place } = data.data;
+    const { post: posts, ...place } = data;
     const images = posts.map(({ images }) => images).flat();
     return (
       <div className={classes.wrapper}>
@@ -24,7 +24,9 @@ export default function Page({ params: { id } }: IPlaceDetailPageProps) {
           <div style={{ backgroundColor: 'white' }}>
             <PSResultImageContainer images={images} />
             <PsResultDescription place={place} />
-            <h3 className="text-lg font-bold mb-2">리뷰 · 27</h3>
+            <h3 className="text-lg font-bold mb-2">
+              리뷰 · {place.total_posts}
+            </h3>
             <Separator />
 
             {posts.map((post) => (

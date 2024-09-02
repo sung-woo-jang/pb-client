@@ -8,7 +8,6 @@ import addPPCategoryDrawerReducer from '@/store/slice/drawer/addPPCategoryDrawer
 import addPPDrawerReducer from '@/store/slice/drawer/addPPDrawer/slice';
 import editPPCategoryDrawerReducer from '@/store/slice/drawer/editPPCategoryDrawer/slice';
 import postEditorReducer from '@/store/slice/postEditor/slice';
-import userReducer from '@/store/slice/user/slice';
 
 const store = configureStore({
   reducer: {
@@ -21,7 +20,6 @@ const store = configureStore({
     modal: modalReducer,
     searchBox: searchBoxReducer,
     postEditor: postEditorReducer,
-    user: userReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>
