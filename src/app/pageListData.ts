@@ -18,6 +18,10 @@ export const pageList: PageListState[] = [
     list: [{ link: '/newsfeed', title: '뉴스피드 리스트(메인) - 🟢' }],
   },
   {
+    head: '로그인',
+    list: [{ link: '/login', title: '로그인 화면 - 🟢' }],
+  },
+  {
     head: '타임라인',
     list: [
       {

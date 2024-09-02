@@ -13,5 +13,6 @@ module.exports = {
         pathname: '/**',
       },
     ],
+    domains: ['ssl.pstatic.net'],
   },
 };

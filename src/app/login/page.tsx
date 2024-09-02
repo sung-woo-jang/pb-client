@@ -1,41 +1,79 @@
 'use client';
+import logo from '@/../public/logo.png';
+import Image from 'next/image';
+import { SiNaver } from 'react-icons/si';
+import { useEffect } from 'react';
+import useGetMyInfo from '@/api/auth/getMyInfo';
+import { useRouter } from 'next/navigation';
+import isUndefined from 'lodash/isUndefined';
+
+interface UserInfo {
+  id: string;
+  name: string;
+  nickname: string;
+  email: string;
+  profileImage: string;
+}
+
 export default function Page() {
-  const handleLogin = () => {
-    window.location.href = 'http://localhost:8000/api/auth/login-naver';
+  const { isSuccess, refetch, data } = useGetMyInfo();
+  const handleNaverLogin = () => {
+    const width = 500;
+    const height = 600;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+
+    const loginWindow = window.open(
+      'http://localhost:8000/api/auth/login-naver',
+      'NaverLogin',
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+
+    // 주기적으로 팝업 창이 닫혔는지 확인
+    const checkLoginStatus = setInterval(() => {
+      if (loginWindow?.closed) {
+        clearInterval(checkLoginStatus);
+        refetch().then();
+      }
+    }, 500);
   };
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSuccess && !isUndefined(data)) {
+      router.push('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, router]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md">
-        <div className="mb-8">
-          <svg className="w-32 h-32 mx-auto" viewBox="0 0 100 100">
-            <rect width="100" height="100" fill="#4A5568" />
-            <text
-              x="50"
-              y="50"
-              fontFamily="Arial"
-              fontSize="14"
-              fill="white"
-              textAnchor="middle"
-              dominantBaseline="middle"
-            >
-              PlayBuds Logo
-            </text>
-          </svg>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-6 px-4">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
+        {/* Logo Section */}
+        <div className="flex flex-col items-center mb-8">
+          <Image
+            src={logo}
+            width={180}
+            height={180}
+            alt="PlavBuds logo"
+            className="drop-shadow-xl"
+          />
+          <h1 className="mt-4 text-3xl font-bold text-gray-800 tracking-wide">
+            PlavBuds
+          </h1>
         </div>
 
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-2xl font-bold mb-6 text-center">PlayBuds</h2>
-
-          <div className="mb-4">
-            <button
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
-              onClick={handleLogin}
-            >
-              <span className="mr-2">N</span>
-              네이버 로그인
-            </button>
-          </div>
-        </div>
+        {/* Login Button */}
+        <button
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 shadow-lg flex items-center justify-center"
+          onClick={handleNaverLogin}
+        >
+          <SiNaver className="mr-3 text-white" />
+          {/*<span className="mr-3 font-bold text-2xl bg-white text-green-500 rounded-full w-8 h-8 flex items-center justify-center">*/}
+          {/*  N*/}
+          {/*</span>*/}
+          <span className="text-xl">네이버 계정으로 로그인</span>
+        </button>
       </div>
     </div>
   );

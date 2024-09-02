@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -11,7 +9,7 @@ interface UserInfo {
   profileImage: string;
 }
 
-export default function NaverLoginPage() {
+export default function Logout() {
   const [user, setUser] = useState<UserInfo | null>(null);
 
   const handleNaverLogin = () => {
