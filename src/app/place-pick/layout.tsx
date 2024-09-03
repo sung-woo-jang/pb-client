@@ -9,6 +9,7 @@ import {
 } from '@/app/place-pick/styles/cssProps.styles';
 import React, { useRef } from 'react';
 import useGetAllMyPlacePick from '@/api/place-pick/getAllMyPlacePick';
+import SearchComponent from '@/components/common/SearchBox';
 
 export default function Layout({
   children,
@@ -30,6 +31,7 @@ export default function Layout({
           setFullWidth(!fullWidth);
         }}
       />
+      <SearchComponent />
       <div id="map" style={placePickMapContainerStyle(mapHeight)} />
       <div ref={divRef} style={PPCategoryContainerStyle}>
         {children}

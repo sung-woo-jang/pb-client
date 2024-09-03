@@ -4,7 +4,6 @@ import COLORS from '@/constants/COLORS';
 import * as React from 'react';
 import { IFindUserCategoriesResponseData } from '@/api/pl-pick-category/findUserCategories';
 import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
-import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
 
 interface CategorySectionProps {
   categories: IFindUserCategoriesResponseData[];
@@ -17,7 +16,6 @@ export default function CategorySection({
   selectedCategoryId,
   categories,
 }: CategorySectionProps) {
-  const { addPPDrawerCloseHandler } = useAddPPDrawer();
   return (
     <>
       {categories.map(({ id, title, picker_color }) => (
@@ -41,10 +39,7 @@ export default function CategorySection({
           </button>
         </CategoryList>
       ))}
-      ;
-      <div onClick={addPPDrawerCloseHandler}>
-        <AddCategoryButton />
-      </div>
+      <AddCategoryButton />
     </>
   );
 }

@@ -1,106 +1,100 @@
-import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
-import styles from './styles.module.scss';
-import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { MdBiotech, MdClose } from 'react-icons/md';
+import { IoIosArrowBack } from 'react-icons/io';
 
-interface SearchListProps {
-  searchHistory: string[];
-  handleRemoveItem: (itemToRemove: string) => void;
-  handleClearAll: () => void; // 전체 삭제를 위한 핸들러 추가
+// 타입 정의
+type TabType = '추천' | '계정' | '오디오' | '태그' | '장소' | '릴스';
+
+interface SearchResult {
+  id: string;
+  content: string;
 }
 
-function SearchList({
-  searchHistory,
-  handleRemoveItem,
-  handleClearAll,
-}: SearchListProps) {
+interface SearchResultsProps {
+  searchTerm: string;
+  results: Record<TabType, SearchResult[]>;
+}
+
+const SearchResultsTabs: React.FC<SearchResultsProps> = ({
+  searchTerm,
+  results,
+}) => {
+  const [activeTab, setActiveTab] = useState<TabType>('추천');
+  const tabs: TabType[] = ['추천', '계정', '오디오', '태그', '장소', '릴스'];
+
   return (
-    <>
-      <div className={styles.searchHistory}>
-        {searchHistory.map((item) => (
-          <div key={item} className={styles.searchHistoryItem}>
-            <span className={styles.searchHistoryText}>{item}</span>
-            <CloseIcon
-              className={styles.searchHistoryIcon}
-              onClick={() => handleRemoveItem(item)}
-            />
-          </div>
+    <div className="w-full h-screen bg-white text-black">
+      <div className="flex border-b border-gray-200">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            className={`px-4 py-2 ${
+              activeTab === tab
+                ? 'border-b-2 border-black text-black'
+                : 'text-gray-500'
+            }`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
         ))}
       </div>
-      <div className="relative">
-        <button className={styles.clearAllButton} onClick={handleClearAll}>
-          전체삭제
-        </button>
+      <div className="p-4">
+        {results[activeTab].length > 0 ? (
+          results[activeTab].map((result) => (
+            <div
+              key={result.id}
+              className="flex items-center justify-between py-2 border-b border-gray-200"
+            >
+              <span>{result.content}</span>
+              <MdClose className="w-4 h-4 cursor-pointer text-gray-500" />
+            </div>
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-center h-64">
+            <MdBiotech className="w-24 h-24 text-gray-300" />
+            <p className="mt-4 text-gray-500">
+              {`"${searchTerm}"`} 에 대한 {activeTab} 결과가 없습니다.
+            </p>
+          </div>
+        )}
       </div>
-    </>
-  );
-}
-
-function EmptySearchHistory() {
-  return (
-    <div className={styles.emptyStateContainer}>
-      <BiotechOutlinedIcon sx={{ width: '12rem', height: '12rem' }} />
-      <p className="mt-4 text-gray-400">최근 검색 기록이 없습니다.</p>
     </div>
   );
-}
+};
 
 export default function SearchHistory() {
-  const [searchHistory, setSearchHistory] = useState([
-    '스타벅스',
-    '맥도날드',
-    '버거킹',
-    '롯데리아',
-    '서브웨이',
-    '투썸플레이스',
-    '이디야',
-    '메가커피',
-    '조마루감자탕',
-    '장충동왕족발보쌈',
-    '국민낙곱새',
-    '전설낙곱새',
-    '빽다방',
-    '모두동',
-    '핵밥',
-    '오쭈',
-    '스타벅스2',
-    '맥도날드2',
-    '버거킹2',
-    '롯데리아2',
-    '서브웨이2',
-    '투썸플레이스2',
-    '이디야2',
-    '메가커피2',
-    '조마루감자탕2',
-    '장충동왕족발보쌈2',
-    '국민낙곱새2',
-    '전설낙곱새2',
-    '빽다방2',
-    '모두동2',
-    '핵밥2',
-    '오쭈2',
-  ]);
-  const handleRemoveItem = (itemToRemove: string) => {
-    setSearchHistory((prev) => prev.filter((item) => item !== itemToRemove));
-  };
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const handleClearAll = () => {
-    setSearchHistory([]);
+  // 더미 데이터
+  const dummyResults: Record<TabType, SearchResult[]> = {
+    추천: [
+      { id: '1', content: '추천 결과 1' },
+      { id: '2', content: '추천 결과 2' },
+    ],
+    계정: [{ id: '3', content: '계정 결과 1' }],
+    오디오: [],
+    태그: [
+      { id: '4', content: '태그 결과 1' },
+      { id: '5', content: '태그 결과 2' },
+    ],
+    장소: [],
+    릴스: [{ id: '6', content: '릴스 결과 1' }],
   };
 
   return (
-    <div className="relative w-full h-screen">
-      {searchHistory.length > 0 ? (
-        <div className={styles.searchHistoryContainer}>
-          <SearchList
-            searchHistory={searchHistory}
-            handleRemoveItem={handleRemoveItem}
-            handleClearAll={handleClearAll}
-          />
-        </div>
-      ) : (
-        <EmptySearchHistory />
-      )}
+    <div className="w-full h-screen bg-white text-black">
+      <div className="flex items-center border-b border-gray-200 bg-gray-100">
+        <IoIosArrowBack className="text-gray-500 w-6 h-6 ml-2 cursor-pointer" />
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="검색어를 입력하세요"
+          className="w-full p-2 bg-gray-100 text-black focus:outline-none"
+        />
+      </div>
+      <SearchResultsTabs searchTerm={searchTerm} results={dummyResults} />
     </div>
   );
 }

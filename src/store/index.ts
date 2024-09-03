@@ -8,18 +8,20 @@ import addPPCategoryDrawerReducer from '@/store/slice/drawer/addPPCategoryDrawer
 import addPPDrawerReducer from '@/store/slice/drawer/addPPDrawer/slice';
 import editPPCategoryDrawerReducer from '@/store/slice/drawer/editPPCategoryDrawer/slice';
 import postEditorReducer from '@/store/slice/postEditor/slice';
+import ppCategoryListDrawerReducer from '@/store/slice/drawer/ppCategoryList/slice';
 
 const store = configureStore({
   reducer: {
     common: commonReducer,
+    modal: modalReducer,
+    searchBox: searchBoxReducer,
+    postEditor: postEditorReducer,
     ppCategoryDetailListDrawer: ppCategoryDetailListDrawerReducer,
     addPPCategoryDrawer: addPPCategoryDrawerReducer,
     addPPDrawer: addPPDrawerReducer,
     commentDrawer: commentDrawerReducer,
     editPPCategoryDrawer: editPPCategoryDrawerReducer,
-    modal: modalReducer,
-    searchBox: searchBoxReducer,
-    postEditor: postEditorReducer,
+    ppCategoryListDrawer: ppCategoryListDrawerReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>

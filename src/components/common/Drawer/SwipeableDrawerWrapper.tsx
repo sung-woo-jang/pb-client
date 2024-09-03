@@ -10,7 +10,7 @@ interface SwipeableDrawerWrapperProps {
   drawerState: boolean;
   setHandler: (state: boolean) => void;
   toggleHandler: () => void;
-  buttonRender: boolean;
+  buttonRender?: boolean;
   onCompleteClick?: () => Promise<void>;
 }
 
@@ -19,7 +19,7 @@ export default function SwipeableDrawerWrapper({
   children,
   drawerState,
   setHandler,
-  buttonRender,
+  buttonRender = true,
   onCompleteClick,
 }: SwipeableDrawerWrapperProps) {
   const toggleDrawer =
