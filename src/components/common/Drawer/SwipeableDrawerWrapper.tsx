@@ -89,7 +89,7 @@ export default function SwipeableDrawerWrapper({
             className={classes.button}
             onClick={handleCompleteClick}
           >
-            완료
+            저장
           </button>
         </div>
       )}

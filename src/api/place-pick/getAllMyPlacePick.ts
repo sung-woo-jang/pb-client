@@ -32,6 +32,29 @@ export const getAllMyPlacePick = async () => {
   return data;
 };
 
+export const selectAllMyPlacePick = (
+  data: CommonResponse<IGetAllMyPlacePickResponseData[]>
+): IAllMyPlacePickTData => {
+  const placeIds = new Set<number>();
+  const placeDetailsMap = new Map<
+    number,
+    { coords: [number, number]; pickerColor: CircleColors }
+  >();
+
+  data.data.forEach(({ place_id, place: { mapx, mapy }, plPickCategory }) => {
+    placeIds.add(place_id);
+    placeDetailsMap.set(place_id, {
+      coords: [mapy, mapx],
+      pickerColor: plPickCategory.picker_color,
+    });
+  });
+
+  return {
+    placeIds,
+    placeDetails: Array.from(placeDetailsMap.entries()),
+  };
+};
+
 const useGetAllMyPlacePick = () =>
   useQuery<
     CommonResponse<IGetAllMyPlacePickResponseData[]>,
@@ -42,28 +65,7 @@ const useGetAllMyPlacePick = () =>
       API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
     ),
     queryFn: getAllMyPlacePick,
-    select: (data) => {
-      const placeIds = new Set<number>();
-      const placeDetailsMap = new Map<
-        number,
-        { coords: [number, number]; pickerColor: CircleColors }
-      >();
-
-      data.data.forEach(
-        ({ place_id, place: { mapx, mapy }, plPickCategory }) => {
-          placeIds.add(place_id);
-          placeDetailsMap.set(place_id, {
-            coords: [mapy, mapx],
-            pickerColor: plPickCategory.picker_color,
-          });
-        }
-      );
-
-      return {
-        placeIds,
-        placeDetails: Array.from(placeDetailsMap.entries()),
-      };
-    },
+    select: selectAllMyPlacePick,
     staleTime: Infinity,
     gcTime: 1000 * 60 * 60 * 24, // 24시간
   });

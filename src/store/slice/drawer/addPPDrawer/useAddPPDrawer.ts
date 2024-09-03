@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import {
+  resetAddPPDrawerState,
   setAddPPDrawerState,
   setAlias,
   setLink,
@@ -22,6 +23,11 @@ export default function useAddPPDrawer() {
   const placeId = useAppSelector((state) => state.addPPDrawer.placeId);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (!addPPDrawerState) {
+      dispatch(resetAddPPDrawerState());
+    }
+  }, [dispatch, addPPDrawerState]);
   const addPPDrawerOpenHandler = () => {
     dispatch(setAddPPDrawerState(true));
   };

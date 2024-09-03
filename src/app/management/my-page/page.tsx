@@ -1,77 +1,60 @@
-import SmileIcon from '@/components/Icon/SmileIcon';
-import UserIcon from '@/components/Icon/UserIcon';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import EditIcon from '@mui/icons-material/Edit';
+import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { FaUser, FaUserFriends } from 'react-icons/fa';
+import { MdModeEdit } from 'react-icons/md';
 
-const sx: SxProps<Theme> = {
-  color: 'black',
-  borderColor: 'gray',
-};
 export default function Page() {
   return (
-    <div className="flex flex-col items-center w-full h-screen bg-gray-100">
-      <Badge
-        badgeContent={
-          <EditIcon
-            sx={{
-              color: '#000000',
-              background: 'transparent',
-              marginRight: '1rem',
-              marginBottom: '2rem',
-              width: '3rem',
-              height: '3rem',
-              cursor: 'pointer',
-            }}
-          />
-        }
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-      >
-        <Avatar
-          alt="Remy Sharp"
-          src="/placeholder-user.jpg"
-          sx={{
-            width: '7rem',
-            height: '7rem',
-            marginTop: '2rem',
-          }}
-        />
-      </Badge>
-      <div className="mt-2 text-xl font-bold">닉네임</div>
-      <div className="text-sm text-gray-500">아이디</div>
-      <div className="w-11/12 p-4 mt-4 bg-white rounded-lg shadow-md">
-        <div className="mb-2 text-lg font-semibold">내프로필</div>
-        <div className="flex items-center justify-between py-2 border-t">
-          <div className="flex items-center">
-            <SmileIcon className="w-6 h-6 mr-2" />
-            <span>닉네임</span>
-          </div>
-          <Button variant="outlined" sx={sx}>
-            수정
-          </Button>
-        </div>
-        <div className="flex items-center justify-between py-2 border-t">
-          <Link href={'follow'}>
-            <div className="flex items-center">
-              <UserIcon className="w-6 h-6 mr-2" />
-              <span>팔로우 관리</span>
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div className="md:flex">
+          <div className="md:flex-shrink-0">
+            <div className="relative h-48 w-full md:w-48">
+              <Image
+                className="object-cover"
+                src="/placeholder-user.jpg"
+                alt="User profile"
+                layout="fill"
+              />
+              <button className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors duration-200">
+                <MdModeEdit className="text-gray-600 text-xl" />
+              </button>
             </div>
-          </Link>
-          <Link
-            href={'/management/follow'}
-            className="text-gray-700 hover:underline"
-          >
-            <Button variant="outlined" sx={sx}>
-              수정
-            </Button>
-          </Link>
+          </div>
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+              프로필
+            </div>
+            <h1 className="block mt-1 text-lg leading-tight font-medium text-black">
+              닉네임
+            </h1>
+            <p className="mt-2 text-gray-500">아이디</p>
+
+            <div className="mt-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <FaUser className="text-gray-400" />
+                  <span className="text-gray-700">닉네임 변경</span>
+                </div>
+                <button className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  수정
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <FaUserFriends className="text-gray-400" />
+                  <span className="text-gray-700">팔로우 관리</span>
+                </div>
+                <Link href="/management/follow">
+                  <button className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    관리
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

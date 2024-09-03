@@ -5,7 +5,7 @@ import { CommonResponse } from '@/types/apiTypes';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
-interface IFindUserCategoriesResponseData {
+export interface IFindUserCategoriesResponseData {
   title: string;
   picker_color: CircleColors;
   memo: string;

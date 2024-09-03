@@ -13,6 +13,7 @@ interface CommentItemProps {
 
 export default function CommentItem({ comment }: CommentItemProps) {
   const { setLabelHandler, setModalStateHandler } = useModalController();
+  // Todo: 유저정보 안전하게 관리하게 되면 이 부분 queryClient로 변경
   const { data: myInfo, isSuccess, isLoading } = useGetMyInfo();
   const [isEditing, setIsEditing] = useState(false);
   const [editedComment, setEditedComment] = useState(comment.comment);
@@ -37,6 +38,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
     setIsEditing(false);
   };
 
+  // TODO: queryClient 사용하게 될 시 LoadingSpinner -> 다른 링크로 이동하도록 수정
   if (isLoading) return <LoadingSpinner size={60} />;
   if (!isSuccess) return null;
 

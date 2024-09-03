@@ -26,6 +26,7 @@ export default function PostFooter({
   postId,
   likes,
 }: IPostFooterProps) {
+  // TODO: queryClient로 사용하게끔 변경
   const { data: myInfo, isSuccess } = useGetMyInfo();
   const [isChecked, setIsChecked] = useState(false);
 

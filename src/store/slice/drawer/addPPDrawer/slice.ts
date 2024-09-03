@@ -22,6 +22,9 @@ const { reducer: addPPDrawerReducer, actions } = createSlice({
   name: 'addPPDrawer',
   initialState,
   reducers: {
+    resetAddPPDrawerState: (state) => {
+      Object.assign(state, initialState);
+    },
     setAddPPDrawerState: (state, action: PayloadAction<boolean>) => {
       state.addPPDrawerState = action.payload;
     },
@@ -54,6 +57,7 @@ export const {
   setPlaceTitle,
   setAddPPDrawerState,
   toggleAddPPDrawerState,
+  resetAddPPDrawerState,
 } = actions;
 
 export default addPPDrawerReducer;
