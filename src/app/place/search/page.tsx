@@ -2,7 +2,6 @@
 import styles from './styles/styles.module.scss';
 import SearchPlaceInfo from '@/app/place/search/_components/SearchPlaceInfo';
 import LocationInfo from '@/app/place/search/_components/LocationInfo';
-import SearchBox from '@/app/place/search/_components/SearchBox';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSearchPlaces, { ISearchPlacesQuery } from '@/api/search/searchPlaces';
@@ -46,7 +45,6 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
-      <SearchBox />
       <LocationInfo />
       {isLoading && <LoadingSpinner />}
       {isSuccess &&

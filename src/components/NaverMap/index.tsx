@@ -1,5 +1,5 @@
 import { useMap } from '@/hooks/useMap';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { CircleColors } from '@/constants/COLORS';
 
 interface INaverMapProps {
@@ -10,24 +10,12 @@ interface INaverMapProps {
       pickerColor: CircleColors;
     },
   ][];
-  searchBoxRef: MutableRefObject<HTMLDivElement | null>;
 }
 
-export default function NaverMap({
-  placeDetails,
-  searchBoxRef,
-}: INaverMapProps) {
+export default function NaverMap({ placeDetails }: INaverMapProps) {
   useMap({ placeDetails });
   const mapRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (mapRef.current) {
-      const searchBoxHeight = searchBoxRef.current
-        ? searchBoxRef.current.offsetHeight
-        : 0;
-      mapRef.current.style.height = `calc(100vh - ${searchBoxHeight}px)`;
-    }
-  }, [searchBoxRef]);
   return (
     <div
       id="map"
