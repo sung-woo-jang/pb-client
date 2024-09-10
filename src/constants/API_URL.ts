@@ -16,6 +16,7 @@ export const API_URL = {
   COMMENT: {
     GET_COMMENT: (postId: NumberString) => `comment/${postId}`,
     CREATE_COMMENT: 'comment',
+    UPDATE_COMMENT: 'comment',
   },
   POST: {
     GET_POST_DETAIL: (postId: NumberString) => `post/${postId}`,
