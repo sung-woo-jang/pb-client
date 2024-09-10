@@ -1,12 +1,20 @@
 import React from 'react';
 import useModalController from '@/store/slice/modal/useModalController';
 import { getLabelByCode } from '@/store/slice/modal/modalLabelData';
+import ConfirmModal from '@/components/common/ConfirmModal';
+import useDeleteComment from '@/api/comment/deleteComment';
+import { IGetCommentsResponseData } from '@/api/comment/getComments';
+import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawer';
+import { useQueryClient } from '@tanstack/react-query';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
 
 interface CommentControlPanelProps {
   isEditing: boolean;
   setIsEditing: (isEditing: boolean) => void;
   onSave: () => void;
   onCancel: () => void;
+  comment: IGetCommentsResponseData;
 }
 
 const buttonStyle =
@@ -17,12 +25,31 @@ export default function CommentControlPanel({
   onCancel,
   setIsEditing,
   isEditing,
+  comment,
 }: CommentControlPanelProps) {
   const { setLabelHandler, setModalStateHandler } = useModalController();
-
+  const queryClient = useQueryClient();
+  const { commentPostId } = useCommentDrawer();
   const confirmHandler = () => {
     setLabelHandler(getLabelByCode('MO-CO-DE'));
     setModalStateHandler(true);
+  };
+
+  const { mutateAsync } = useDeleteComment();
+
+  const deleteCommentHandler = async (callbackFn: () => void) => {
+    await mutateAsync(comment.id, {
+      onSuccess: () => {
+        if (commentPostId !== 0) {
+          queryClient.invalidateQueries({
+            queryKey: generateQueryKeysFromUrl(
+              API_URL.COMMENT.GET_COMMENT(commentPostId)
+            ),
+          });
+        }
+        callbackFn();
+      },
+    });
   };
 
   return (
@@ -56,6 +83,7 @@ export default function CommentControlPanel({
           >
             삭제
           </button>
+          <ConfirmModal confirmHandler={deleteCommentHandler} />
         </>
       )}
     </div>

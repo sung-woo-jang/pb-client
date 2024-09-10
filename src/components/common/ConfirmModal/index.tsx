@@ -1,7 +1,11 @@
 import { MouseEvent, useRef } from 'react';
 import useModalController from '@/store/slice/modal/useModalController';
 
-export default function ConfirmModal() {
+interface ConfirmModalProps {
+  confirmHandler: (callbackFn: () => void) => void;
+}
+
+export default function ConfirmModal({ confirmHandler }: ConfirmModalProps) {
   const { label, modalState, setModalStateHandler } = useModalController();
   const modalBackground = useRef<HTMLDivElement>(null);
 
@@ -13,6 +17,10 @@ export default function ConfirmModal() {
     if (e.target === modalBackground.current) {
       closeModal();
     }
+  };
+
+  const okButtonClickHandler = () => {
+    confirmHandler(closeModal);
   };
 
   if (!modalState) return null;
@@ -38,7 +46,7 @@ export default function ConfirmModal() {
             아니요
           </button>
           <button
-            onClick={closeModal}
+            onClick={okButtonClickHandler}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           >
             예

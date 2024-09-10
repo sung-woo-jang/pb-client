@@ -6,7 +6,6 @@ import useCommentDrawer from '@/store/slice/drawer/commentDrawer/useCommentDrawe
 import useGetComments from '@/api/comment/getComments';
 import useCreateComment from '@/api/comment/createComment';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import ConfirmModal from '@/components/common/ConfirmModal';
 
 export default function CommentDrawer() {
   const {
@@ -36,26 +35,23 @@ export default function CommentDrawer() {
   if (isLoading) return <LoadingSpinner size={60} />;
 
   return (
-    <>
-      <SwipeableDrawerWrapper
-        drawerState={commentDrawerState}
-        setHandler={setCommentDrawerHandler}
-        toggleHandler={commentDrawerToggleHandler}
-        title={'댓글'}
-        buttonRender={false}
-      >
-        {isSuccess && (
-          <>
-            <CommentList comments={data} />
-            <CommentInput
-              comment={comment}
-              setComment={setComment}
-              createCommentHandler={createCommentHandler}
-            />
-          </>
-        )}
-      </SwipeableDrawerWrapper>
-      <ConfirmModal />
-    </>
+    <SwipeableDrawerWrapper
+      drawerState={commentDrawerState}
+      setHandler={setCommentDrawerHandler}
+      toggleHandler={commentDrawerToggleHandler}
+      title={'댓글'}
+      buttonRender={false}
+    >
+      {isSuccess && (
+        <>
+          <CommentList comments={data} />
+          <CommentInput
+            comment={comment}
+            setComment={setComment}
+            createCommentHandler={createCommentHandler}
+          />
+        </>
+      )}
+    </SwipeableDrawerWrapper>
   );
 }

@@ -58,6 +58,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
             <CommentHaader comment={comment} />
             {myInfo.id === comment.user.id && (
               <CommentControlPanel
+                comment={comment}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
                 onSave={handleSave}
