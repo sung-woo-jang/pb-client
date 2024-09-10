@@ -13,7 +13,17 @@ import AddPPForm from '@/components/common/Drawer/AddPPDrawer/AddPPForm';
 import CategorySection from '@/components/common/Drawer/AddPPDrawer/CategorySection';
 
 export default function AddPPDrawer() {
-  const addPPDrawer = useAddPPDrawer();
+  const {
+    alias,
+    link,
+    memo,
+    placeId: place_id,
+    placeTitle,
+    addPPDrawerToggleHandler,
+    addPPDrawerState,
+    setAddPPDrawerHandler,
+  } = useAddPPDrawer();
+
   const queryClient = useQueryClient();
   const { data: categories, isLoading, isSuccess } = useFindUserCategories();
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | false>(
@@ -25,13 +35,13 @@ export default function AddPPDrawer() {
   const { mutateAsync } = useCreatePlacePick();
 
   const createPlacePickMutateHandler = async () => {
-    if (isNumber(addPPDrawer.placeId) && isNumber(selectedCategoryId))
+    if (isNumber(place_id) && isNumber(selectedCategoryId))
       await mutateAsync(
         {
-          alias: addPPDrawer.alias,
-          link: addPPDrawer.link,
-          memo: addPPDrawer.memo,
-          place_id: addPPDrawer.placeId,
+          alias,
+          link,
+          memo,
+          place_id,
           pl_pick_category_id: selectedCategoryId,
         },
         {
@@ -51,10 +61,10 @@ export default function AddPPDrawer() {
   } else if (isSuccess) {
     return (
       <SwipeableDrawerWrapper
-        title={addPPDrawer.placeTitle}
-        toggleHandler={addPPDrawer.addPPDrawerToggleHandler}
-        drawerState={addPPDrawer.addPPDrawerState}
-        setHandler={addPPDrawer.setAddPPDrawerHandler}
+        title={`${placeTitle} placeId: ${place_id}`}
+        toggleHandler={addPPDrawerToggleHandler}
+        drawerState={addPPDrawerState}
+        setHandler={setAddPPDrawerHandler}
         buttonRender={true}
         onCompleteClick={createPlacePickMutateHandler}
       >

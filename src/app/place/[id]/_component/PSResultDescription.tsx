@@ -18,11 +18,6 @@ export default function PsResultDescription({
       <div className={classes.summary}>
         <StarIcon className="h-4 w-4 text-yellow-400" />
         <span className="ml-1">{place_average_rate}</span>
-        {/*<span className="mx-1">&#183;</span>*/}
-        {/*<span>리뷰 {total_posts}</span>*/}
-        {/*TODO*/}
-        {/*<span className="mx-1">&#183;</span>*/}
-        {/*<span>팔로워 리뷰 27</span>*/}
       </div>
       <div className={classes.summary}>
         <AddressTooltip roadAddress={road_address} lotAddress={address} />

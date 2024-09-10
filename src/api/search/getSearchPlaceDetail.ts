@@ -16,9 +16,9 @@ interface IKeywords {
 }
 
 interface IUser {
-  id: 'dfff79bf-111a-4b93-b4fc-a30ccfb40184';
-  nickname: '3de3fr3hn3d73fx3i46';
-  profileImage: '124655.png';
+  id: string;
+  nickname: string;
+  profileImage: string;
 }
 
 export interface IPost {

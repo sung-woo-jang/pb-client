@@ -23,7 +23,7 @@ export default function NaverMap({ placeDetails }: INaverMapProps) {
       className="flex-grow"
       style={{
         width: '100%',
-        height: '100%',
+        height: `100%`,
         transition: 'all ease 0.5s',
       }}
     />

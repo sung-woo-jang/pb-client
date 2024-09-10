@@ -1,7 +1,9 @@
+import React, { useState } from 'react';
 import HelpIcon from '@mui/icons-material/Help';
 import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip';
 import Rating from '@mui/material/Rating';
 import { styled } from '@mui/material/styles';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -37,6 +39,16 @@ interface IStarRatingTooltipProps {
 }
 
 export default function StarRatingTooltip({ rate }: IStarRatingTooltipProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <StyledRating
@@ -47,16 +59,31 @@ export default function StarRatingTooltip({ rate }: IStarRatingTooltipProps) {
         max={3}
       />
 
-      <NoMaxWidthTooltip
-        title={ratingTooltip.map(({ id, description }) => (
-          <div className={'flex align-items-center'} key={id}>
-            <StyledRating value={id} size="small" readOnly max={id} />:{' '}
-            {description}
-          </div>
-        ))}
-      >
-        <HelpIcon />
-      </NoMaxWidthTooltip>
+      <ClickAwayListener onClickAway={handleTooltipClose}>
+        <div>
+          <NoMaxWidthTooltip
+            PopperProps={{
+              disablePortal: true,
+            }}
+            onClose={handleTooltipClose}
+            open={open}
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            title={ratingTooltip.map(({ id, description }) => (
+              <div className={'flex align-items-center'} key={id}>
+                <StyledRating value={id} size="small" readOnly max={id} />:{' '}
+                {description}
+              </div>
+            ))}
+          >
+            <HelpIcon
+              onClick={handleTooltipOpen}
+              style={{ cursor: 'pointer' }}
+            />
+          </NoMaxWidthTooltip>
+        </div>
+      </ClickAwayListener>
     </div>
   );
 }
