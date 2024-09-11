@@ -5,6 +5,13 @@ import { CommonResponse } from '@/types/apiTypes';
 import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
+export interface PlacePicks {
+  place_id: number;
+  memo: string;
+  alias: string;
+  link: string;
+}
+
 export interface IFindUserCategoriesResponseData {
   title: string;
   picker_color: CircleColors;
@@ -12,6 +19,7 @@ export interface IFindUserCategoriesResponseData {
   link: string;
   id: number;
   createdAt: Date;
+  placePicks: PlacePicks[];
 }
 
 const findUserCategories = async () => {

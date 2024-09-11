@@ -8,6 +8,7 @@ import {
   setMemo,
   setPlaceId,
   setPlaceTitle,
+  setSelectedCategoryId,
   toggleAddPPDrawerState,
 } from '@/store/slice/drawer/addPPDrawer/slice';
 
@@ -21,6 +22,10 @@ export default function useAddPPDrawer() {
   const link = useAppSelector((state) => state.addPPDrawer.link);
   const memo = useAppSelector((state) => state.addPPDrawer.memo);
   const placeId = useAppSelector((state) => state.addPPDrawer.placeId);
+
+  const selectedCategoryId = useAppSelector(
+    (state) => state.addPPDrawer.selectedCategoryId
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,12 +33,6 @@ export default function useAddPPDrawer() {
       dispatch(resetAddPPDrawerState());
     }
   }, [dispatch, addPPDrawerState]);
-  const addPPDrawerOpenHandler = () => {
-    dispatch(setAddPPDrawerState(true));
-  };
-  const addPPDrawerCloseHandler = () => {
-    dispatch(setAddPPDrawerState(false));
-  };
 
   const setAddPPDrawerHandler = (state: boolean) => {
     dispatch(setAddPPDrawerState(state));
@@ -65,22 +64,25 @@ export default function useAddPPDrawer() {
   const setPlaceIdHandler = (placeId: number | boolean) => {
     dispatch(setPlaceId(placeId));
   };
+  const setSelectedCategoryIdHandler = (categoryId: number) => {
+    dispatch(setSelectedCategoryId(categoryId));
+  };
 
   return {
     addPPDrawerState,
+    selectedCategoryId,
     placeTitle,
     alias,
     link,
     memo,
     placeId,
-    addPPDrawerOpenHandler,
     setAddPPDrawerHandler,
     addPPDrawerToggleHandler,
-    addPPDrawerCloseHandler,
     setPlaceTitleHandler,
     setLinkHandler,
     setAliasHandler,
     setMemoHandler,
     setPlaceIdHandler,
+    setSelectedCategoryIdHandler,
   };
 }

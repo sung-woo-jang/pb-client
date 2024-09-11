@@ -7,6 +7,7 @@ interface drawerState {
   link: string;
   memo: string;
   alias: string;
+  selectedCategoryId: number;
 }
 
 const initialState: drawerState = {
@@ -16,6 +17,7 @@ const initialState: drawerState = {
   alias: '',
   link: '',
   memo: '',
+  selectedCategoryId: 0,
 };
 
 const { reducer: addPPDrawerReducer, actions } = createSlice({
@@ -46,6 +48,9 @@ const { reducer: addPPDrawerReducer, actions } = createSlice({
     setPlaceId: (state, action: PayloadAction<number | boolean>) => {
       state.placeId = action.payload;
     },
+    setSelectedCategoryId: (state, action: PayloadAction<number>) => {
+      state.selectedCategoryId = action.payload;
+    },
   },
 });
 
@@ -58,6 +63,7 @@ export const {
   setAddPPDrawerState,
   toggleAddPPDrawerState,
   resetAddPPDrawerState,
+  setSelectedCategoryId,
 } = actions;
 
 export default addPPDrawerReducer;

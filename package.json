@@ -46,6 +46,7 @@
     "swiper": "^9.4.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "use-deep-compare-effect": "^1.8.1",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
