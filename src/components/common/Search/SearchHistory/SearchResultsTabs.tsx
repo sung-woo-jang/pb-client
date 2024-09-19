@@ -1,24 +1,43 @@
 import React, { useState } from 'react';
-import { MdBiotech, MdClose } from 'react-icons/md';
+import { MdConstruction, MdHistory } from 'react-icons/md';
 
 type TabType = '계정' | '장소';
 
-interface SearchResult {
-  id: string;
-  content: string;
-}
+interface SearchResultsTabsProps {}
 
-interface SearchResultsTabsProps {
-  searchTerm: string;
-  results: Record<TabType, SearchResult[]>;
-}
-
-export default function SearchResultsTabs({
-  searchTerm,
-  results,
-}: SearchResultsTabsProps) {
+export default function SearchResultsTabs({}: SearchResultsTabsProps) {
   const [activeTab, setActiveTab] = useState<TabType>('장소');
   const tabs: TabType[] = ['장소', '계정'];
+
+  const renderContent = () => {
+    const commonClasses =
+      'flex flex-col items-center justify-center h-64 rounded-lg p-6 bg-gradient-to-br';
+
+    if (activeTab === '계정') {
+      return (
+        <div className={`${commonClasses}`}>
+          <MdConstruction className="w-24 h-24 text-yellow-500 animate-bounce" />
+          <p className="mt-6 text-lg font-semibold text-yellow-700 text-center">
+            <strong>계정 검색 기능</strong> 준비 중이에요! 🚧
+            <br />곧 멋진 기능으로 찾아뵙겠습니다. 😊
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div className={`${commonClasses}`}>
+          <MdHistory className="w-24 h-24 text-blue-500 animate-bounce" />
+          <p className="mt-6 text-lg font-semibold text-blue-700 text-center">
+            <strong>장소 검색 기록 기능</strong> 개발 중! 📜
+            <br />
+            조금만 기다려 주십쇼. ^^7
+            <br />
+            ps.검색기능은 됩니다.
+          </p>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="w-full h-screen bg-white text-black">
@@ -37,26 +56,7 @@ export default function SearchResultsTabs({
           </button>
         ))}
       </div>
-      <div className="p-4">
-        {results[activeTab].length > 0 ? (
-          results[activeTab].map((result) => (
-            <div
-              key={result.id}
-              className="flex items-center justify-between py-2 border-b border-gray-200"
-            >
-              <span>{result.content}</span>
-              <MdClose className="w-4 h-4 cursor-pointer text-gray-500" />
-            </div>
-          ))
-        ) : (
-          <div className="flex flex-col items-center justify-center h-64">
-            <MdBiotech className="w-24 h-24 text-gray-300" />
-            <p className="mt-4 text-gray-500">
-              {`"${searchTerm}"`} 에 대한 {activeTab} 결과가 없습니다.
-            </p>
-          </div>
-        )}
-      </div>
+      <div className="p-4">{renderContent()}</div>
     </div>
   );
 }

@@ -4,7 +4,9 @@ import ScrollableContainer from '@/components/common/ScrollableContainer';
 import classes from './styles.module.scss';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { FaPhoneAlt } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
+import Link from 'next/link';
+import { useMemo } from 'react';
+import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
 
 export default function PlaceInfo() {
   const {
@@ -12,8 +14,15 @@ export default function PlaceInfo() {
     placeInfoDrawerToggleHandler,
     setPlaceInfoDrawerStateHandler,
   } = usePlaceInfoDrawer();
+
   const { title, address, placeCategory, road_address, telephone } =
     useAppSelector((state) => state.placeInfo.info);
+
+  const search = useMemo(() => {
+    const addressToUse = road_address.length > 0 ? road_address : address;
+    return `${addressToUse.split(' ').slice(0, 2).join(' ')} ${title}`.trim();
+  }, [road_address, address, title]);
+
   return (
     <SwipeableDrawerWrapper
       showActionButton={false}
@@ -34,12 +43,14 @@ export default function PlaceInfo() {
 
           <div className={classes.infoContainer}>
             <div className={classes.addressContainer}>
-              <MdLocationOn className={classes.icon} />
-              <div>
-                <div>{address}</div>
-                <div className={classes.roadAddress}>{road_address}</div>
+              <div style={{ width: '100vw' }}>
+                <AddressTooltip
+                  roadAddress={road_address}
+                  lotAddress={address}
+                />
               </div>
             </div>
+            {/*TODO: 추가적인 정보를 넣어서 드로어 높이 좀 올려야 함*/}
             {telephone && (
               <div className={classes.telephone}>
                 <FaPhoneAlt className={classes.icon} />
@@ -48,7 +59,12 @@ export default function PlaceInfo() {
             )}
           </div>
           {/*TODO: 네이버 지도로 탭 전환*/}
-          <button className={classes.directionButton}>길찾기</button>
+          <Link
+            href={`https://map.naver.com/p/search/${search}`}
+            target="_blank"
+          >
+            <button className={classes.directionButton}>길찾기</button>
+          </Link>
         </div>
       </ScrollableContainer>
     </SwipeableDrawerWrapper>

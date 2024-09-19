@@ -26,19 +26,20 @@ export default function SwipeableDrawerWrapper({
 }: SwipeableDrawerWrapperProps) {
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-      if (
-        event.type === 'keydown' &&
-        (event.target as HTMLElement).tagName === 'INPUT'
-      ) {
-        return;
+      if (event) {
+        if (
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
+        if (
+          event.type === 'keydown' &&
+          (event.target as HTMLElement).tagName === 'INPUT'
+        ) {
+          return;
+        }
       }
       setHandler(open);
     };

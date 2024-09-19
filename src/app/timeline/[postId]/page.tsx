@@ -9,7 +9,6 @@ interface ITimelinePageProps {
 }
 
 export default function Page({ params }: ITimelinePageProps) {
-  // TODO: 이것저것 할게 많음. 나중에 와서 정리
   const { data, isSuccess, isLoading } = useGetPostDetail(params.postId);
   if (isLoading) return <LoadingSpinner size={60} />;
   else if (isSuccess) return <PostCard newsfeed={data.data} />;

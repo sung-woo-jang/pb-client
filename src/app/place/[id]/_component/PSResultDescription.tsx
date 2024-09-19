@@ -2,7 +2,7 @@ import classes from '@/app/place/[id]/styles.module.scss';
 import PlacePickIcon from '@/components/common/interaction/PlacePickIcon';
 import StarIcon from '@/components/Icon/StarIcon';
 import { IGetSearchPlaceResult } from '@/api/search/getSearchPlaceDetail';
-import AddressTooltip from '@/app/place/[id]/_component/AddressTooltip';
+import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
 
 interface IPsResultDescriptionProps {
   place: IGetSearchPlaceResult;
@@ -23,7 +23,6 @@ export default function PsResultDescription({
         <AddressTooltip roadAddress={road_address} lotAddress={address} />
       </div>
       <div className="flex items-center mt-4">
-        {/*TODO*/}
         <PlacePickIcon placeId={id} placeTitle={title} />
       </div>
     </div>
