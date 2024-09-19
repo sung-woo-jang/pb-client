@@ -14,6 +14,9 @@ const { reducer: commentDrawerReducer, actions } = createSlice({
   name: 'commentDrawer',
   initialState,
   reducers: {
+    resetCommentDrawerState: (state) => {
+      Object.assign(state, initialState);
+    },
     setCommentDrawerState: (state, action: PayloadAction<boolean>) => {
       state.commentDrawerState = action.payload;
     },
@@ -26,6 +29,10 @@ const { reducer: commentDrawerReducer, actions } = createSlice({
   },
 });
 
-export const { toggleCommentDrawer, setCommentPostId, setCommentDrawerState } =
-  actions;
+export const {
+  resetCommentDrawerState,
+  toggleCommentDrawer,
+  setCommentPostId,
+  setCommentDrawerState,
+} = actions;
 export default commentDrawerReducer;

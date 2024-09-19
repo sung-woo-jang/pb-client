@@ -42,5 +42,5 @@ export function useMarkerClickHandler(markers: naver.maps.Marker[]) {
         naver.maps.Event.removeListener(listener);
       });
     };
-  }, [markers, mutate, placeInfoDrawerOpenHandler]);
+  }, [dispatch, markers, mutate, placeInfoDrawerOpenHandler]);
 }

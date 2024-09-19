@@ -12,6 +12,9 @@ const { reducer: editPPCategoryDrawerReducer, actions } = createSlice({
   name: 'editPPCategoryDrawer',
   initialState,
   reducers: {
+    resetEditPPCategoryDrawer: (state) => {
+      Object.assign(state, initialState);
+    },
     setEditPPCategoryDrawerState: (state, action: PayloadAction<boolean>) => {
       state.editPPCategoryDrawerState = action.payload;
     },
@@ -21,7 +24,10 @@ const { reducer: editPPCategoryDrawerReducer, actions } = createSlice({
   },
 });
 
-export const { setEditPPCategoryDrawerState, toggleEditPPCategoryDrawerState } =
-  actions;
+export const {
+  resetEditPPCategoryDrawer,
+  setEditPPCategoryDrawerState,
+  toggleEditPPCategoryDrawerState,
+} = actions;
 
 export default editPPCategoryDrawerReducer;

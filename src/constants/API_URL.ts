@@ -56,6 +56,7 @@ export const API_URL = {
     INFO: 'place/info',
     SEARCH_PLACE: 'place/search',
     CREATE_PLACE_CATEGORY: 'place/category',
+    GET_PLACE_INFO_BY_ID: (id: NumberString) => `place/${id}`,
   },
   PL_PICK_CATEGORY: {
     CREATE_PL_PICK_CATEGORY: 'pl-pick-category',

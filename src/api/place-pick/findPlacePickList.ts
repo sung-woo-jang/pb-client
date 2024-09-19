@@ -48,12 +48,17 @@ const findPlacePickList = async (id: NumberString) => {
 };
 
 const useFindPlacePickList = (id: NumberString) =>
-  useQuery<CommonResponse<IFindPlacePickListResponseData[]>>({
+  useQuery<
+    CommonResponse<IFindPlacePickListResponseData[]>,
+    unknown,
+    IFindPlacePickListResponseData[]
+  >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.PLACE_PICK.FIND_PLACE_PICK_LIST(id)
     ),
     queryFn: () => findPlacePickList(id),
     enabled: gt(id, 0),
+    select: (data) => data.data,
   });
 
 export default useFindPlacePickList;

@@ -28,9 +28,6 @@ export interface ISearchPlacesResponseData {
   id: number;
   createdAt: Date;
   placeCategory: IPlaceCategory;
-  similarity: number;
-  distance: number | null;
-  placePickCount: number;
 }
 
 const searchPlace = async (query: ISearchPlacesQuery) => {

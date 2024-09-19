@@ -14,6 +14,9 @@ const { reducer: ppCategoryDetailListDrawerReducer, actions } = createSlice({
   name: 'ppCategoryDetailListDrawer',
   initialState,
   reducers: {
+    resetPPCategoryDetailListDrawer: (state) => {
+      Object.assign(state, initialState);
+    },
     setPPCategoryDetailListDrawerState: (
       state,
       action: PayloadAction<boolean>
@@ -31,6 +34,7 @@ const { reducer: ppCategoryDetailListDrawerReducer, actions } = createSlice({
 });
 
 export const {
+  resetPPCategoryDetailListDrawer,
   setPPCategoryId,
   togglePPCategoryDetailListDrawerState,
   setPPCategoryDetailListDrawerState,

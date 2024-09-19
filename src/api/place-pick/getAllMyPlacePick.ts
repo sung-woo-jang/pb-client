@@ -24,7 +24,7 @@ interface IAllMyPlacePickTData {
   ][];
 }
 
-export const getAllMyPlacePick = async () => {
+const getAllMyPlacePick = async () => {
   const { data } = await axiosInstance.get<
     CommonResponse<IGetAllMyPlacePickResponseData[]>
   >(API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK);

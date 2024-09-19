@@ -9,10 +9,22 @@ import PPCategoryDetailList from '@/components/common/Drawer/PPCategoryDetailLis
 import PPCategoryList from '@/components/common/Drawer/PPCategoryList';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setAddPPCategoryState } from '@/store/slice/drawer/addPPCategoryDrawer/slice';
-import { setAddPPDrawerState } from '@/store/slice/drawer/addPPDrawer/slice';
-import { setCommentDrawerState } from '@/store/slice/drawer/commentDrawer/slice';
-import { setEditPPCategoryDrawerState } from '@/store/slice/drawer/editPPCategoryDrawer/slice';
-import { setPPCategoryDetailListDrawerState } from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/slice';
+import {
+  resetAddPPDrawerState,
+  setAddPPDrawerState,
+} from '@/store/slice/drawer/addPPDrawer/slice';
+import {
+  resetCommentDrawerState,
+  setCommentDrawerState,
+} from '@/store/slice/drawer/commentDrawer/slice';
+import {
+  resetEditPPCategoryDrawer,
+  setEditPPCategoryDrawerState,
+} from '@/store/slice/drawer/editPPCategoryDrawer/slice';
+import {
+  resetPPCategoryDetailListDrawer,
+  setPPCategoryDetailListDrawerState,
+} from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/slice';
 import { setPPCategoryDrawerState } from '@/store/slice/drawer/ppCategoryList/slice';
 import { RootState } from '@/store';
 import PlaceInfo from '@/components/common/Drawer/PlaceInfo';
@@ -67,15 +79,19 @@ export default function Drawer() {
             dispatch(setAddPPCategoryState(false));
           } else if (drawerName === 'addPPDrawerState') {
             dispatch(setAddPPDrawerState(false));
+            dispatch(resetAddPPDrawerState());
           } else if (drawerName === 'commentDrawerState') {
             dispatch(setCommentDrawerState(false));
+            dispatch(resetCommentDrawerState());
           } else if (drawerName === 'editPPCategoryDrawerState') {
             dispatch(setEditPPCategoryDrawerState(false));
+            dispatch(resetEditPPCategoryDrawer());
           } else if (drawerName === 'placeInfoDrawerState') {
             dispatch(setPlaceInfoDrawerState(false));
             dispatch(resetPlacePickInfoState());
           } else if (drawerName === 'ppCategoryDetailListDrawerState') {
             dispatch(setPPCategoryDetailListDrawerState(false));
+            dispatch(resetPPCategoryDetailListDrawer());
           } else if (drawerName === 'ppCategoryListDrawerState') {
             dispatch(setPPCategoryDrawerState(false));
           }
@@ -87,6 +103,7 @@ export default function Drawer() {
 
   useEffect(() => {
     const openDrawer = Object.entries(drawerStates).find(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([_, isOpen]) => isOpen
     );
 

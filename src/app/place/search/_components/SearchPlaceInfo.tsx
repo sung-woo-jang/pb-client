@@ -1,19 +1,13 @@
 import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
 import BookmarkIcon from '@/components/Icon/BookmarkIcon';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import { TbMapPinHeart } from 'react-icons/tb';
 import Link from 'next/link';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { ISearchPlacesResponseData } from '@/api/search/searchPlaces';
 import { FaPhoneAlt } from 'react-icons/fa';
-import convertKmToM from '@/utils/convertKmToM';
 import { useAppDispatch } from '@/hooks/redux-hooks';
-import {
-  resetPostEditorState,
-  setPostEditorId,
-  setPostEditorTitle,
-} from '@/store/slice/postEditor/slice';
+import { resetPostEditorState } from '@/store/slice/postEditor/slice';
 import { useRouter } from 'next/navigation';
 
 interface ISearchPlaceInfoProps {
@@ -21,16 +15,7 @@ interface ISearchPlaceInfoProps {
 }
 
 export default function SearchPlaceInfo({
-  placeInfo: {
-    road_address,
-    placeCategory,
-    description,
-    distance,
-    title,
-    telephone,
-    placePickCount,
-    id,
-  },
+  placeInfo: { road_address, placeCategory, description, title, telephone, id },
 }: ISearchPlaceInfoProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -38,9 +23,7 @@ export default function SearchPlaceInfo({
     dispatch(resetPostEditorState());
   }, [dispatch]);
   const writePostButtonClickHandler = () => {
-    dispatch(setPostEditorId(id));
-    dispatch(setPostEditorTitle(title));
-    router.push('/post');
+    router.push(`/review/${id}`);
   };
 
   return (
@@ -61,11 +44,6 @@ export default function SearchPlaceInfo({
               <ChevronDownIcon className="text-muted-foreground mt-1" />
             </p>
           </div>
-          {distance && (
-            <p className="text-sm text-muted-foreground">
-              현위치에서 {convertKmToM(distance)}m
-            </p>
-          )}
         </div>
       </div>
 
@@ -74,8 +52,6 @@ export default function SearchPlaceInfo({
       )}
 
       <div className="flex items-center mb-2">
-        <TbMapPinHeart className="w-6 h-6 text-red-500" />
-        <p className="ml-1 text-lg font-semibold">{placePickCount}</p>
         {telephone && (
           <div className="flex items-center ml-4">
             <FaPhoneAlt className="w-4 h-4 text-green-500 mr-1" />

@@ -7,9 +7,12 @@ import * as React from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { setPostVisitDate } from '@/store/slice/postEditor/slice';
 
-export default function VisitDate() {
+interface IVisitDateProps {
+  placeTitle: string;
+}
+
+export default function VisitDate({ placeTitle }: IVisitDateProps) {
   const dispatch = useAppDispatch();
-  const placeTitle = useAppSelector((state) => state.postEditor.title);
   const visitDate = useAppSelector((state) => state.postEditor.visitDate);
   return (
     <ContentsBox>

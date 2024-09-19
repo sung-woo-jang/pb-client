@@ -41,7 +41,7 @@ export const pageList: PageListState[] = [
   },
   {
     head: '글쓰기',
-    list: [{ link: '/post', title: '글쓰기 - 🟢' }],
+    list: [{ link: '/review/6', title: '글쓰기 - 🟢' }],
   },
   {
     head: '관리 화면',

@@ -8,9 +8,6 @@ interface IKeyword {
 }
 
 interface PostEditorState {
-  // TODO: id, title 삭제
-  id: number;
-  title: string;
   visitDate: Dayjs | null;
   placeImages: FileList | null;
   content: string;
@@ -19,8 +16,6 @@ interface PostEditorState {
 }
 
 const initialState: PostEditorState = {
-  id: 0,
-  title: '',
   visitDate: null,
   placeImages: null,
   content: '',
@@ -43,12 +38,6 @@ const { reducer: postEditorReducer, actions } = createSlice({
   reducers: {
     resetPostEditorState(state) {
       Object.assign(state, initialState);
-    },
-    setPostEditorId: (state, action: PayloadAction<number>) => {
-      state.id = action.payload;
-    },
-    setPostEditorTitle: (state, action: PayloadAction<string>) => {
-      state.title = action.payload;
     },
     setPostVisitDate: (state, action: PayloadAction<Dayjs | null>) => {
       state.visitDate = action.payload;
@@ -77,8 +66,6 @@ const { reducer: postEditorReducer, actions } = createSlice({
 
 export const {
   resetPostEditorState,
-  setPostEditorTitle,
-  setPostEditorId,
   setPostVisitDate,
   setPlaceImages,
   setPostEditorContent,

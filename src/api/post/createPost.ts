@@ -1,7 +1,6 @@
 import { formInstance } from '@/api/axiosInstance';
 import { API_URL } from '@/constants/API_URL';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { CommonResponse } from '@/types/apiTypes';
 
 type Keyword = { keyword: string };
@@ -47,17 +46,12 @@ const createPost = async (body: ICreatePostRequestBody) => {
 };
 
 const useCreatePost = () => {
-  const router = useRouter();
   return useMutation<
     CommonResponse<ICreatePostResponseData>,
     Error,
     ICreatePostRequestBody
   >({
     mutationFn: createPost,
-    onSuccess: (response) => {
-      const { data } = response;
-      router.push(`timeline/${data.id}`);
-    },
   });
 };
 
