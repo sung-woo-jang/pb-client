@@ -42,7 +42,7 @@ const { reducer: postEditorReducer, actions } = createSlice({
   initialState,
   reducers: {
     resetPostEditorState(state) {
-      state = initialState;
+      Object.assign(state, initialState);
     },
     setPostEditorId: (state, action: PayloadAction<number>) => {
       state.id = action.payload;

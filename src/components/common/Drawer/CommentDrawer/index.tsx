@@ -53,7 +53,7 @@ export default function CommentDrawer() {
       setHandler={setCommentDrawerHandler}
       toggleHandler={commentDrawerToggleHandler}
       title={'댓글'}
-      buttonRender={false}
+      showActionButton={false}
     >
       {isSuccess && (
         <>

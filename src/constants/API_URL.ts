@@ -53,6 +53,7 @@ export const API_URL = {
   },
   PLACE: {
     CREATE_PLACE: 'place',
+    INFO: 'place/info',
     SEARCH_PLACE: 'place/search',
     CREATE_PLACE_CATEGORY: 'place/category',
   },

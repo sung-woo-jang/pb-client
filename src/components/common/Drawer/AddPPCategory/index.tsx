@@ -22,7 +22,7 @@ export default function AddPPCategory() {
       toggleHandler={ppCategoryDrawerToggleHandler}
       drawerState={addPPCategoryDrawerState}
       setHandler={setPPCategoryDrawerHandler}
-      buttonRender={true}
+      showActionButton={true}
     >
       <div className={classes.wrapper}>
         <TextArea

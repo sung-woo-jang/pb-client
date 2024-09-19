@@ -5,12 +5,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import classes from './styles.module.scss';
 
 interface SwipeableDrawerWrapperProps {
-  title: string;
+  title?: string;
+  showHeader?: boolean;
   children: React.ReactNode;
   drawerState: boolean;
   setHandler: (state: boolean) => void;
   toggleHandler: () => void;
-  buttonRender?: boolean;
+  showActionButton?: boolean;
   onCompleteClick?: () => Promise<void>;
 }
 
@@ -19,8 +20,9 @@ export default function SwipeableDrawerWrapper({
   children,
   drawerState,
   setHandler,
-  buttonRender = true,
+  showActionButton = true,
   onCompleteClick,
+  showHeader = true,
 }: SwipeableDrawerWrapperProps) {
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -61,28 +63,30 @@ export default function SwipeableDrawerWrapper({
       }}
     >
       <Box
-        sx={{ width: 'auto', height: '60vh' }}
+        sx={{ width: 'auto', height: '100%' }}
         role="presentation"
         onKeyDown={toggleDrawer(false)}
       >
-        <div
-          style={{
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          {/*빈 칸*/}
-          <div />
-          <div>{title}</div>
-          <div style={{ cursor: 'pointer' }} onClick={toggleDrawer(false)}>
-            <CloseIcon fontSize={'large'} />
+        {showHeader && (
+          <div
+            style={{
+              padding: '20px',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            {/*빈 칸*/}
+            <div />
+            <div>{title}</div>
+            <div style={{ cursor: 'pointer' }} onClick={toggleDrawer(false)}>
+              <CloseIcon fontSize={'large'} />
+            </div>
           </div>
-        </div>
+        )}
         {children}
       </Box>
-      {buttonRender && (
+      {showActionButton && (
         <div className={classes.buttonWrapper}>
           <button
             type="button"

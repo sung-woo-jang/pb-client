@@ -15,6 +15,11 @@ import { setEditPPCategoryDrawerState } from '@/store/slice/drawer/editPPCategor
 import { setPPCategoryDetailListDrawerState } from '@/store/slice/drawer/ppCategoryDetailListDrawerSlice/slice';
 import { setPPCategoryDrawerState } from '@/store/slice/drawer/ppCategoryList/slice';
 import { RootState } from '@/store';
+import PlaceInfo from '@/components/common/Drawer/PlaceInfo';
+import {
+  resetPlacePickInfoState,
+  setPlaceInfoDrawerState,
+} from '@/store/slice/drawer/placeInfoDrawer/slice';
 
 interface DrawerStates {
   addPPCategoryDrawerState: boolean;
@@ -58,25 +63,21 @@ export default function Drawer() {
     (openDrawerName: string) => {
       Object.entries(drawerStates).forEach(([drawerName, isOpen]) => {
         if (drawerName !== openDrawerName && isOpen) {
-          switch (drawerName) {
-            case 'addPPCategoryDrawerState':
-              dispatch(setAddPPCategoryState(false));
-              break;
-            case 'addPPDrawerState':
-              dispatch(setAddPPDrawerState(false));
-              break;
-            case 'commentDrawerState':
-              dispatch(setCommentDrawerState(false));
-              break;
-            case 'editPPCategoryDrawerState':
-              dispatch(setEditPPCategoryDrawerState(false));
-              break;
-            case 'ppCategoryDetailListDrawerState':
-              dispatch(setPPCategoryDetailListDrawerState(false));
-              break;
-            case 'ppCategoryListDrawerState':
-              dispatch(setPPCategoryDrawerState(false));
-              break;
+          if (drawerName === 'addPPCategoryDrawerState') {
+            dispatch(setAddPPCategoryState(false));
+          } else if (drawerName === 'addPPDrawerState') {
+            dispatch(setAddPPDrawerState(false));
+          } else if (drawerName === 'commentDrawerState') {
+            dispatch(setCommentDrawerState(false));
+          } else if (drawerName === 'editPPCategoryDrawerState') {
+            dispatch(setEditPPCategoryDrawerState(false));
+          } else if (drawerName === 'placeInfoDrawerState') {
+            dispatch(setPlaceInfoDrawerState(false));
+            dispatch(resetPlacePickInfoState());
+          } else if (drawerName === 'ppCategoryDetailListDrawerState') {
+            dispatch(setPPCategoryDetailListDrawerState(false));
+          } else if (drawerName === 'ppCategoryListDrawerState') {
+            dispatch(setPPCategoryDrawerState(false));
           }
         }
       });
@@ -103,6 +104,7 @@ export default function Drawer() {
       <EditPPCategory />
       <PPCategoryDetailList />
       <PPCategoryList />
+      <PlaceInfo />
     </>
   );
 }

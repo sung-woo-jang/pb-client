@@ -30,7 +30,7 @@ export default function EditPPCategory() {
       toggleHandler={editPPCategoryDrawerToggleHandler}
       drawerState={editPPCategoryDrawerState}
       setHandler={setEditPPCategoryDrawerHandler}
-      buttonRender={true}
+      showActionButton={true}
     >
       <div className={classes.wrapper}>
         <TextArea

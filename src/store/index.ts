@@ -9,6 +9,7 @@ import addPPDrawerReducer from '@/store/slice/drawer/addPPDrawer/slice';
 import editPPCategoryDrawerReducer from '@/store/slice/drawer/editPPCategoryDrawer/slice';
 import postEditorReducer from '@/store/slice/postEditor/slice';
 import ppCategoryListDrawerReducer from '@/store/slice/drawer/ppCategoryList/slice';
+import placeInfoReducer from '@/store/slice/drawer/placeInfoDrawer/slice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     commentDrawer: commentDrawerReducer,
     editPPCategoryDrawer: editPPCategoryDrawerReducer,
     ppCategoryListDrawer: ppCategoryListDrawerReducer,
+    placeInfo: placeInfoReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>

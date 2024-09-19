@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSearchPlaces, { ISearchPlacesQuery } from '@/api/search/searchPlaces';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { useAppSelector } from '@/hooks/redux-hooks';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -43,10 +44,15 @@ export default function Page() {
     parsedParams || { keyword: '' }
   );
 
+  const headerHeight = useAppSelector((state) => state.common.headerHeight);
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ height: `calc(100vh - ${headerHeight}px)` }}
+    >
       <LocationInfo />
-      {isLoading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner size={60} />}
       {isSuccess &&
         data.map((placeInfo) => (
           <SearchPlaceInfo key={placeInfo.id} placeInfo={placeInfo} />

@@ -3,6 +3,7 @@ import initializeMap from '@/hooks/useMap/function/initailizeMap';
 import createMarkers from '@/hooks/useMap/function/createMakers';
 import updateMarkersVisibility from '@/hooks/useMap/function/updateMarkersVisibility';
 import { CircleColors } from '@/constants/COLORS';
+import { useMarkerClickHandler } from '@/hooks/useMap/useMarkerClickHandler';
 
 interface IMap {
   placeDetails?: [
@@ -49,12 +50,5 @@ export function useMap({ placeDetails }: IMap) {
   }, [mapRef, markers]);
 
   // click marker
-  useEffect(() => {
-    markers.forEach((marker) => {
-      marker.addListener('click', (e) => {
-        console.log(e);
-        console.log(e.coord);
-      });
-    });
-  }, [markers]);
+  useMarkerClickHandler(markers);
 }

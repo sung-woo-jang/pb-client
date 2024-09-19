@@ -65,7 +65,7 @@ export default function AddPPDrawer() {
         toggleHandler={addPPDrawerToggleHandler}
         drawerState={addPPDrawerState}
         setHandler={setAddPPDrawerHandler}
-        buttonRender={true}
+        showActionButton={true}
         onCompleteClick={createPlacePickMutateHandler}
       >
         <ScrollableContainer>

@@ -28,7 +28,7 @@ export default function PPCategoryDetailList() {
       toggleHandler={ppCategoryDetailListDrawerToggleHandler}
       drawerState={ppCategoryDetailListDrawerState}
       setHandler={setPPCategoryDetailListDrawerHandler}
-      buttonRender={true}
+      showActionButton={true}
     >
       <ScrollableContainer>
         <div className={classes.wrapper}>
