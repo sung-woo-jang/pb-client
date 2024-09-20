@@ -6,7 +6,6 @@ import PsResultReview from '@/app/place/[id]/_component/PSResultReview';
 import Separator from '@/components/common/Separator';
 import useSearchPlaceDetail from '@/api/search/getSearchPlaceDetail';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import useGetAllMyPlacePick from '@/api/place-pick/getAllMyPlacePick';
 
 interface IPlaceDetailPageProps {
   params: { id: string };
@@ -14,7 +13,6 @@ interface IPlaceDetailPageProps {
 
 export default function Page({ params: { id } }: IPlaceDetailPageProps) {
   const { isSuccess, data, isLoading } = useSearchPlaceDetail(id);
-  useGetAllMyPlacePick();
   if (isLoading) {
     return <LoadingSpinner size={60} />;
   } else if (isSuccess) {

@@ -4,9 +4,9 @@ import ScrollableContainer from '@/components/common/ScrollableContainer';
 import classes from './styles.module.scss';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { FaPhoneAlt } from 'react-icons/fa';
-import Link from 'next/link';
 import { useMemo } from 'react';
 import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
+import NaverDirectionsButton from '@/components/Naver/NaverDirectionsButton';
 
 export default function PlaceInfo() {
   const {
@@ -58,13 +58,11 @@ export default function PlaceInfo() {
               </div>
             )}
           </div>
-          {/*TODO: 네이버 지도로 탭 전환*/}
-          <Link
-            href={`https://map.naver.com/p/search/${search}`}
-            target="_blank"
-          >
-            <button className={classes.directionButton}>길찾기</button>
-          </Link>
+          <NaverDirectionsButton
+            title={title}
+            address={address}
+            roadAddress={road_address}
+          />
         </div>
       </ScrollableContainer>
     </SwipeableDrawerWrapper>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FaCopy, FaMapLocation } from 'react-icons/fa6';
-import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
+import { FaChevronDown, FaCopy, FaMapLocation } from 'react-icons/fa6';
 import Tooltip from '@/components/common/Tooltip/AddressTooltip/Tooltip';
 import TooltipButton from '@/components/common/Tooltip/AddressTooltip/TooltipButton';
 
@@ -67,7 +66,7 @@ export default function AddressTooltip({
             {roadAddress}
           </span>
         </div>
-        <ChevronDownIcon className="h-4 w-4 flex-shrink-0 mt-1 transition-colors duration-200" />
+        <FaChevronDown className="h-4 w-4 flex-shrink-0 mt-1 transition-colors duration-200" />
       </div>
     </Tooltip>
   );

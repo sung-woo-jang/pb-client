@@ -1,7 +1,7 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import classes from './style.module.scss';
 import Link from 'next/link';
-import PlacePickIcon from '../interaction/PlacePickIcon';
+import PlacePickIcon from '../PlacePickIcon';
 import { IPlace } from '@/api/newsfeed/getNewsFeeds';
 
 interface IPlacePickCardProps {

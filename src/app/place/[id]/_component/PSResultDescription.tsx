@@ -1,8 +1,8 @@
 import classes from '@/app/place/[id]/styles.module.scss';
-import PlacePickIcon from '@/components/common/interaction/PlacePickIcon';
 import StarIcon from '@/components/Icon/StarIcon';
 import { IGetSearchPlaceResult } from '@/api/search/getSearchPlaceDetail';
 import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
+import PlacePickIcon from '@/components/common/PlacePick/PlacePickIcon';
 
 interface IPsResultDescriptionProps {
   place: IGetSearchPlaceResult;

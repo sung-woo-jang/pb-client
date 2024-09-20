@@ -35,7 +35,7 @@ export const pageList: PageListState[] = [
     head: '장소 검색',
     list: [
       { link: '/place', title: '검색 메인 - 🟢' },
-      { link: '/place/search', title: '검색 결과 - 🟢' },
+      { link: '/place/search?keyword=스타벅스', title: '검색 결과 - 🟢' },
       { link: '/place/1', title: '검색 결과 상세 - 🟢' },
     ],
   },

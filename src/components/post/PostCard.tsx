@@ -3,7 +3,7 @@ import classes from './styles.module.scss';
 import PostHeader from './PostHeader';
 import PostImageSwiper from './PostImageSwiper';
 import PostFooter from './PostFooter';
-import PlacePickCard from '../common/PlacePickCard';
+import PlacePickCard from '../common/PlacePick/PlacePickCard';
 import { IGetNewsfeedApiResponseData } from '@/api/newsfeed/getNewsFeeds';
 
 interface IPostCardProps {

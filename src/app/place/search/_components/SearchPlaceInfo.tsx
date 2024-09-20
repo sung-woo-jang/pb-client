@@ -1,5 +1,3 @@
-import ChevronDownIcon from '@/components/Icon/ChevronDownIcon';
-import BookmarkIcon from '@/components/Icon/BookmarkIcon';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import Link from 'next/link';
 import * as React from 'react';
@@ -9,13 +7,24 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { useAppDispatch } from '@/hooks/redux-hooks';
 import { resetPostEditorState } from '@/store/slice/postEditor/slice';
 import { useRouter } from 'next/navigation';
+import PlacePickIcon from '@/components/common/PlacePick/PlacePickIcon';
+import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
+import NaverDirectionsButton from '@/components/Naver/NaverDirectionsButton';
 
 interface ISearchPlaceInfoProps {
   placeInfo: ISearchPlacesResponseData;
 }
 
 export default function SearchPlaceInfo({
-  placeInfo: { road_address, placeCategory, description, title, telephone, id },
+  placeInfo: {
+    road_address,
+    placeCategory,
+    description,
+    title,
+    telephone,
+    id,
+    address,
+  },
 }: ISearchPlaceInfoProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -27,50 +36,51 @@ export default function SearchPlaceInfo({
   };
 
   return (
-    <div className="p-4 bg-white rounded-md shadow-sm m-3">
-      <div className="flex justify-between mb-2">
-        <div>
-          <Link href={`/place/${id}`}>
-            <h2 className="text-lg font-semibold">{title}</h2>
+    <div className="bg-white rounded-lg shadow-md p-6 m-4 space-y-4">
+      <div className="flex justify-between items-start">
+        <div className="space-y-2">
+          <Link href={`/place/${id}`} className="group">
+            <h2 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+              {title}
+            </h2>
           </Link>
-          <p className="text-sm text-muted-foreground">
-            {placeCategory.place_category_name} {'>'}{' '}
-            {placeCategory.place_category_name_detail}
+          <p className="text-sm text-gray-600">
+            {placeCategory.place_category_name} {'›'}{' '}
+            <span className="font-medium">
+              {placeCategory.place_category_name_detail}
+            </span>
           </p>
-          <div className="flex items-center ">
-            <p className="flex">
-              {road_address}
-              {/*TODO: 클릭 시 address 보이게 수정*/}
-              <ChevronDownIcon className="text-muted-foreground mt-1" />
-            </p>
+          <div className="flex items-center text-sm text-gray-700 hover:text-gray-900 cursor-pointer transition-colors">
+            <AddressTooltip roadAddress={road_address} lotAddress={address} />
           </div>
         </div>
       </div>
 
       {description && (
-        <p className="text-sm text-muted-foreground mb-2">{description}</p>
+        <p className="text-sm text-gray-600 italic">{description}</p>
       )}
 
-      <div className="flex items-center mb-2">
-        {telephone && (
-          <div className="flex items-center ml-4">
-            <FaPhoneAlt className="w-4 h-4 text-green-500 mr-1" />
-            <p className="text-sm">{telephone}</p>
-          </div>
-        )}
-      </div>
-      <div className="flex items-center justify-around border-t pt-2">
+      {telephone && (
+        <div className="flex items-center text-sm text-gray-700">
+          <FaPhoneAlt className="w-4 h-4 text-green-500 mr-2" />
+          <p>{telephone}</p>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between pt-4 border-t border-gray-200">
         <button
-          className="flex items-center"
+          className="flex items-center space-x-1 px-3 py-2"
           onClick={writePostButtonClickHandler}
         >
-          <CreateOutlinedIcon />
-          글쓰기
+          <CreateOutlinedIcon className="w-5 h-5" />
+          <span>글쓰기</span>
         </button>
-        <button className="flex items-center">
-          <BookmarkIcon className="w-4 h-4 mr-1" />
-          폴픽
-        </button>
+        <PlacePickIcon placeId={id} placeTitle={title} />
+        <NaverDirectionsButton
+          roadAddress={road_address}
+          address={address}
+          title={title}
+        />
       </div>
     </div>
   );
