@@ -7,7 +7,7 @@ interface ICreatePlacePickRequestBody {
   link: string;
   memo: string;
   alias: string;
-  pl_pick_category_id: number;
+  pl_pick_category_ids: number[];
 }
 
 const createPlacePick = async (body: ICreatePlacePickRequestBody) => {

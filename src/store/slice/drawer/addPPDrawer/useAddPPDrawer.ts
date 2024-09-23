@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import {
+  addSelectedCategoryId,
   resetAddPPDrawerState,
   setAddPPDrawerState,
   setAlias,
@@ -8,8 +9,8 @@ import {
   setMemo,
   setPlaceId,
   setPlaceTitle,
-  setSelectedCategoryId,
   toggleAddPPDrawerState,
+  toggleSelectedCategoryId,
 } from '@/store/slice/drawer/addPPDrawer/slice';
 
 export default function useAddPPDrawer() {
@@ -23,8 +24,8 @@ export default function useAddPPDrawer() {
   const memo = useAppSelector((state) => state.addPPDrawer.memo);
   const placeId = useAppSelector((state) => state.addPPDrawer.placeId);
 
-  const selectedCategoryId = useAppSelector(
-    (state) => state.addPPDrawer.selectedCategoryId
+  const selectedCategoryIds = useAppSelector(
+    (state) => state.addPPDrawer.selectedCategoryIds
   );
   const dispatch = useAppDispatch();
 
@@ -58,13 +59,18 @@ export default function useAddPPDrawer() {
   const setPlaceIdHandler = (placeId: number | boolean) => {
     dispatch(setPlaceId(placeId));
   };
-  const setSelectedCategoryIdHandler = (categoryId: number) => {
-    dispatch(setSelectedCategoryId(categoryId));
+
+  const toggleSelectedCategoryIdHandler = (categoryId: number) => {
+    dispatch(toggleSelectedCategoryId(categoryId));
+  };
+
+  const addSelectedCategoryIdHandler = (categoryId: number) => {
+    dispatch(addSelectedCategoryId(categoryId));
   };
 
   return {
     addPPDrawerState,
-    selectedCategoryId,
+    selectedCategoryIds,
     placeTitle,
     alias,
     link,
@@ -77,6 +83,7 @@ export default function useAddPPDrawer() {
     setAliasHandler,
     setMemoHandler,
     setPlaceIdHandler,
-    setSelectedCategoryIdHandler,
+    toggleSelectedCategoryIdHandler,
+    addSelectedCategoryIdHandler,
   };
 }

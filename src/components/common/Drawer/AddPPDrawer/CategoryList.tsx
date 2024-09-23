@@ -16,13 +16,13 @@ export default function CategoryList({
   color,
   id,
 }: CategoryListProps) {
-  const { setSelectedCategoryIdHandler, selectedCategoryId } = useAddPPDrawer();
+  const { toggleSelectedCategoryIdHandler } = useAddPPDrawer();
 
   return (
     <div
       className={styles.box}
       onClick={() => {
-        setSelectedCategoryIdHandler(selectedCategoryId === id ? 0 : id);
+        toggleSelectedCategoryIdHandler(id);
       }}
     >
       <div className={styles.categoryBox}>

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface drawerState {
+export interface drawerState {
   addPPDrawerState: boolean;
   placeId: number | boolean;
   placeTitle: string;
   link: string;
   memo: string;
   alias: string;
-  selectedCategoryId: number;
+  selectedCategoryIds: number[];
 }
 
 const initialState: drawerState = {
@@ -17,7 +17,7 @@ const initialState: drawerState = {
   alias: '',
   link: '',
   memo: '',
-  selectedCategoryId: 0,
+  selectedCategoryIds: [],
 };
 
 const { reducer: addPPDrawerReducer, actions } = createSlice({
@@ -48,8 +48,18 @@ const { reducer: addPPDrawerReducer, actions } = createSlice({
     setPlaceId: (state, action: PayloadAction<number | boolean>) => {
       state.placeId = action.payload;
     },
-    setSelectedCategoryId: (state, action: PayloadAction<number>) => {
-      state.selectedCategoryId = action.payload;
+    toggleSelectedCategoryId: (state, action: PayloadAction<number>) => {
+      const index = state.selectedCategoryIds.indexOf(action.payload);
+      if (index > -1) {
+        state.selectedCategoryIds.splice(index, 1);
+      } else {
+        state.selectedCategoryIds.push(action.payload);
+      }
+    },
+    addSelectedCategoryId: (state, action: PayloadAction<number>) => {
+      if (!state.selectedCategoryIds.includes(action.payload)) {
+        state.selectedCategoryIds.push(action.payload);
+      }
     },
   },
 });
@@ -63,7 +73,8 @@ export const {
   setAddPPDrawerState,
   toggleAddPPDrawerState,
   resetAddPPDrawerState,
-  setSelectedCategoryId,
+  toggleSelectedCategoryId,
+  addSelectedCategoryId,
 } = actions;
 
 export default addPPDrawerReducer;

@@ -1,22 +1,31 @@
 import usePPCategoryList from '@/store/slice/drawer/ppCategoryList/usePPCategoryList';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import useEditPPCategoryDrawer from '@/store/slice/drawer/editPPCategoryDrawer/useEditPPCategoryDrawer';
-import useFindUserCategories from '@/api/pl-pick-category/findUserCategories';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { IFindUserCategoriesResponseData } from '@/api/pl-pick-category/findUserCategories';
 import CategoryHeader from '@/components/common/Drawer/PPCategoryList/CategoryHeader';
 import CategoryItem from '@/components/common/Drawer/PPCategoryList/CategoryItem';
 import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
 import ScrollableContainer from '@/components/common/ScrollableContainer';
+import { useQueryClient } from '@tanstack/react-query';
+import { CommonResponse } from '@/types/apiTypes';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
+import isNil from 'lodash/isNil';
 
 export default function PPCategoryList() {
+  const queryClient = useQueryClient();
+
+  const categories = queryClient.getQueryData<
+    CommonResponse<IFindUserCategoriesResponseData[]>
+  >(
+    generateQueryKeysFromUrl(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES)
+  )?.data;
+
   const { drawerState, toggleDrawerHandler, drawerStateChangeHandler } =
     usePPCategoryList();
   const { editPPCategoryDrawerToggleHandler } = useEditPPCategoryDrawer();
 
-  const { data: categories, isLoading, isSuccess } = useFindUserCategories();
-
-  if (isLoading) return <LoadingSpinner size={60} />;
-  if (isSuccess) {
+  if (!isNil(categories)) {
     return (
       <SwipeableDrawerWrapper
         title={'플픽 카테고리 리스트'}

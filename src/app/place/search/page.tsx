@@ -3,12 +3,12 @@ import styles from './styles/styles.module.scss';
 import SearchPlaceInfo from '@/app/place/search/_components/SearchPlaceInfo';
 import LocationInfo from '@/app/place/search/_components/LocationInfo';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import useSearchPlaces, { ISearchPlacesQuery } from '@/api/search/searchPlaces';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { useAppSelector } from '@/hooks/redux-hooks';
 
-export default function Page() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const [parsedParams, setParsedParams] = useState<ISearchPlacesQuery | null>(
     null
@@ -58,5 +58,13 @@ export default function Page() {
           <SearchPlaceInfo key={placeInfo.id} placeInfo={placeInfo} />
         ))}
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingSpinner size={60} />}>
+      <SearchContent />
+    </Suspense>
   );
 }

@@ -5,7 +5,6 @@ import isNumber from 'lodash/isNumber';
 import { PlacePicks } from '@/api/pl-pick-category/findUserCategories';
 import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-import { useAppDispatch } from '@/hooks/redux-hooks';
 
 interface CategoryCheckIndicatorProps {
   pl_pick_category_id: number;
@@ -18,15 +17,13 @@ export default function CategoryCheckIndicator({
 }: CategoryCheckIndicatorProps) {
   const {
     placeId,
-    selectedCategoryId,
+    selectedCategoryIds,
     addPPDrawerState,
     setMemoHandler,
     setAliasHandler,
     setLinkHandler,
-    setSelectedCategoryIdHandler,
+    addSelectedCategoryIdHandler,
   } = useAddPPDrawer();
-
-  const dispatch = useAppDispatch();
 
   useDeepCompareEffect(() => {
     if (addPPDrawerState && isNumber(placeId)) {
@@ -35,18 +32,17 @@ export default function CategoryCheckIndicator({
       );
       if (matchingPlacePick) {
         const { memo, link, alias } = matchingPlacePick;
-        setSelectedCategoryIdHandler(pl_pick_category_id);
+        addSelectedCategoryIdHandler(pl_pick_category_id);
         setMemoHandler(memo);
         setAliasHandler(alias);
         setLinkHandler(link);
       }
     }
-  }, [placePicks, addPPDrawerState, placeId, pl_pick_category_id, dispatch]);
+  }, [placePicks, addPPDrawerState, placeId, pl_pick_category_id]);
 
-  const circleColor =
-    selectedCategoryId === pl_pick_category_id
-      ? COLORS.CHECK_CIRCLE.UN_SELECTED
-      : COLORS.CHECK_CIRCLE.SELECTED;
+  const circleColor = selectedCategoryIds.includes(pl_pick_category_id)
+    ? COLORS.CHECK_CIRCLE.UN_SELECTED
+    : COLORS.CHECK_CIRCLE.SELECTED;
 
   return (
     <button>

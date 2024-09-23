@@ -5,7 +5,6 @@ import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
 import { IFindUserCategoriesResponseData } from '@/api/pl-pick-category/findUserCategories';
 import useCreatePlacePick from '@/api/place-pick/createPlacePick';
 import isNumber from 'lodash/isNumber';
-import gt from 'lodash/gt';
 import { useQueryClient } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { API_URL } from '@/constants/API_URL';
@@ -24,7 +23,7 @@ export default function AddPPDrawer() {
     memo,
     placeId: place_id,
     placeTitle,
-    selectedCategoryId,
+    selectedCategoryIds,
     addPPDrawerToggleHandler,
     addPPDrawerState,
     setAddPPDrawerHandler,
@@ -33,30 +32,37 @@ export default function AddPPDrawer() {
   const queryClient = useQueryClient();
   const categories = queryClient.getQueryData<
     CommonResponse<IFindUserCategoriesResponseData[]>
-  >(generateQueryKeysFromUrl(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES));
+  >(
+    generateQueryKeysFromUrl(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES)
+  )?.data;
 
   const { mutateAsync } = useCreatePlacePick();
 
   const createPlacePickMutateHandler = async () => {
-    if (isNumber(place_id) && gt(selectedCategoryId, 0))
-      await mutateAsync(
-        {
-          alias,
-          link,
-          memo,
-          place_id,
-          pl_pick_category_id: selectedCategoryId,
+    if (isNumber(place_id) && selectedCategoryIds.length > 0) {
+      const requestBody = {
+        alias,
+        link,
+        memo,
+        place_id,
+        pl_pick_category_ids: selectedCategoryIds,
+      };
+
+      await mutateAsync(requestBody, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: generateQueryKeysFromUrl(
+              API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
+            ),
+          });
+          queryClient.invalidateQueries({
+            queryKey: generateQueryKeysFromUrl(
+              API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
+            ),
+          });
         },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: generateQueryKeysFromUrl(
-                API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
-              ),
-            });
-          },
-        }
-      );
+      });
+    }
   };
 
   if (!isNil(categories)) {
@@ -72,25 +78,21 @@ export default function AddPPDrawer() {
         <ScrollableContainer>
           <div className={classes.wrapper}>
             <div>
-              <h1>place_id: {place_id}</h1>
-              <h1>pl_pick_category_id: {selectedCategoryId}</h1>
               <div className="pt-0 space-y-4">
                 <AddPPForm />
-                {categories.data.map(
-                  ({ id, title, picker_color, placePicks }) => (
-                    <CategoryList
-                      key={id}
-                      title={title}
-                      color={picker_color}
-                      id={id}
-                    >
-                      <CategoryCheckIndicator
-                        pl_pick_category_id={id}
-                        placePicks={placePicks}
-                      />
-                    </CategoryList>
-                  )
-                )}
+                {categories.map(({ id, title, picker_color, placePicks }) => (
+                  <CategoryList
+                    key={id}
+                    title={title}
+                    color={picker_color}
+                    id={id}
+                  >
+                    <CategoryCheckIndicator
+                      pl_pick_category_id={id}
+                      placePicks={placePicks}
+                    />
+                  </CategoryList>
+                ))}
                 <AddCategoryButton />
               </div>
             </div>
