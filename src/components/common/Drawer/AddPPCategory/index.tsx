@@ -1,11 +1,12 @@
 import classes from './styles.module.scss';
 import { useState } from 'react';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
-import TextArea from '@/components/common/TextArea';
 import CircleIcon from '@mui/icons-material/Circle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import COLORS from '@/constants/COLORS';
+import COLORS, { CircleColors } from '@/constants/COLORS';
 import useAddPPCategoryDrawer from '@/store/slice/drawer/addPPCategoryDrawer/useAddPPCategoryDrawer';
+import useCreatePlPickCategory from '@/api/pl-pick-category/createPlPickCategory';
+import AddPPCategoryForm from '@/components/common/Drawer/AddPPCategory/AddPPCategoryForm';
 
 // button을 맨 밑에 두려면 CustomSwipeableDrawer의 밑에 button 컴포넌트를 만들면 됨
 export default function AddPPCategory() {
@@ -16,6 +17,18 @@ export default function AddPPCategory() {
     ppCategoryDrawerToggleHandler,
   } = useAddPPCategoryDrawer();
 
+  const { mutateAsync } = useCreatePlPickCategory();
+
+  // TODO: 1순위
+  const onCompleteHandler = async () => {
+    await mutateAsync(
+      { title: '', picker_color: CircleColors.RED, memo: '', link: '' },
+      {
+        onSuccess: () => {},
+      }
+    );
+  };
+
   return (
     <SwipeableDrawerWrapper
       title="새 카테고리 추가"
@@ -23,14 +36,9 @@ export default function AddPPCategory() {
       drawerState={addPPCategoryDrawerState}
       setHandler={setPPCategoryDrawerHandler}
       showActionButton={true}
+      onCompleteClick={onCompleteHandler}
     >
-      <div className={classes.wrapper}>
-        <TextArea
-          label={'새 카테고리명'}
-          maxLength={25}
-          placeholder={'새 카테고리명을 입력해주세요.'}
-        />
-
+      <AddPPCategoryForm>
         <div className={classes.pickPCContainer}>
           <label htmlFor="name" className={classes.pickPCLabel}>
             색상 선택
@@ -53,17 +61,7 @@ export default function AddPPCategory() {
             ))}
           </div>
         </div>
-        <TextArea
-          label={'메모'}
-          maxLength={25}
-          placeholder={'메모를 남겨주세요.'}
-        />
-        <TextArea
-          label={'관련 링크'}
-          maxLength={25}
-          placeholder={'https://.'}
-        />
-      </div>
+      </AddPPCategoryForm>
     </SwipeableDrawerWrapper>
   );
 }

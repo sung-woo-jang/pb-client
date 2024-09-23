@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .pickPCLabel {
@@ -34,7 +35,7 @@
 
 .iconContainer {
   display: flex;
-  gap: 2rem;
-  margin-left: .5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 

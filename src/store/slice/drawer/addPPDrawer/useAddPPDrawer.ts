@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import {
   resetAddPPDrawerState,
@@ -46,19 +46,13 @@ export default function useAddPPDrawer() {
     dispatch(setPlaceTitle(title));
   };
 
-  const setAliasHandler = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  const setAliasHandler = (value: string) => {
     dispatch(setAlias(value));
   };
-  const setMemoHandler = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  const setMemoHandler = (value: string) => {
     dispatch(setMemo(value));
   };
-  const setLinkHandler = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  const setLinkHandler = (value: string) => {
     dispatch(setLink(value));
   };
   const setPlaceIdHandler = (placeId: number | boolean) => {

@@ -5,12 +5,6 @@ import isNumber from 'lodash/isNumber';
 import { PlacePicks } from '@/api/pl-pick-category/findUserCategories';
 import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-import {
-  setAlias,
-  setLink,
-  setMemo,
-  setSelectedCategoryId,
-} from '@/store/slice/drawer/addPPDrawer/slice';
 import { useAppDispatch } from '@/hooks/redux-hooks';
 
 interface CategoryCheckIndicatorProps {
@@ -22,7 +16,15 @@ export default function CategoryCheckIndicator({
   placePicks,
   pl_pick_category_id,
 }: CategoryCheckIndicatorProps) {
-  const { placeId, selectedCategoryId, addPPDrawerState } = useAddPPDrawer();
+  const {
+    placeId,
+    selectedCategoryId,
+    addPPDrawerState,
+    setMemoHandler,
+    setAliasHandler,
+    setLinkHandler,
+    setSelectedCategoryIdHandler,
+  } = useAddPPDrawer();
 
   const dispatch = useAppDispatch();
 
@@ -32,10 +34,11 @@ export default function CategoryCheckIndicator({
         (pick) => pick.place_id === placeId
       );
       if (matchingPlacePick) {
-        dispatch(setSelectedCategoryId(pl_pick_category_id));
-        dispatch(setMemo(matchingPlacePick.memo));
-        dispatch(setAlias(matchingPlacePick.alias));
-        dispatch(setLink(matchingPlacePick.link));
+        const { memo, link, alias } = matchingPlacePick;
+        setSelectedCategoryIdHandler(pl_pick_category_id);
+        setMemoHandler(memo);
+        setAliasHandler(alias);
+        setLinkHandler(link);
       }
     }
   }, [placePicks, addPPDrawerState, placeId, pl_pick_category_id, dispatch]);

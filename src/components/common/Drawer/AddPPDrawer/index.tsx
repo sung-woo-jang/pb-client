@@ -2,8 +2,7 @@ import React from 'react';
 import SwipeableDrawerWrapper from '@/components/common/Drawer/SwipeableDrawerWrapper';
 import classes from './styles.module.scss';
 import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
-import useFindUserCategories from '@/api/pl-pick-category/findUserCategories';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { IFindUserCategoriesResponseData } from '@/api/pl-pick-category/findUserCategories';
 import useCreatePlacePick from '@/api/place-pick/createPlacePick';
 import isNumber from 'lodash/isNumber';
 import gt from 'lodash/gt';
@@ -15,6 +14,8 @@ import ScrollableContainer from '@/components/common/ScrollableContainer';
 import CategoryList from '@/components/common/Drawer/AddPPDrawer/CategoryList';
 import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategoryButton';
 import CategoryCheckIndicator from '@/components/common/Drawer/AddPPDrawer/CategoryCheckIndicator';
+import { CommonResponse } from '@/types/apiTypes';
+import isNil from 'lodash/isNil';
 
 export default function AddPPDrawer() {
   const {
@@ -30,7 +31,9 @@ export default function AddPPDrawer() {
   } = useAddPPDrawer();
 
   const queryClient = useQueryClient();
-  const { data: categories, isLoading, isSuccess } = useFindUserCategories();
+  const categories = queryClient.getQueryData<
+    CommonResponse<IFindUserCategoriesResponseData[]>
+  >(generateQueryKeysFromUrl(API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES));
 
   const { mutateAsync } = useCreatePlacePick();
 
@@ -56,9 +59,7 @@ export default function AddPPDrawer() {
       );
   };
 
-  if (isLoading) {
-    return <LoadingSpinner size={60} />;
-  } else if (isSuccess) {
+  if (!isNil(categories)) {
     return (
       <SwipeableDrawerWrapper
         title={placeTitle}
@@ -71,21 +72,25 @@ export default function AddPPDrawer() {
         <ScrollableContainer>
           <div className={classes.wrapper}>
             <div>
+              <h1>place_id: {place_id}</h1>
+              <h1>pl_pick_category_id: {selectedCategoryId}</h1>
               <div className="pt-0 space-y-4">
                 <AddPPForm />
-                {categories.map(({ id, title, picker_color, placePicks }) => (
-                  <CategoryList
-                    key={id}
-                    title={title}
-                    color={picker_color}
-                    id={id}
-                  >
-                    <CategoryCheckIndicator
-                      pl_pick_category_id={id}
-                      placePicks={placePicks}
-                    />
-                  </CategoryList>
-                ))}
+                {categories.data.map(
+                  ({ id, title, picker_color, placePicks }) => (
+                    <CategoryList
+                      key={id}
+                      title={title}
+                      color={picker_color}
+                      id={id}
+                    >
+                      <CategoryCheckIndicator
+                        pl_pick_category_id={id}
+                        placePicks={placePicks}
+                      />
+                    </CategoryList>
+                  )
+                )}
                 <AddCategoryButton />
               </div>
             </div>

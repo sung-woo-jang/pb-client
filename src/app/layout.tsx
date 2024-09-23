@@ -5,7 +5,7 @@ import { ReduxProviders } from '@/provider/ReduxProvider';
 import ReactQueryProvider from '@/provider/ReactQueryProvider';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { AxiosInterceptor } from '@/api/AxiosInterceptor';
-import GnB from '@/components/common/navigation/GnB';
+import GnB from '../components/navigation/GnB';
 import Script from 'next/script';
 import Drawer from '@/components/common/Drawer';
 

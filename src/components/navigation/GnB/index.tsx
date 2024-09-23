@@ -6,8 +6,9 @@ import Link from 'next/link';
 import { useAppDispatch } from '@/hooks/redux-hooks';
 import { setHeaderHeight } from '@/store/slice/common/slice';
 import Image from 'next/image';
-import logo from '../../../../../public/logo.png';
+import logo from '../../../../public/logo.png';
 import useGetAllMyPlacePick from '@/api/place-pick/getAllMyPlacePick';
+import useFindUserCategories from '@/api/pl-pick-category/findUserCategories';
 
 export default function GnB() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -17,9 +18,10 @@ export default function GnB() {
       dispatch(setHeaderHeight(headerRef.current.scrollHeight));
   }, [dispatch]);
   useGetAllMyPlacePick();
+  useFindUserCategories();
   return (
     <header className={classes.header} ref={headerRef}>
-      <Link href={'/public'} className={classes.headerContainer}>
+      <Link href={'/'} className={classes.headerContainer}>
         <Image src={logo} alt={'logo'} width={30} height={30} />
         <span>플벗</span>
       </Link>

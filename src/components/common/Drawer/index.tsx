@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import CommentDrawer from '@/components/common/Drawer/CommentDrawer';
 import AddPPCategory from '@/components/common/Drawer/AddPPCategory';
@@ -40,6 +40,7 @@ interface DrawerStates {
   editPPCategoryDrawerState: boolean;
   ppCategoryDetailListDrawerState: boolean;
   ppCategoryListDrawerState: boolean;
+  placeInfoDrawerState: boolean;
 }
 
 const selectDrawerStates = createSelector(
@@ -50,13 +51,15 @@ const selectDrawerStates = createSelector(
   (state: RootState) =>
     state.ppCategoryDetailListDrawer.ppCategoryDetailListDrawerState,
   (state: RootState) => state.ppCategoryListDrawer.ppCategoryListDrawerState,
+  (state: RootState) => state.placeInfo.placeInfoDrawerState,
   (
     addPPCategoryDrawerState: boolean,
     addPPDrawerState: boolean,
     commentDrawerState: boolean,
     editPPCategoryDrawerState: boolean,
     ppCategoryDetailListDrawerState: boolean,
-    ppCategoryListDrawerState: boolean
+    ppCategoryListDrawerState: boolean,
+    placeInfoDrawerState: boolean
   ): DrawerStates => ({
     addPPCategoryDrawerState,
     addPPDrawerState,
@@ -64,6 +67,7 @@ const selectDrawerStates = createSelector(
     editPPCategoryDrawerState,
     ppCategoryDetailListDrawerState,
     ppCategoryListDrawerState,
+    placeInfoDrawerState,
   })
 );
 
@@ -113,15 +117,20 @@ export default function Drawer() {
     }
   }, [drawerStates, closeOtherDrawers]);
 
-  return (
-    <>
-      <CommentDrawer />
-      <AddPPCategory />
-      <AddPPDrawer />
-      <EditPPCategory />
-      <PPCategoryDetailList />
-      <PPCategoryList />
-      <PlaceInfo />
-    </>
+  const drawerComponents = useMemo(
+    () => [
+      CommentDrawer,
+      AddPPCategory,
+      AddPPDrawer,
+      EditPPCategory,
+      PPCategoryDetailList,
+      PPCategoryList,
+      PlaceInfo,
+    ],
+    []
   );
+
+  return drawerComponents.map((DrawerComponent, index) => (
+    <DrawerComponent key={index} />
+  ));
 }

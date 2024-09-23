@@ -1,13 +1,13 @@
-import React from 'react';
 import styles from './styles.module.scss';
 import StarsIcon from '@mui/icons-material/Stars';
 import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
+import { ReactNode } from 'react';
 
 interface CategoryListProps {
   id: number;
   title: string;
   color: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function CategoryList({
