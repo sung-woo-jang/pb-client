@@ -13,20 +13,21 @@ interface ITimelineByUserPageProps {
 export default function Page({ params }: ITimelineByUserPageProps) {
   const timelineList = useGetTimelineList(params.userId);
   const followCount = useGetFollowCountByUserId(params.userId);
-  if (timelineList.isLoading && followCount.isLoading)
+  if (timelineList.isLoading && followCount.isLoading) {
     return <LoadingSpinner size={60} />;
-  else if (followCount.isSuccess && timelineList.isSuccess)
+  } else if (followCount.isSuccess && timelineList.isSuccess) {
     return (
       <div className={classes.timelineWrapper}>
         <div className={classes.timelineContainer}>
           <TimelineProfile
-            nickname={timelineList.data.data.nickname}
-            profileImageUrl={timelineList.data.data.profileImage}
-            follower={followCount.data.data.followers}
-            following={followCount.data.data.followings}
+            nickname={timelineList.data.nickname}
+            profileImageUrl={timelineList.data.profileImage}
+            follower={followCount.data.followers}
+            following={followCount.data.followings}
           />
-          <TimelineImages posts={timelineList.data.data.posts} />
+          <TimelineImages posts={timelineList.data.posts} />
         </div>
       </div>
     );
+  }
 }

@@ -15,6 +15,7 @@ import AddCategoryButton from '@/components/common/Drawer/AddPPDrawer/AddCategor
 import CategoryCheckIndicator from '@/components/common/Drawer/AddPPDrawer/CategoryCheckIndicator';
 import { CommonResponse } from '@/types/apiTypes';
 import isNil from 'lodash/isNil';
+import useDeletePlacePick from '@/api/place-pick/deletePlacePick';
 
 export default function AddPPDrawer() {
   const {
@@ -37,31 +38,52 @@ export default function AddPPDrawer() {
   )?.data;
 
   const { mutateAsync } = useCreatePlacePick();
+  const { mutateAsync: deletePlacePickMutateAsync } = useDeletePlacePick();
 
   const createPlacePickMutateHandler = async () => {
-    if (isNumber(place_id) && selectedCategoryIds.length > 0) {
-      const requestBody = {
-        alias,
-        link,
-        memo,
-        place_id,
-        pl_pick_category_ids: selectedCategoryIds,
-      };
+    if (isNumber(place_id)) {
+      if (selectedCategoryIds.length > 0) {
+        const requestBody = {
+          alias,
+          link,
+          memo,
+          place_id,
+          pl_pick_category_ids: selectedCategoryIds,
+        };
 
-      await mutateAsync(requestBody, {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: generateQueryKeysFromUrl(
-              API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
-            ),
-          });
-          queryClient.invalidateQueries({
-            queryKey: generateQueryKeysFromUrl(
-              API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
-            ),
-          });
-        },
-      });
+        await mutateAsync(requestBody, {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: generateQueryKeysFromUrl(
+                API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
+              ),
+            });
+            queryClient.invalidateQueries({
+              queryKey: generateQueryKeysFromUrl(
+                API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
+              ),
+            });
+          },
+        });
+      } else if (selectedCategoryIds.length === 0) {
+        await deletePlacePickMutateAsync(
+          { place_id },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({
+                queryKey: generateQueryKeysFromUrl(
+                  API_URL.PLACE_PICK.GET_ALL_MY_PLACE_PICK
+                ),
+              });
+              queryClient.invalidateQueries({
+                queryKey: generateQueryKeysFromUrl(
+                  API_URL.PL_PICK_CATEGORY.FIND_USER_CATEGORIES
+                ),
+              });
+            },
+          }
+        );
+      }
     }
   };
 

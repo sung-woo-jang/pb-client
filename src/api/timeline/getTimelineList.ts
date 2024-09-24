@@ -33,12 +33,17 @@ const getTimelineList = async (userId: NumberString) => {
 };
 
 const useGetTimelineList = (userId: NumberString) =>
-  useQuery<CommonResponse<IGetTimelineListResponseData>>({
+  useQuery<
+    CommonResponse<IGetTimelineListResponseData>,
+    unknown,
+    IGetTimelineListResponseData
+  >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.TIMELINE.GET_TIMELINE_LIST(userId)
     ),
     queryFn: () => getTimelineList(userId),
     enabled: !isUndefined(userId),
+    select: (data) => data.data,
   });
 
 export default useGetTimelineList;

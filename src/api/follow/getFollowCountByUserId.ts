@@ -19,12 +19,17 @@ const getFollowCountByUserId = async (userId: NumberString) => {
 };
 
 const useGetFollowCountByUserId = (userId: NumberString) =>
-  useQuery<CommonResponse<IFollowCountResponseData>>({
+  useQuery<
+    CommonResponse<IFollowCountResponseData>,
+    unknown,
+    IFollowCountResponseData
+  >({
     queryKey: generateQueryKeysFromUrl(
       API_URL.FOLLOW.GET_FOLLOW_COUNT_BY_USER_ID(userId)
     ),
     queryFn: () => getFollowCountByUserId(userId),
     enabled: !isUndefined(userId),
+    select: (data) => data.data,
   });
 
 export default useGetFollowCountByUserId;

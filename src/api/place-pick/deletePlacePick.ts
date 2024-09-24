@@ -3,7 +3,6 @@ import { API_URL } from '@/constants/API_URL';
 import { useMutation } from '@tanstack/react-query';
 
 interface IDeletePlacePickBody {
-  pl_pick_category_id: number;
   place_id: number;
 }
 
