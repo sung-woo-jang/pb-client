@@ -28,6 +28,7 @@ export default function ExitArea({ placeId }: IExitAreaProps) {
       console.log('방문일자 없음');
       return;
     }
+
     mutate(
       {
         keywords,

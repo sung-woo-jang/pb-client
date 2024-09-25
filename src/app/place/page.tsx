@@ -3,7 +3,7 @@ import {
   IGetAllMyPlacePickResponseData,
   selectAllMyPlacePick,
 } from '@/api/place-pick/getAllMyPlacePick';
-import NaverMap from '../../components/Naver/NaverMap';
+import NaverMap from '@/components/naver/NaverMap';
 import useSearchBoxControls from '@/store/slice/searchBox/useSearchBoxControls';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import SearchHistory from '@/components/common/Search/SearchHistory';

@@ -1,17 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dayjs } from 'dayjs';
 
-interface IKeyword {
-  id: number;
-  label: string;
-  isCheck: boolean;
-}
-
 interface PostEditorState {
   visitDate: Dayjs | null;
   placeImages: FileList | null;
   content: string;
-  keywords: IKeyword[];
+  selectedKeywords: string[];
   rate: number;
 }
 
@@ -19,16 +13,7 @@ const initialState: PostEditorState = {
   visitDate: null,
   placeImages: null,
   content: '',
-  keywords: [
-    { id: 1, label: '맛있어요', isCheck: false },
-    { id: 2, label: '깨끗해요', isCheck: false },
-    { id: 3, label: '친절해요', isCheck: false },
-    { id: 4, label: '조용해요', isCheck: false },
-    { id: 5, label: '분위기가 좋아요', isCheck: false },
-    { id: 6, label: '예약이 편리해요', isCheck: false },
-    { id: 7, label: '주차하기 편해요', isCheck: false },
-    { id: 8, label: '서비스가 좋아요', isCheck: false },
-  ],
+  selectedKeywords: [],
   rate: 1,
 };
 
@@ -48,15 +33,13 @@ const { reducer: postEditorReducer, actions } = createSlice({
     setPostEditorContent: (state, action: PayloadAction<string>) => {
       state.content = action.payload;
     },
-    togglePostEditorKeyword: (state, action: PayloadAction<number>) => {
-      state.keywords = state.keywords.map((item) =>
-        item.id === action.payload
-          ? {
-              ...item,
-              isCheck: !item.isCheck,
-            }
-          : item
-      );
+    togglePostEditorKeyword: (state, action: PayloadAction<string>) => {
+      const index = state.selectedKeywords.indexOf(action.payload);
+      if (index !== -1) {
+        state.selectedKeywords.splice(index, 1);
+      } else {
+        state.selectedKeywords.push(action.payload);
+      }
     },
     setPostEditorRate: (state, action: PayloadAction<number>) => {
       state.rate = action.payload;

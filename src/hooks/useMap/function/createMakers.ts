@@ -1,4 +1,4 @@
-import MarkerContent from '../../../components/Icon/MarkerContent';
+import MarkerContent from '@/components/icon/MarkerContent';
 import { CircleColors } from '@/constants/COLORS';
 
 interface ICreateMarkers {

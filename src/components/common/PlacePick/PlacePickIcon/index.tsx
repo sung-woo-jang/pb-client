@@ -1,7 +1,7 @@
 'use client';
 import classes from './styles.module.scss';
-import FillStar from '@/components/Icon/FillStar';
-import EmptyStar from '@/components/Icon/EmptyStar';
+import FillStar from '@/components/icon/FillStar';
+import EmptyStar from '@/components/icon/EmptyStar';
 import useAddPPDrawer from '@/store/slice/drawer/addPPDrawer/useAddPPDrawer';
 import {
   IGetAllMyPlacePickResponseData,

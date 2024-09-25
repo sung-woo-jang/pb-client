@@ -12,12 +12,15 @@ import { useQueryClient } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
 import useGetMyInfo from '@/api/auth/getMyInfo';
 import some from 'lodash/some';
+import KeywordBox from '@/components/post/KeywordBox';
+import { IKeyword } from '@/api/newsfeed/getNewsFeeds';
 
 interface IPostFooterProps {
   postId: number;
   rate: number;
   content: string;
   likes: { user_id: string }[];
+  keywords: IKeyword[];
 }
 
 export default function PostFooter({
@@ -25,6 +28,7 @@ export default function PostFooter({
   content,
   postId,
   likes,
+  keywords,
 }: IPostFooterProps) {
   // TODO: queryClient로 사용하게끔 변경
   const { data: myInfo, isSuccess } = useGetMyInfo();
@@ -100,6 +104,7 @@ export default function PostFooter({
         </div>
       </div>
       <div className={classes.contents}>{content}</div>
+      <KeywordBox keywords={keywords} />
     </div>
   );
 }

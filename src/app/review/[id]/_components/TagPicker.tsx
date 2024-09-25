@@ -1,58 +1,70 @@
-import ContentsBox from '@/components/common/ContentsBox';
-import Button from '@mui/material/Button';
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import React, { useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { togglePostEditorKeyword } from '@/store/slice/postEditor/slice';
+import { useQueryClient } from '@tanstack/react-query';
+import { CommonResponse } from '@/types/apiTypes';
+import {
+  filterCodeTypes,
+  IGetAllCodesResponseData,
+} from '@/api/code/getAllCodes';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
 
-const sx: SxProps<Theme> = {
-  color: 'black',
-  borderColor: 'gray',
-};
-
-const checkedSX: SxProps<Theme> = {
-  color: '#73A9FE',
-  borderColor: '#73A9FE',
-  background: '#EFF4FD',
-  fontWeight: 'bold',
-};
 export default function TagPicker() {
   const dispatch = useAppDispatch();
+  const selectedKeywords = useAppSelector(
+    (state) => state.postEditor.selectedKeywords
+  );
+  const queryClient = useQueryClient();
 
-  const keywords = useAppSelector((state) => state.postEditor.keywords);
+  const allCodes = queryClient.getQueryData<
+    CommonResponse<IGetAllCodesResponseData[]>
+  >(generateQueryKeysFromUrl(API_URL.CODE.GET_ALL_CODES))
+    ?.data as IGetAllCodesResponseData[];
 
-  const toggleCheck = (id: number) => {
-    dispatch(togglePostEditorKeyword(id));
+  const keywordCodeTypes = useMemo(
+    () => filterCodeTypes(allCodes || [], 'KEYWORD'),
+    [allCodes]
+  );
+
+  const toggleCheck = (codeId: string) => {
+    dispatch(togglePostEditorKeyword(codeId));
   };
 
   return (
-    <ContentsBox>
-      <div className="flex flex-col space-y-1.5">
-        <h3 className="leading-none tracking-tight text-lg font-bold">
-          이런 점이 좋았어요 (필수)
-        </h3>
-        <p className="text-sm text-muted-foreground text-muted-foreground">
-          이 장소에 어울리는 키워드를 골라주세요
-        </p>
-      </div>
-      <div
-        className="p-6 pt-0 grid grid-cols-2 gap-2 mt-4"
-        style={{ overflow: 'auto' }}
-      >
-        {keywords.map(({ label, id, isCheck }) => (
-          <Button
-            key={id}
-            variant="outlined"
-            sx={isCheck ? checkedSX : sx}
-            onClick={() => {
-              toggleCheck(id);
-            }}
-          >
-            {label}
-          </Button>
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <h3 className="text-xl font-bold mb-2">어떤 점이 좋았나요? (필수)</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        이 장소에 어울리는 키워드를 골라주세요. (1개-5개)
+      </p>
+
+      <div className="space-y-6">
+        {keywordCodeTypes.map((codeType) => (
+          <div key={codeType.typeId}>
+            <h4 className="text-lg font-semibold mb-2 flex items-center">
+              <span className="ml-2">{codeType.typeName}</span>
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {codeType.codes.map((code) => {
+                const isSelected = selectedKeywords.includes(code.codeId);
+                return (
+                  <button
+                    key={code.codeId}
+                    onClick={() => toggleCheck(code.codeId)}
+                    className={`flex items-center justify-start px-3 py-2 rounded-full text-sm transition-colors duration-200 ${
+                      isSelected
+                        ? 'bg-blue-100 text-blue-600 font-semibold'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span className="ml-2">{code.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         ))}
       </div>
-    </ContentsBox>
+    </div>
   );
 }

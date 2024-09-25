@@ -6,7 +6,7 @@ import { CommonResponse } from '@/types/apiTypes';
 import { IUser } from '@/types/userTypes';
 import { IPlaceCategory } from '@/api/place-pick/findPlacePickList';
 
-interface IKeyword {
+export interface IKeyword {
   id: number;
   keyword: string;
 }

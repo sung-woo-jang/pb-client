@@ -6,7 +6,7 @@ import { useAppSelector } from '@/hooks/redux-hooks';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { useMemo } from 'react';
 import AddressTooltip from '@/components/common/Tooltip/AddressTooltip';
-import NaverDirectionsButton from '@/components/Naver/NaverDirectionsButton';
+import NaverDirectionsButton from '@/components/naver/NaverDirectionsButton';
 
 export default function PlaceInfo() {
   const {

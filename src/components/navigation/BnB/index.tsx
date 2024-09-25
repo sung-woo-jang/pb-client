@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FiHome, FiMapPin, FiRss, FiUser } from 'react-icons/fi';
@@ -13,17 +14,30 @@ const navItems = [
 ];
 
 export default function BnB() {
-  const { data: userInfo } = useGetMyInfo();
+  const { data: userInfo, isLoading } = useGetMyInfo();
   const pathname = usePathname();
   const router = useRouter();
-  if (!isNil(userInfo)) {
-    const userId = userInfo.id;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    if (!isLoading && isNil(userInfo)) {
+      router.push('/login');
+    } else if (!isNil(userInfo)) {
+      setIsAuthenticated(true);
+    }
+  }, [userInfo, isLoading, router]);
+
+  if (isLoading || !isAuthenticated) {
+    return null; // or return a loading spinner
+  }
+  if (!isNil(userInfo))
     return (
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item) => {
-            const href = item.isDynamic ? `${item.href}${userId}` : item.href;
+            const href = item.isDynamic
+              ? `${item.href}${userInfo.id}`
+              : item.href;
             const isActive = pathname.startsWith(href);
             return (
               <Link
@@ -41,8 +55,4 @@ export default function BnB() {
         </div>
       </nav>
     );
-  } else {
-    router.push('/login');
-    return null;
-  }
 }
