@@ -9,6 +9,7 @@ import isUndefined from 'lodash/isUndefined';
 
 export default function Page() {
   const { data, isSuccess } = useGetMyInfo();
+
   const handleNaverLogin = () => {
     const width = 500;
     const height = 600;
@@ -32,11 +33,11 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSuccess && !isUndefined(data)) router.push('/');
+    if (isSuccess && !isUndefined(data)) router.push('/newsfeed');
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, router]);
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-6 px-4">
+    <div className="flex items-center justify-center min-h-screen py-6 px-4">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
         {/* Logo Section */}
         <div className="flex flex-col items-center mb-8">

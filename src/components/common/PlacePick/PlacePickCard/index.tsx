@@ -14,15 +14,18 @@ export default function PlacePickCard({ place }: IPlacePickCardProps) {
   return (
     <div className={classes.wrapper}>
       <div className={classes.main}>
-        <Link href={`/place/${id}`} className={classes.title}>
+        <Link
+          href={`/place/${id}`}
+          className={`mb-1 text-lg font-bold cursor-pointer`}
+        >
           {title}
           <ChevronRightIcon sx={{ cursor: 'pointer' }} />
         </Link>
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm">
           {place_category_name}, {place_category_name_detail} - {road_address}
         </p>
       </div>
-      <PlacePickIcon placeId={id} placeTitle={title} />
+      <PlacePickIcon placeId={id} placeTitle={title} className={`pl-8`} />
     </div>
   );
 }

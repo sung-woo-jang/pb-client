@@ -1,24 +1,97 @@
 .timelineWrapper {
   display: flex;
   flex-direction: column;
-  border-width: 1px;
   width: 100%;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.timelineContainer {
-  display: flex;
-  padding: 1rem;
-  margin-top: 1rem;
-  flex-direction: column;
-  align-items: center;
+@media (max-width: 600px) {
+  .timelineWrapper {
+    padding: 10px;
+  }
 }
 
 .profile {
   display: flex;
-  margin-top: 0.5rem;
-  flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.avatar {
+  width: 100px !important;
+  height: 100px !important;
+  margin-right: 20px;
+}
+
+.info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.bio {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+
+  div {
+    font-size: 0.9rem;
+    color: #444;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avatar {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.imageLink {
+  position: relative;
+  padding-bottom: 100%; // 1:1 aspect ratio
+  overflow: hidden;
+}
+
+.image {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .imageGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

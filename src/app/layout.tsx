@@ -25,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="ko-kr">
       <ReduxProviders>
-        <body className={inter.className} suppressHydrationWarning={true}>
+        <body
+          className={`${inter.className} bg-[#F5F5F5]`}
+          suppressHydrationWarning={true}
+        >
           <ReactQueryProvider>
             <AppRouterCacheProvider>
               <AxiosInterceptor>
@@ -34,10 +37,8 @@ export default function RootLayout({
                   src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8cqmivfoiq&submodules=geocoder"
                 />
 
-                <div className="flex flex-col h-screen">
-                  <div className="flex-shrink-0 h-[45px] z-50">
-                    <GnB />
-                  </div>
+                <div className="flex flex-col min-h-screen pt-[45px]">
+                  <GnB />
                   <main className="flex-grow overflow-y-auto">{children}</main>
                   <div className="flex-shrink-0 h-[60px] z-50">
                     <BnB />

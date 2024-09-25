@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { generatePostImageUrl } from '@/utils/generateImageUrl';
 import { IPost } from '@/api/timeline/getTimelineList';
+import classes from '@/app/timeline/styles.module.scss';
 
 interface ITimelineImagesProps {
   posts: IPost[];
@@ -9,15 +10,15 @@ interface ITimelineImagesProps {
 
 export default function TimelineImages({ posts }: ITimelineImagesProps) {
   return (
-    <div className="grid grid-cols-3 gap-2 mt-4">
+    <div className={classes.imageGrid}>
       {posts.map(({ id, images }) => (
-        <Link key={id} href={`/timeline/${id}`}>
+        <Link key={id} href={`/timeline/${id}`} className={classes.imageLink}>
           <Image
             src={generatePostImageUrl(images[0].image_path)}
             alt={images[0].image_path}
-            style={{ width: '100px', height: '100px' }}
-            width={100}
-            height={100}
+            layout="fill"
+            objectFit="cover"
+            className={classes.image}
           />
         </Link>
       ))}

@@ -1,10 +1,28 @@
 .directionButton {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #4AFF3F;
-  color: #1A1A1A;
+  background-color: #03c75a;
+  color: white;
   border: none;
-  border-radius: 1.5rem;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  &:hover {
+    background-color: #02b350;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(3, 199, 90, 0.4);
+  }
+}
+
+.icon {
+  font-size: 16px;
 }

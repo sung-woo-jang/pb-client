@@ -18,16 +18,20 @@ export default function TimelineProfile({
   return (
     <div className={classes.profile}>
       <Avatar
-        alt="Remy Sharp"
+        alt={nickname}
         src={generateProfileImageUrl(profileImageUrl)}
-        className="w-24 h-24"
+        className={classes.avatar}
       />
-      <div className="text-center">
-        <div className="text-xl font-bold">{nickname}</div>
-        <div className="text-sm text-muted-foreground">자기소개</div>
-        <div className="flex space-x-4">
-          <div className="text-sm">팔로워 {follower}</div>
-          <div className="text-sm">팔로잉 {following}</div>
+      <div className={classes.info}>
+        <h2 className={classes.nickname}>{nickname}</h2>
+        <p className={classes.bio}>자기소개</p>
+        <div className={classes.stats}>
+          <div>
+            팔로워 <span>{follower}</span>
+          </div>
+          <div>
+            팔로잉 <span>{following}</span>
+          </div>
         </div>
       </div>
     </div>

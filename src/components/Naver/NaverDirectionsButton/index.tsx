@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import { FiNavigation } from 'react-icons/fi';
 
 interface NaverDirectionsButtonProps {
   roadAddress: string;
@@ -13,18 +14,25 @@ export default function NaverDirectionsButton({
   address,
   roadAddress,
 }: NaverDirectionsButtonProps) {
-  const search = React.useMemo(() => {
-    const addressToUse = roadAddress.length > 0 ? roadAddress : address;
-    return `${addressToUse.split(' ').slice(0, 2).join(' ')} ${title}`.trim();
+  const searchQuery = React.useMemo(() => {
+    const primaryAddress = roadAddress || address;
+    const shortAddress = primaryAddress.split(' ').slice(0, 2).join(' ');
+    return `${shortAddress} ${title}`.trim();
   }, [roadAddress, address, title]);
+
+  const naverMapUrl = `https://map.naver.com/p/search/${encodeURIComponent(searchQuery)}`;
 
   return (
     <Link
-      href={`https://map.naver.com/p/search/${encodeURIComponent(search)}`}
+      href={naverMapUrl}
       target="_blank"
       rel="noopener noreferrer"
+      className={styles.directionButtonLink}
     >
-      <button className={styles.directionButton}>길찾기</button>
+      <button className={styles.directionButton}>
+        <FiNavigation className={styles.icon} />
+        <span>길찾기</span>
+      </button>
     </Link>
   );
 }

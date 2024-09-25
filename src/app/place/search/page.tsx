@@ -1,7 +1,6 @@
 'use client';
 import styles from './styles/styles.module.scss';
 import SearchPlaceInfo from '@/app/place/search/_components/SearchPlaceInfo';
-import LocationInfo from '@/app/place/search/_components/LocationInfo';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import useSearchPlaces, { ISearchPlacesQuery } from '@/api/search/searchPlaces';
@@ -51,7 +50,7 @@ function SearchContent() {
       className={styles.container}
       style={{ height: `calc(100vh - ${headerHeight}px)` }}
     >
-      <LocationInfo />
+      {/*<LocationInfo />*/}
       {isLoading && <LoadingSpinner size={60} />}
       {isSuccess &&
         data.map((placeInfo) => (

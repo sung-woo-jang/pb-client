@@ -13,6 +13,9 @@ export const API_URL = {
      */
     LOGOUT: `auth/logout`,
   },
+  CODE: {
+    GET_ALL_CODES: 'code',
+  },
   COMMENT: {
     GET_COMMENT: (postId: NumberString) => `comment/${postId}`,
     CREATE_COMMENT: 'comment',

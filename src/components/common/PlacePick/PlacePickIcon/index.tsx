@@ -17,11 +17,13 @@ import isUndefined from 'lodash/isUndefined';
 interface IPlacePickIconProps {
   placeId: number;
   placeTitle: string;
+  className?: string;
 }
 
 export default function PlacePickIcon({
   placeId,
   placeTitle,
+  className,
 }: IPlacePickIconProps) {
   const queryClient = useQueryClient();
   const allMyPlacePick = queryClient.getQueryData<
@@ -68,7 +70,7 @@ export default function PlacePickIcon({
   }, [placeId, isPicked, memoizedAreSetsEqual, allMyPlacePick]);
 
   return (
-    <div onClick={onClickHandler} className={classes.icon}>
+    <div onClick={onClickHandler} className={`${classes.icon} ${className}`}>
       {isPicked ? <FillStar /> : <EmptyStar />}
       <span className="text-gray-500 mt-1">저장</span>
     </div>

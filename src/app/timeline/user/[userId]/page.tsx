@@ -18,15 +18,13 @@ export default function Page({ params }: ITimelineByUserPageProps) {
   } else if (followCount.isSuccess && timelineList.isSuccess) {
     return (
       <div className={classes.timelineWrapper}>
-        <div className={classes.timelineContainer}>
-          <TimelineProfile
-            nickname={timelineList.data.nickname}
-            profileImageUrl={timelineList.data.profileImage}
-            follower={followCount.data.followers}
-            following={followCount.data.followings}
-          />
-          <TimelineImages posts={timelineList.data.posts} />
-        </div>
+        <TimelineProfile
+          nickname={timelineList.data.nickname}
+          profileImageUrl={timelineList.data.profileImage}
+          follower={followCount.data.followers}
+          following={followCount.data.followings}
+        />
+        <TimelineImages posts={timelineList.data.posts} />
       </div>
     );
   }
