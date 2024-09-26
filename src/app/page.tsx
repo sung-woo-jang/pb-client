@@ -1,32 +1,42 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import logo from '@/../public/logo.png';
+import { useQueryClient } from '@tanstack/react-query';
+import { CommonResponse } from '@/types/apiTypes';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
+import { IMyInfo } from '@/api/auth/getMyInfo';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 
 export default function Home() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      // TODO: 실제 로그인 상태 확인 로직으로 대체해야 합니다.
-      const isLoggedIn = await fakeCheckLoginStatus();
+  useDeepCompareEffect(() => {
+    const checkLoginStatus = () => {
+      try {
+        const myInfo = queryClient.getQueryData<CommonResponse<IMyInfo>>(
+          generateQueryKeysFromUrl(API_URL.AUTH.GET_MY_INFO)
+        );
 
-      if (isLoggedIn) {
-        router.push('/newsfeed');
-      } else {
-        router.push('/login');
+        if (myInfo?.isLogin) {
+          router.push('/place');
+        } else {
+          router.push('/login');
+        }
+      } catch (error) {
+        console.error('Error fetching login status:', error);
+        router.push('/login'); // 에러 발생 시 로그인 페이지로 리다이렉트
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    // 로고를 잠시 보여주기 위해 타임아웃 설정
-    const timer = setTimeout(() => {
-      checkLoginStatus();
-    }, 2000); // 2초 후 로그인 상태 확인
-
-    return () => clearTimeout(timer);
-  }, [router]);
+    checkLoginStatus();
+  }, [queryClient, router]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
@@ -41,14 +51,4 @@ export default function Home() {
       )}
     </div>
   );
-}
-
-// 임시 로그인 상태 확인 함수 (실제 구현으로 대체 필요)
-function fakeCheckLoginStatus(): Promise<boolean> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // 임의로 로그인 상태 결정 (실제 로직으로 대체 필요)
-      resolve(Math.random() > 0.9);
-    }, 1000);
-  });
 }

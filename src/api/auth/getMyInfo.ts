@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { CommonResponse } from '@/types/apiTypes';
 
-interface IMyInfo {
+export interface IMyInfo {
   email: string;
   name: string;
   nickname: string;
