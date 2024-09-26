@@ -7,7 +7,6 @@ import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 interface ICode {
   codeId: string;
   code: string;
-  upperCode: string | null;
   sortOrder: number;
   label: string;
 }
